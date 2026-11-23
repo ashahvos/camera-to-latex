@@ -1,0 +1,4511 @@
+{
+ "cols": 7,
+ "rows": 5,
+ "pitch_x_cm": 1.6,
+ "pitch_y_cm": 1.7,
+ "mark_cm": 0.5,
+ "mark_gap_cm": 0.25,
+ "font_pt": 40,
+ "blocks": [
+  {
+   "id": "A1",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "upper_Q",
+     "class": "upper_Q",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "times",
+     "class": "xX",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "times",
+     "class": "xX",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "wedge",
+     "class": "wedge",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "upper_T",
+     "class": "upper_T",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "digit_1",
+     "class": "digit_1",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "comma",
+     "class": "comma",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "infty",
+     "class": "infty",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "lower_x",
+     "class": "xX",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "ll",
+     "class": "ll",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "lower_q",
+     "class": "lower_q",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "digit_0",
+     "class": "o0",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "upper_Y",
+     "class": "upper_Y",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "int",
+     "class": "int",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "digit_5",
+     "class": "digit_5",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "lower_z",
+     "class": "zZ",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "minus",
+     "class": "bar",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "upper_R",
+     "class": "upper_R",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "forall",
+     "class": "forall",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "prod",
+     "class": "upper_Pi",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "varphi",
+     "class": "phi",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "delta",
+     "class": "delta",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "in",
+     "class": "in",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "upper_F",
+     "class": "upper_F",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "star",
+     "class": "star",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "bbZ",
+     "class": "bbZ",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "upper_C",
+     "class": "cC",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "minus",
+     "class": "bar",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "vert",
+     "class": "lI",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "prime",
+     "class": "comma",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "rparen",
+     "class": "rparen",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "upper_M",
+     "class": "upper_M",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "lower_v",
+     "class": "vV",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "partial",
+     "class": "partial",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "sim",
+     "class": "tilde",
+     "style": "math"
+    }
+   ]
+  },
+  {
+   "id": "A2",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "theta",
+     "class": "theta",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "bbC",
+     "class": "bbC",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "propto",
+     "class": "propto",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "f_math",
+     "class": "lower_f",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "Phi",
+     "class": "upper_Phi",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "slash",
+     "class": "slash",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "upper_W",
+     "class": "wW",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "lower_s",
+     "class": "sS",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "lower_m",
+     "class": "lower_m",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "degree",
+     "class": "o0",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "sum",
+     "class": "upper_Sigma",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "backtick",
+     "class": "backtick",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "tau",
+     "class": "tau",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "chi",
+     "class": "chi",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "lower_b",
+     "class": "lower_b",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "digit_6",
+     "class": "digit_6",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "rightarrow",
+     "class": "rightarrow",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "Rightarrow",
+     "class": "implies",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "upper_W",
+     "class": "wW",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "hash",
+     "class": "hash",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "bbR",
+     "class": "bbR",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "lower_o",
+     "class": "o0",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "leftarrow",
+     "class": "leftarrow",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "comma",
+     "class": "comma",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "upper_L",
+     "class": "upper_L",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "amp",
+     "class": "amp",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "upper_N",
+     "class": "upper_N",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "lambda",
+     "class": "lambda",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "hbar",
+     "class": "hbar",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "lower_i",
+     "class": "lower_i",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "lower_f",
+     "class": "lower_f",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "underscore",
+     "class": "bar",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "lower_l",
+     "class": "lI",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "lower_l",
+     "class": "lI",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "lower_g",
+     "class": "lower_g",
+     "style": "text"
+    }
+   ]
+  },
+  {
+   "id": "A3",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "digit_1",
+     "class": "digit_1",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "leq",
+     "class": "leq",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "lower_u",
+     "class": "lower_u",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "Lambda",
+     "class": "upper_Lambda",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "upper_B",
+     "class": "upper_B",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "lower_h",
+     "class": "lower_h",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "upper_H",
+     "class": "upper_H",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "lower_c",
+     "class": "cC",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "mp",
+     "class": "mp",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "cap",
+     "class": "cap",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "upper_P",
+     "class": "upper_P",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "perp",
+     "class": "perp",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "rho",
+     "class": "rho",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "subseteq",
+     "class": "subseteq",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "lower_n",
+     "class": "lower_n",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "sqrt",
+     "class": "sqrt",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "upper_O",
+     "class": "o0",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "kappa",
+     "class": "kappa",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "upper_S",
+     "class": "sS",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "question",
+     "class": "question",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "omega",
+     "class": "omega",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "exclam",
+     "class": "exclam",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "digit_4",
+     "class": "digit_4",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "alpha",
+     "class": "alpha",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "Xi",
+     "class": "upper_Xi",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "digit_0",
+     "class": "o0",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "cdot",
+     "class": "dot",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "sigma",
+     "class": "sigma",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "emptyset",
+     "class": "emptyset",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "upper_D",
+     "class": "upper_D",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "exists",
+     "class": "exists",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "cdot",
+     "class": "dot",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "percent",
+     "class": "percent",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "ell",
+     "class": "ell",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "upper_X",
+     "class": "xX",
+     "style": "text"
+    }
+   ]
+  },
+  {
+   "id": "A4",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "caret",
+     "class": "caret",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "lparen",
+     "class": "lparen",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "zeta",
+     "class": "zeta",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "lbrace",
+     "class": "lbrace",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "alpha",
+     "class": "alpha",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "lower_a",
+     "class": "lower_a",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "phi",
+     "class": "phi",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "lower_s",
+     "class": "sS",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "nu",
+     "class": "nu",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "notin",
+     "class": "notin",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "apostrophe",
+     "class": "comma",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "rbracket",
+     "class": "rbracket",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "lower_k",
+     "class": "lower_k",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "lower_h",
+     "class": "lower_h",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "digit_7",
+     "class": "digit_7",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "upper_G",
+     "class": "upper_G",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "upper_O",
+     "class": "o0",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "semicolon",
+     "class": "semicolon",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "lower_e",
+     "class": "lower_e",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "Psi",
+     "class": "upper_Psi",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "varepsilon",
+     "class": "epsilon",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "period",
+     "class": "dot",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "upper_U",
+     "class": "upper_U",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "div",
+     "class": "div",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "digit_5",
+     "class": "digit_5",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "bbN",
+     "class": "bbN",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "lower_g",
+     "class": "lower_g",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "Leftrightarrow",
+     "class": "iff",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "nabla",
+     "class": "nabla",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "plus",
+     "class": "plus",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "oint",
+     "class": "oint",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "apostrophe",
+     "class": "comma",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "upper_E",
+     "class": "upper_E",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "period",
+     "class": "dot",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "lower_n",
+     "class": "lower_n",
+     "style": "text"
+    }
+   ]
+  },
+  {
+   "id": "A5",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "upper_A",
+     "class": "upper_A",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "Delta",
+     "class": "upper_Delta",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "lower_w",
+     "class": "wW",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "greater",
+     "class": "greater",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "lower_t",
+     "class": "lower_t",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "oplus",
+     "class": "oplus",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "pi",
+     "class": "pi",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "neq",
+     "class": "neq",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "upper_J",
+     "class": "upper_J",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "digit_8",
+     "class": "digit_8",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "digit_3",
+     "class": "digit_3",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "gg",
+     "class": "gg",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "upper_V",
+     "class": "vV",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "lower_p",
+     "class": "lower_p",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "at",
+     "class": "at",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "digit_9",
+     "class": "digit_9",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "backslash",
+     "class": "backslash",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "Theta",
+     "class": "upper_Theta",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "angle",
+     "class": "angle",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "lower_a",
+     "class": "lower_a",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "vee",
+     "class": "vee",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "beta",
+     "class": "beta",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "lower_w",
+     "class": "wW",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "lower_d",
+     "class": "lower_d",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "approx",
+     "class": "approx",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "lower_o",
+     "class": "o0",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "lower_m",
+     "class": "lower_m",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "Omega",
+     "class": "upper_Omega",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "xi",
+     "class": "xi",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "lower_v",
+     "class": "vV",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "equiv",
+     "class": "equiv",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "upper_Z",
+     "class": "zZ",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "otimes",
+     "class": "otimes",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "cup",
+     "class": "cup",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "equal",
+     "class": "equal",
+     "style": "text"
+    }
+   ]
+  },
+  {
+   "id": "A6",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "mu",
+     "class": "mu",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "rbrace",
+     "class": "rbrace",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "upper_I",
+     "class": "lI",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "geq",
+     "class": "geq",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "psi",
+     "class": "psi",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "lbracket",
+     "class": "lbracket",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "parallel",
+     "class": "parallel",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "lower_r",
+     "class": "lower_r",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "lower_y",
+     "class": "lower_y",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "less",
+     "class": "less",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "upper_K",
+     "class": "upper_K",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "subset",
+     "class": "subset",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "bbQ",
+     "class": "bbQ",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "pm",
+     "class": "pm",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "dquote",
+     "class": "dquote",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "neg",
+     "class": "neg",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "lower_x",
+     "class": "xX",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "lower_y",
+     "class": "lower_y",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "ast",
+     "class": "star",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "upper_I",
+     "class": "lI",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "Pi",
+     "class": "upper_Pi",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "digit_2",
+     "class": "digit_2",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "leftrightarrow",
+     "class": "leftrightarrow",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "tilde",
+     "class": "tilde",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "epsilon",
+     "class": "epsilon",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "colon",
+     "class": "colon",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "lower_u",
+     "class": "lower_u",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "gamma",
+     "class": "gamma",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "Gamma",
+     "class": "upper_Gamma",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "Sigma",
+     "class": "upper_Sigma",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "dollar",
+     "class": "dollar",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "lower_j",
+     "class": "lower_j",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "eta",
+     "class": "eta",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "underscore",
+     "class": "bar",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "vert",
+     "class": "lI",
+     "style": "text"
+    }
+   ]
+  },
+  {
+   "id": "B1",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "angle",
+     "class": "angle",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "ll",
+     "class": "ll",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "lower_y",
+     "class": "lower_y",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "lower_o",
+     "class": "o0",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "upper_A",
+     "class": "upper_A",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "upper_E",
+     "class": "upper_E",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "upper_B",
+     "class": "upper_B",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "theta",
+     "class": "theta",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "lparen",
+     "class": "lparen",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "lower_n",
+     "class": "lower_n",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "digit_6",
+     "class": "digit_6",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "Xi",
+     "class": "upper_Xi",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "prime",
+     "class": "comma",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "xi",
+     "class": "xi",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "upper_C",
+     "class": "cC",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "notin",
+     "class": "notin",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "digit_9",
+     "class": "digit_9",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "underscore",
+     "class": "bar",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "sigma",
+     "class": "sigma",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "digit_0",
+     "class": "o0",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "lower_v",
+     "class": "vV",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "vert",
+     "class": "lI",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "delta",
+     "class": "delta",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "partial",
+     "class": "partial",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "rho",
+     "class": "rho",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "digit_1",
+     "class": "digit_1",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "lower_m",
+     "class": "lower_m",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "rparen",
+     "class": "rparen",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "times",
+     "class": "xX",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "cdot",
+     "class": "dot",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "int",
+     "class": "int",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "upper_Z",
+     "class": "zZ",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "upper_S",
+     "class": "sS",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "upper_O",
+     "class": "o0",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "upper_J",
+     "class": "upper_J",
+     "style": "math"
+    }
+   ]
+  },
+  {
+   "id": "B2",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "upper_Y",
+     "class": "upper_Y",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "nu",
+     "class": "nu",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "psi",
+     "class": "psi",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "f_math",
+     "class": "lower_f",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "slash",
+     "class": "slash",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "hash",
+     "class": "hash",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "mp",
+     "class": "mp",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "digit_3",
+     "class": "digit_3",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "percent",
+     "class": "percent",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "lower_h",
+     "class": "lower_h",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "lbrace",
+     "class": "lbrace",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "Omega",
+     "class": "upper_Omega",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "varphi",
+     "class": "phi",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "Pi",
+     "class": "upper_Pi",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "Delta",
+     "class": "upper_Delta",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "rbracket",
+     "class": "rbracket",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "upper_D",
+     "class": "upper_D",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "lower_g",
+     "class": "lower_g",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "greater",
+     "class": "greater",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "vee",
+     "class": "vee",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "comma",
+     "class": "comma",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "epsilon",
+     "class": "epsilon",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "digit_5",
+     "class": "digit_5",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "lower_r",
+     "class": "lower_r",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "period",
+     "class": "dot",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "bbZ",
+     "class": "bbZ",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "omega",
+     "class": "omega",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "sqrt",
+     "class": "sqrt",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "lbracket",
+     "class": "lbracket",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "lower_e",
+     "class": "lower_e",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "semicolon",
+     "class": "semicolon",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "vert",
+     "class": "lI",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "leq",
+     "class": "leq",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "upper_Q",
+     "class": "upper_Q",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "subseteq",
+     "class": "subseteq",
+     "style": "math"
+    }
+   ]
+  },
+  {
+   "id": "B3",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "minus",
+     "class": "bar",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "forall",
+     "class": "forall",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "gamma",
+     "class": "gamma",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "lower_b",
+     "class": "lower_b",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "upper_K",
+     "class": "upper_K",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "div",
+     "class": "div",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "lower_l",
+     "class": "lI",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "lower_v",
+     "class": "vV",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "amp",
+     "class": "amp",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "upper_U",
+     "class": "upper_U",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "digit_2",
+     "class": "digit_2",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "digit_5",
+     "class": "digit_5",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "exclam",
+     "class": "exclam",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "leftarrow",
+     "class": "leftarrow",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "sim",
+     "class": "tilde",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "ast",
+     "class": "star",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "upper_T",
+     "class": "upper_T",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "bbC",
+     "class": "bbC",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "apostrophe",
+     "class": "comma",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "pm",
+     "class": "pm",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "caret",
+     "class": "caret",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "lower_z",
+     "class": "zZ",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "minus",
+     "class": "bar",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "lower_f",
+     "class": "lower_f",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "lambda",
+     "class": "lambda",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "Rightarrow",
+     "class": "implies",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "lower_s",
+     "class": "sS",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "varepsilon",
+     "class": "epsilon",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "upper_R",
+     "class": "upper_R",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "question",
+     "class": "question",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "cap",
+     "class": "cap",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "oint",
+     "class": "oint",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "upper_O",
+     "class": "o0",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "lower_q",
+     "class": "lower_q",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "upper_F",
+     "class": "upper_F",
+     "style": "math"
+    }
+   ]
+  },
+  {
+   "id": "B4",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "lower_n",
+     "class": "lower_n",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "alpha",
+     "class": "alpha",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "prod",
+     "class": "upper_Pi",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "perp",
+     "class": "perp",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "equiv",
+     "class": "equiv",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "lower_c",
+     "class": "cC",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "lower_j",
+     "class": "lower_j",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "Psi",
+     "class": "upper_Psi",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "upper_X",
+     "class": "xX",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "kappa",
+     "class": "kappa",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "digit_7",
+     "class": "digit_7",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "approx",
+     "class": "approx",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "lower_w",
+     "class": "wW",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "backtick",
+     "class": "backtick",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "upper_I",
+     "class": "lI",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "upper_L",
+     "class": "upper_L",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "mu",
+     "class": "mu",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "Lambda",
+     "class": "upper_Lambda",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "rightarrow",
+     "class": "rightarrow",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "colon",
+     "class": "colon",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "lower_o",
+     "class": "o0",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "lower_x",
+     "class": "xX",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "lower_y",
+     "class": "lower_y",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "Phi",
+     "class": "upper_Phi",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "leftrightarrow",
+     "class": "leftrightarrow",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "digit_1",
+     "class": "digit_1",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "propto",
+     "class": "propto",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "equal",
+     "class": "equal",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "period",
+     "class": "dot",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "wedge",
+     "class": "wedge",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "lower_s",
+     "class": "sS",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "bbN",
+     "class": "bbN",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "lower_u",
+     "class": "lower_u",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "upper_V",
+     "class": "vV",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "infty",
+     "class": "infty",
+     "style": "math"
+    }
+   ]
+  },
+  {
+   "id": "B5",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "lower_l",
+     "class": "lI",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "chi",
+     "class": "chi",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "bbR",
+     "class": "bbR",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "at",
+     "class": "at",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "Theta",
+     "class": "upper_Theta",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "lower_i",
+     "class": "lower_i",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "upper_I",
+     "class": "lI",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "lower_u",
+     "class": "lower_u",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "Gamma",
+     "class": "upper_Gamma",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "sum",
+     "class": "upper_Sigma",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "subset",
+     "class": "subset",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "upper_W",
+     "class": "wW",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "dollar",
+     "class": "dollar",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "lower_p",
+     "class": "lower_p",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "emptyset",
+     "class": "emptyset",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "upper_P",
+     "class": "upper_P",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "cdot",
+     "class": "dot",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "eta",
+     "class": "eta",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "bbQ",
+     "class": "bbQ",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "beta",
+     "class": "beta",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "lower_h",
+     "class": "lower_h",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "parallel",
+     "class": "parallel",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "lower_g",
+     "class": "lower_g",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "apostrophe",
+     "class": "comma",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "pi",
+     "class": "pi",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "otimes",
+     "class": "otimes",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "digit_4",
+     "class": "digit_4",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "digit_0",
+     "class": "o0",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "upper_N",
+     "class": "upper_N",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "underscore",
+     "class": "bar",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "upper_W",
+     "class": "wW",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "in",
+     "class": "in",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "lower_a",
+     "class": "lower_a",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "lower_x",
+     "class": "xX",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "alpha",
+     "class": "alpha",
+     "style": "math"
+    }
+   ]
+  },
+  {
+   "id": "B6",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "zeta",
+     "class": "zeta",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "lower_w",
+     "class": "wW",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "lower_a",
+     "class": "lower_a",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "upper_G",
+     "class": "upper_G",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "neg",
+     "class": "neg",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "oplus",
+     "class": "oplus",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "Leftrightarrow",
+     "class": "iff",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "lower_m",
+     "class": "lower_m",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "hbar",
+     "class": "hbar",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "plus",
+     "class": "plus",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "cup",
+     "class": "cup",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "rbrace",
+     "class": "rbrace",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "phi",
+     "class": "phi",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "digit_8",
+     "class": "digit_8",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "upper_H",
+     "class": "upper_H",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "star",
+     "class": "star",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "neq",
+     "class": "neq",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "lower_k",
+     "class": "lower_k",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "times",
+     "class": "xX",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "backslash",
+     "class": "backslash",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "lower_t",
+     "class": "lower_t",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "comma",
+     "class": "comma",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "tau",
+     "class": "tau",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "lower_d",
+     "class": "lower_d",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "ell",
+     "class": "ell",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "geq",
+     "class": "geq",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "upper_M",
+     "class": "upper_M",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "dquote",
+     "class": "dquote",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "nabla",
+     "class": "nabla",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "degree",
+     "class": "o0",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "tilde",
+     "class": "tilde",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "exists",
+     "class": "exists",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "less",
+     "class": "less",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "Sigma",
+     "class": "upper_Sigma",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "gg",
+     "class": "gg",
+     "style": "math"
+    }
+   ]
+  },
+  {
+   "id": "C1",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "kappa",
+     "class": "kappa",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "parallel",
+     "class": "parallel",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "rbrace",
+     "class": "rbrace",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "eta",
+     "class": "eta",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "bbN",
+     "class": "bbN",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "lower_f",
+     "class": "lower_f",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "lower_m",
+     "class": "lower_m",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "nabla",
+     "class": "nabla",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "bbC",
+     "class": "bbC",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "forall",
+     "class": "forall",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "neg",
+     "class": "neg",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "lparen",
+     "class": "lparen",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "upper_H",
+     "class": "upper_H",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "mu",
+     "class": "mu",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "leftarrow",
+     "class": "leftarrow",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "lower_o",
+     "class": "o0",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "lower_q",
+     "class": "lower_q",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "lower_n",
+     "class": "lower_n",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "lower_l",
+     "class": "lI",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "Delta",
+     "class": "upper_Delta",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "xi",
+     "class": "xi",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "nu",
+     "class": "nu",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "omega",
+     "class": "omega",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "lower_n",
+     "class": "lower_n",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "upper_V",
+     "class": "vV",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "upper_B",
+     "class": "upper_B",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "cap",
+     "class": "cap",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "digit_5",
+     "class": "digit_5",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "lower_y",
+     "class": "lower_y",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "upper_A",
+     "class": "upper_A",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "less",
+     "class": "less",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "varphi",
+     "class": "phi",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "upper_U",
+     "class": "upper_U",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "upper_Q",
+     "class": "upper_Q",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "Pi",
+     "class": "upper_Pi",
+     "style": "math"
+    }
+   ]
+  },
+  {
+   "id": "C2",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "star",
+     "class": "star",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "upper_T",
+     "class": "upper_T",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "leq",
+     "class": "leq",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "rparen",
+     "class": "rparen",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "lower_v",
+     "class": "vV",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "epsilon",
+     "class": "epsilon",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "times",
+     "class": "xX",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "upper_E",
+     "class": "upper_E",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "lower_x",
+     "class": "xX",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "lower_l",
+     "class": "lI",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "lower_v",
+     "class": "vV",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "Phi",
+     "class": "upper_Phi",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "upper_I",
+     "class": "lI",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "upper_R",
+     "class": "upper_R",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "digit_7",
+     "class": "digit_7",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "equal",
+     "class": "equal",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "upper_N",
+     "class": "upper_N",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "backtick",
+     "class": "backtick",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "rightarrow",
+     "class": "rightarrow",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "backslash",
+     "class": "backslash",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "vert",
+     "class": "lI",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "lower_b",
+     "class": "lower_b",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "digit_1",
+     "class": "digit_1",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "subset",
+     "class": "subset",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "semicolon",
+     "class": "semicolon",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "f_math",
+     "class": "lower_f",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "Rightarrow",
+     "class": "implies",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "degree",
+     "class": "o0",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "oint",
+     "class": "oint",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "digit_6",
+     "class": "digit_6",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "period",
+     "class": "dot",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "sigma",
+     "class": "sigma",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "upper_S",
+     "class": "sS",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "lower_s",
+     "class": "sS",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "pm",
+     "class": "pm",
+     "style": "math"
+    }
+   ]
+  },
+  {
+   "id": "C3",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "digit_9",
+     "class": "digit_9",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "lower_r",
+     "class": "lower_r",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "zeta",
+     "class": "zeta",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "delta",
+     "class": "delta",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "phi",
+     "class": "phi",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "notin",
+     "class": "notin",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "lbrace",
+     "class": "lbrace",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "upper_J",
+     "class": "upper_J",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "comma",
+     "class": "comma",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "perp",
+     "class": "perp",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "lower_t",
+     "class": "lower_t",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "lower_x",
+     "class": "xX",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "at",
+     "class": "at",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "beta",
+     "class": "beta",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "upper_Z",
+     "class": "zZ",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "minus",
+     "class": "bar",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "mp",
+     "class": "mp",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "exclam",
+     "class": "exclam",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "lower_h",
+     "class": "lower_h",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "lower_h",
+     "class": "lower_h",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "upper_F",
+     "class": "upper_F",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "ast",
+     "class": "star",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "int",
+     "class": "int",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "Sigma",
+     "class": "upper_Sigma",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "lower_w",
+     "class": "wW",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "lower_a",
+     "class": "lower_a",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "lower_a",
+     "class": "lower_a",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "equiv",
+     "class": "equiv",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "subseteq",
+     "class": "subseteq",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "upper_W",
+     "class": "wW",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "gg",
+     "class": "gg",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "colon",
+     "class": "colon",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "lower_u",
+     "class": "lower_u",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "chi",
+     "class": "chi",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "digit_8",
+     "class": "digit_8",
+     "style": "math"
+    }
+   ]
+  },
+  {
+   "id": "C4",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "varepsilon",
+     "class": "epsilon",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "vert",
+     "class": "lI",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "exists",
+     "class": "exists",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "amp",
+     "class": "amp",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "lower_w",
+     "class": "wW",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "hbar",
+     "class": "hbar",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "ell",
+     "class": "ell",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "digit_1",
+     "class": "digit_1",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "Xi",
+     "class": "upper_Xi",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "Leftrightarrow",
+     "class": "iff",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "sum",
+     "class": "upper_Sigma",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "vee",
+     "class": "vee",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "lower_m",
+     "class": "lower_m",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "partial",
+     "class": "partial",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "upper_O",
+     "class": "o0",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "rbracket",
+     "class": "rbracket",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "lower_k",
+     "class": "lower_k",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "plus",
+     "class": "plus",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "lower_e",
+     "class": "lower_e",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "dquote",
+     "class": "dquote",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "percent",
+     "class": "percent",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "minus",
+     "class": "bar",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "propto",
+     "class": "propto",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "comma",
+     "class": "comma",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "bbR",
+     "class": "bbR",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "period",
+     "class": "dot",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "upper_O",
+     "class": "o0",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "lbracket",
+     "class": "lbracket",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "pi",
+     "class": "pi",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "lower_d",
+     "class": "lower_d",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "slash",
+     "class": "slash",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "approx",
+     "class": "approx",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "upper_G",
+     "class": "upper_G",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "digit_4",
+     "class": "digit_4",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "geq",
+     "class": "geq",
+     "style": "math"
+    }
+   ]
+  },
+  {
+   "id": "C5",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "upper_I",
+     "class": "lI",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "Psi",
+     "class": "upper_Psi",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "lower_y",
+     "class": "lower_y",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "digit_5",
+     "class": "digit_5",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "psi",
+     "class": "psi",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "cdot",
+     "class": "dot",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "prime",
+     "class": "comma",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "upper_M",
+     "class": "upper_M",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "lower_o",
+     "class": "o0",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "sqrt",
+     "class": "sqrt",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "underscore",
+     "class": "bar",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "lower_i",
+     "class": "lower_i",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "oplus",
+     "class": "oplus",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "greater",
+     "class": "greater",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "caret",
+     "class": "caret",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "lower_c",
+     "class": "cC",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "alpha",
+     "class": "alpha",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "cup",
+     "class": "cup",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "div",
+     "class": "div",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "apostrophe",
+     "class": "comma",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "infty",
+     "class": "infty",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "digit_0",
+     "class": "o0",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "question",
+     "class": "question",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "Theta",
+     "class": "upper_Theta",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "Omega",
+     "class": "upper_Omega",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "lower_g",
+     "class": "lower_g",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "otimes",
+     "class": "otimes",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "gamma",
+     "class": "gamma",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "ll",
+     "class": "ll",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "bbQ",
+     "class": "bbQ",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "Gamma",
+     "class": "upper_Gamma",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "in",
+     "class": "in",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "times",
+     "class": "xX",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "upper_L",
+     "class": "upper_L",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "neq",
+     "class": "neq",
+     "style": "math"
+    }
+   ]
+  },
+  {
+   "id": "C6",
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "member": "sim",
+     "class": "tilde",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "member": "apostrophe",
+     "class": "comma",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "member": "tau",
+     "class": "tau",
+     "style": "math"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "member": "upper_X",
+     "class": "xX",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "member": "lower_z",
+     "class": "zZ",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "member": "upper_K",
+     "class": "upper_K",
+     "style": "text"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "member": "wedge",
+     "class": "wedge",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "member": "digit_2",
+     "class": "digit_2",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "member": "lower_j",
+     "class": "lower_j",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "member": "emptyset",
+     "class": "emptyset",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "member": "digit_0",
+     "class": "o0",
+     "style": "text"
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "member": "hash",
+     "class": "hash",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "member": "alpha",
+     "class": "alpha",
+     "style": "math"
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "member": "Lambda",
+     "class": "upper_Lambda",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "member": "upper_D",
+     "class": "upper_D",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "member": "upper_Y",
+     "class": "upper_Y",
+     "style": "text"
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "member": "angle",
+     "class": "angle",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "member": "cdot",
+     "class": "dot",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "member": "rho",
+     "class": "rho",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "member": "prod",
+     "class": "upper_Pi",
+     "style": "math"
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "member": "lower_g",
+     "class": "lower_g",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "member": "bbZ",
+     "class": "bbZ",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "member": "lower_p",
+     "class": "lower_p",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "member": "upper_C",
+     "class": "cC",
+     "style": "text"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "member": "tilde",
+     "class": "tilde",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "member": "upper_W",
+     "class": "wW",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "member": "lambda",
+     "class": "lambda",
+     "style": "math"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "member": "upper_P",
+     "class": "upper_P",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "member": "lower_s",
+     "class": "sS",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "member": "leftrightarrow",
+     "class": "leftrightarrow",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "member": "dollar",
+     "class": "dollar",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "member": "digit_3",
+     "class": "digit_3",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "member": "underscore",
+     "class": "bar",
+     "style": "math"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "member": "lower_u",
+     "class": "lower_u",
+     "style": "text"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "member": "theta",
+     "class": "theta",
+     "style": "math"
+    }
+   ]
+  }
+ ]
+}

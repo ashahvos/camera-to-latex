@@ -1,0 +1,81 @@
+id	split	category	mode	latex
+T01	test	plain	text	Hello World
+T02	test	plain	text	The quick fox
+T03	test	plain	text	ECE 105 Lab
+T04	test	plain	text	Camera test 42
+T05	test	plain	text	Score: 50\%
+T06	test	plain	math	a+b=c
+T07	test	plain	math	2x+3=7
+T08	test	plain	math	y=mx+b
+T09	test	plain	math	f(x)=3x-1
+T10	test	plain	math	\alpha+\beta=\gamma
+T11	test	plain	math	F=ma
+T12	test	plain	math	V=IR
+T13	test	plain	math	\Delta t>0
+T14	test	plain	math	x\leq y
+T15	test	plain	math	a\neq b
+T16	test	plain	math	\pi\approx 3.14
+T17	test	plain	math	A\cup B
+T18	test	plain	math	x\in\mathbb{R}
+T19	test	plain	math	p\Rightarrow q
+T20	test	plain	math	\forall x\exists y
+T21	test	plain	math	|x|<5
+T22	test	plain	math	[a,b]
+T23	test	plain	math	\{1,2,3\}
+T24	test	plain	math	x\cdot y=xy
+T25	test	plain	math	\theta=\omega t
+T26	test	scripts	math	x^{2}+y^{2}=r^{2}
+T27	test	scripts	math	E=mc^{2}
+T28	test	scripts	math	a_{1}+a_{2}
+T29	test	scripts	math	e^{x}
+T30	test	scripts	math	x_{0}=5
+T31	test	scripts	math	2^{10}=1024
+T32	test	scripts	math	f'(x)=2x
+T33	test	scripts	math	v_{f}=v_{i}+at
+T34	test	scripts	math	x_{n}^{2}
+T35	test	scripts	math	e^{-x}
+T36	test	scripts	math	\sigma^{2}
+T37	test	scripts	math	T_{1}<T_{2}
+T38	test	scripts	math	10^{-3}
+T39	test	scripts	math	y=ax^{2}+bx+c
+T40	test	scripts	math	P_{0}V_{0}=nRT
+T41	test	scripts	math	\lambda_{max}
+T42	test	scripts	math	k_{B}T
+T43	test	scripts	math	a^{n}b^{m}
+T44	test	scripts	math	90^{\circ}
+T45	test	scripts	math	\sum_{i=1}^{n}i
+T46	test	fractions	math	\frac{1}{2}
+T47	test	fractions	math	\frac{a}{b}+\frac{c}{d}
+T48	test	fractions	math	y=\frac{x}{2}
+T49	test	fractions	math	\frac{x+1}{x-1}
+T50	test	fractions	math	\frac{dy}{dx}=2x
+T51	test	fractions	math	\frac{1}{x^{2}}
+T52	test	fractions	math	\frac{\pi}{4}
+T53	test	fractions	math	F=\frac{kq}{r^{2}}
+T54	test	fractions	math	\frac{a+b}{2}
+T55	test	fractions	math	\frac{3}{4}x
+T56	test	mixed	math	\sqrt{2}\approx 1.41
+T57	test	mixed	math	\int_{0}^{1}xdx
+T58	test	mixed	math	\nabla\cdot E=\frac{\rho}{\varepsilon_{0}}
+T59	test	mixed	math	x\rightarrow\infty
+T60	test	mixed	math	P(A\cap B)=\frac{1}{4}
+D01	dev	plain	text	Arduino Nano
+D02	dev	plain	text	Line 7: OK
+D03	dev	plain	text	USC Trojans
+D04	dev	plain	text	Dec 1, 2026
+D05	dev	scripts	math	a^{2}+b^{2}=c^{2}
+D06	dev	fractions	math	\frac{x}{y}
+D07	dev	plain	math	\alpha\beta
+D08	dev	plain	math	z=x+iy
+D09	dev	scripts	math	f(t)=e^{-t}
+D10	dev	plain	math	\Omega\approx 50
+D11	dev	plain	math	x\geq 0
+D12	dev	plain	math	n!
+D13	dev	mixed	math	\sqrt{x}
+D14	dev	fractions	math	\frac{1}{3}+\frac{2}{3}=1
+D15	dev	scripts	math	\mu_{0}I
+D16	dev	mixed	math	\int f(x)dx
+D17	dev	plain	math	A\subseteq B
+D18	dev	plain	math	\neg p\vee q
+D19	dev	plain	math	2\pi r
+D20	dev	plain	math	\hbar\omega

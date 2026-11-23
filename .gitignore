@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# generated or large: rebuild with the commands in README.md
+data/
+models/
+out/
+results/
+test_set/synthetic/
+
+# LaTeX by-products
+*.aux
+*.log
+*.out
+*.synctex.gz
+
+# OS
+.DS_Store
