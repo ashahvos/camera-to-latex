@@ -1,0 +1,421 @@
+\section{Task 6: The final report, the presentation and the rehearsal}
+\sectionmark{Task 6: Report, presentation, rehearsal}
+\label{sec:t6}
+
+\subsection{Purpose, conditions and criterion}
+
+\begin{plain}{Task 6 at a glance}
+\textbf{Purpose.} The project is judged by what is handed in on 1 December: a report, a
+presentation with a live demonstration, and the repository. This task assembles them from the
+records of Tasks~1 to~5, rehearses the demonstration twice on 30 November, and marks the
+version that is handed in.
+
+\textbf{Before you begin.} The official requirements of the course for the report and the
+presentation are at hand (Step~\ref{st:reqs}); this section cannot replace them, and where they
+differ from it, they prevail. For the sections on results: part~B of Task~4 is complete. For
+the rehearsal: Tasks~1 to~5 are complete.
+
+\textbf{Complete when.} (1)~The report contains every item that the course requires, and every
+figure in it can be traced to a record of this document. (2)~The presentation has been timed
+within its limit. (3)~The demonstration has been rehearsed twice, each fallback has been
+practised once, and the times are recorded. (4)~The repository carries the tag \texttt{v1.0}. (5)~Everything has
+been submitted where the course requires it, and the board has been returned.
+
+\textbf{Time.} Writing as required; each rehearsal about half an hour.
+\end{plain}
+
+\subsection{Establish the requirements}
+
+\step{Obtain the official requirements and fill in the checklist}\label{st:reqs}
+Collect the course's instructions for the final report and the final presentation from the
+course site, the syllabus and the instructor's announcements, and enter them in
+Table~\ref{tab:reqs}. Where an item cannot be found, ask the teaching staff now and not on the
+last day.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{L{6.0cm}L{5.2cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Question}} & \multicolumn{1}{c}{\hd{Answer of the course}} \\
+\midrule
+Report: template to be used; file format & \\
+Report: required sections; limit of pages or words & \\
+Report: statement of each member's contribution? & \\
+Report: where and by what time it is submitted & \\
+Presentation: length; number of speakers & \\
+Presentation: slides required? format; where submitted & \\
+Demonstration: room, time, table, power sockets & \\
+Demonstration: is a projector or a second screen provided? & \\
+Video: where the link is entered & \\
+Repository: must the staff have access? how? & \\
+Board: when and where it is returned & \\
+\bottomrule
+\end{tabular}
+\caption{The requirements of the course, to be filled in before writing begins.}
+\label{tab:reqs}
+\end{table}
+\checkpoint{Every row has an answer, or the name of the person who has been asked.}
+
+\subsection{Collect the evidence}
+
+A report of measurements is only as good as its sources. Before any text is written, the
+material of Table~\ref{tab:evidence} is brought together in one shared folder.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{L{4.6cm}L{6.6cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Material}} & \multicolumn{1}{c}{\hd{Where it comes from}} \\
+\midrule
+Geometry of the stand, scale, capital height & Record of Task~1 (Table~\ref{tab:t1record}) \\
+Photograph of the stand & Task~1, taken with a telephone \\
+A photograph as the board delivers it & Any file of \file{test\_set\bs images}, for example
+  \file{T26.png} \\
+A sheet photograph with its grid & Any file of \file{data\bs sheets\bs debug} \\
+Number of photographs and crops; accuracy on real crops before and after retraining; most
+  common confusions & Record of Task~2 (Table~\ref{tab:t2record}) \\
+Accuracy for each class & The file \file{results\bs crops\_symbols\_v1.csv}, which opens in
+  Excel \\
+Size and training of the network & The end of the file \file{models\bs symbols\_v1.json}
+  (open it with Notepad) \\
+Kinds of error; trials of settings; decision of the gate & Record of Task~3
+  (Tables~\ref{tab:triage}, \ref{tab:trialrec} and~\ref{tab:t3record}) \\
+Final results against the targets & Table~\ref{tab:targets} \\
+Misread lines as examples & The review document of Task~4, part~B \\
+A PDF produced by the system & The file \file{out\bs document.pdf} after the recording of
+  the video \\
+The video & The link of Task~5 \\
+The version handed in & The tag of Step~\ref{st:release} \\
+\bottomrule
+\end{tabular}
+\caption{The evidence on which the report rests.}
+\label{tab:evidence}
+\end{table}
+
+\step{Open the project in PowerShell}
+\input{tasks/opening}
+
+\step{Copy the sample output into the repository}
+The PDF that the system produced during the recording of the video is the most direct proof
+that it works. Copy it into the folder of documents and record it:
+\begin{ps}
+Copy-Item out\document.pdf docs\sample_output.pdf
+\end{ps}
+\begin{ps}
+git add docs\sample_output.pdf
+\end{ps}
+\begin{ps}
+git commit -m "Sample output produced from photographs"
+\end{ps}
+\begin{ps}
+git push
+\end{ps}
+\checkpoint{The file \file{sample\_output.pdf} is visible in the folder \file{docs} on the
+GitHub page of the repository.}
+
+\subsection{Write the report}
+
+If the course provides a template, its sections are used. Table~\ref{tab:outline} lists what a
+complete account of this project contains; each item belongs somewhere in the template. It
+follows the outline of the project plan.
+
+\begin{longtable}{C{0.6cm}L{3.0cm}L{7.3cm}}
+\toprule
+ & \multicolumn{1}{c}{\hd{Part}} & \multicolumn{1}{c}{\hd{What it must say}} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\caption{Contents of a complete report.}\label{tab:outline}\\
+\endlastfoot
+1 & Problem and scope & What the system does (one printed line per photograph, read into
+  \LaTeX{} and collected into a PDF) and what it does not do (handwriting, several lines at
+  once, recognition on the board itself) \\
+2 & Hardware and its limits & The board and the camera; 256\,KB of memory, hence photographs of
+  $320 \times 240$ gray pixels; the stand; the measured scale and the size of the letters \\
+3 & Architecture & The stages from capture to PDF, with the diagram of the pipeline; why
+  recognition runs on the laptop \\
+4 & Data & The synthetic images; the 54 sheet photographs and their crops; the 60 test and 20
+  development lines, and the rule that kept them apart \\
+5 & Classifier & The network (159 classes for 182 symbols, 149{,}311 weights); its accuracy on
+  held-out real crops before and after retraining, as counts; the common confusions \\
+6 & Cutting and layout & How ink is separated from paper and formed into symbols; how
+  superscripts, subscripts and fractions follow from positions and sizes \\
+7 & Results & Table~\ref{tab:targets}: every target, the result as a count, whether it was
+  met, and the precision of the figure \\
+8 & Failures & Three or four misread lines, each with its photograph, the kind of error and the
+  reason \\
+9 & Limits and next steps & What a second version would change, for example recognition on the
+  board, or a model that reads a whole line \\
+10 & Contributions & Who did what, in the form that the course requires \\
+11 & Sources & The software libraries and fonts used, and any assistance, including that of AI
+  tools, in the form that the course requires \\
+\end{longtable}
+
+\step{Write the parts that do not depend on the final results}
+Parts 1 to 4, 6 and 9 to 11 can be written before part~B of Task~4 is finished.
+\checkpoint{These parts exist in draft, and every number in them is taken from a record or
+from the repository, not from memory.}
+
+\step{Write the results as they were measured}
+Parts 5, 7 and 8 are written from Table~\ref{tab:targets} and the review document. Four rules
+keep them honest and useful.
+\begin{enumerate}
+\item A result is given as a count and a percentage, for example ``17 of 25 lines (68\,\%)'',
+  and a target that was missed is called missed.
+\item Simulated and real photographs are never mixed in one figure, and each figure says which
+  it is. The results of 23 November were obtained on simulated photographs.
+\item The uncertainty is named where a conclusion depends on it; the formula and the values
+  are in Section~\ref{sec:stat}.
+\item The conditions are stated: print of 40\,pt (or 48\,pt, if the larger print was used), the
+  measured distance and scale, the lighting, and the fact that each line was read in the mode,
+  text or mathematics, that the operator would choose.
+\end{enumerate}
+\checkpoint{Every figure of the results can be found in Table~\ref{tab:targets} or in a record
+of this document.}
+
+\step{Check the report against the requirements}
+Read the finished report beside Table~\ref{tab:reqs} and Table~\ref{tab:outline}.
+\checkpoint{Every required section is present, the limit of length is kept, the link of the
+video opens in a private browser window, and a member who did not write the report has read it
+from beginning to end.}
+
+\subsection{Prepare the presentation}
+
+\step{Bring the slides up to date}
+The team has a deck of slides from the design presentation, \emph{Camera to \LaTeX{}: how it
+works and why}; the project lead shares it. Its account of the method remains valid. Three
+things change for the final presentation: figures from simulation are replaced by the measured
+ones; the stand and the results are shown; and time is reserved for the demonstration.
+Table~\ref{tab:slides} proposes a sequence, to be shortened to the length that the course
+allows.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{C{1.1cm}L{4.2cm}L{5.7cm}}
+\toprule
+\hd{Slide} & \multicolumn{1}{c}{\hd{Subject}} & \multicolumn{1}{c}{\hd{Content}} \\
+\midrule
+1 & Title & Project, team, date \\
+2 & The task and the limits & One sentence on the aim; the three limits that shaped the design:
+  memory, resolution, one line per photograph \\
+3 & How it works & The diagram of the pipeline \\
+4 & Data and classifier & Synthetic images and sheet photographs; accuracy on real crops,
+  before and after \\
+5 & The stand & Its photograph; distance, scale, size of the letters \\
+6 & Results & Table~\ref{tab:targets}, as counts, with the targets \\
+7 & What fails, and why & Two misread lines with their photographs \\
+8 & Demonstration & Live; see Section~\ref{sec:rehearsal} \\
+9 & Limits and next steps & Two or three points \\
+\bottomrule
+\end{tabular}
+\caption{A sequence of slides for the final presentation.}
+\label{tab:slides}
+\end{table}
+\checkpoint{The slides contain no figure from simulation that is presented as a result, and a
+copy of the slides as a PDF is stored on the demonstration laptop, so that the presentation
+does not depend on a network connection.}
+
+\step{Time the presentation}
+Speak the whole presentation aloud once, with a stopwatch, without the demonstration.
+\checkpoint{The spoken part and the demonstration together fit into the time that the course
+allows, with half a minute to spare.}
+
+\subsection{Rehearse the demonstration}
+\label{sec:rehearsal}
+
+The demonstration is rehearsed twice on 30 November, one of the two times, if possible, in the
+room
+of the presentation, where the light and the table differ from those at home.
+
+\step{Pack}
+\begin{table}[H]
+\centering
+\begin{tabular}{L{5.5cm}L{5.7cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Item}} & \multicolumn{1}{c}{\hd{Remark}} \\
+\midrule
+\cbox\ \ Board in its box & \\
+\cbox\ \ USB data cable, and a second one & The cable that passed the soak test, and a spare \\
+\cbox\ \ Laptop and charger & The laptop of Tasks~1 to~4 \\
+\cbox\ \ Books of the stand, the arm, two cloths & Or the list of their heights from the record
+  of Task~1 \\
+\cbox\ \ Line platform & Marked in Task~1 \\
+\cbox\ \ Lamps, extension lead & The room's light is unknown \\
+\cbox\ \ Blank white sheets, tape, ruler & \\
+\cbox\ \ The three cards, and second copies & Table~\ref{tab:cards} \\
+\cbox\ \ Record of Task~1 & Height of the lens, thickness of the platform \\
+\cbox\ \ Slides as a PDF, and the video as a file & Both on the laptop, usable without a
+  network \\
+\bottomrule
+\end{tabular}
+\caption{What is taken to the rehearsal and to the presentation.}
+\label{tab:pack}
+\end{table}
+
+\step{Set up against the clock}\label{st:setup6}
+Start a stopwatch and build the system as it will be built on the day.
+\begin{enumerate}
+\item Build the stand as in Task~1. Check with the ruler that the lens is at the height of the
+  record, and put the line platform in place with a white sheet on it.
+\item Place the lamps, connect the board, open a PowerShell window, and give the opening
+  sequence:
+\begin{ps}[Opening sequence, command 1 of 2]
+cd C:\ee105\camera-to-latex
+\end{ps}
+\begin{ps}[Opening sequence, command 2 of 2]
+.\.venv\Scripts\Activate.ps1
+\end{ps}
+\item Confirm that the board answers:
+\begin{ps}
+python -m pipeline.capture --ping
+\end{ps}
+\item Check the picture with the widest line. Lay page~8 below the camera, centre line T39,
+  look for shadows, and close the viewfinder with \key{Q}:
+\begin{ps}
+python -m pipeline.capture --series data\raw\rig --names "room_check"
+\end{ps}
+\item Start the application:
+\begin{ps}
+python -m pipeline.main --new
+\end{ps}
+\end{enumerate}
+\checkpoint{The board answered, line T39 was wholly inside the picture and free of shadows, and
+the application shows the live picture. Stop the stopwatch and enter the time in the record;
+the aim is ten minutes or less.}
+
+\step{Run the demonstration}\label{st:demo}
+The live demonstration follows the sequence of the video (Table~\ref{tab:storyboard}) and adds
+two things that a video of one minute cannot show: a correction by hand, and the removal of a
+line.
+\begin{enumerate}
+\item Read and accept the three cards as in the video: \key{M} for the mode, \key{Space},
+  \key{A}.
+\item \textbf{Correction.} Read one further line, of your choice, and press \key{E} in place of
+  \key{A}. The PowerShell window prints the reading after the word \emph{current} and waits.
+  Click on the PowerShell window, type the corrected \LaTeX{} text (or press \key{Enter} alone
+  to keep the reading), and press \key{Enter}. The line is accepted if it compiles. Then click
+  on the picture of the application window again, so that the keys act on it. While PowerShell
+  waits for the text, the application window does not respond; that is expected.
+\item \textbf{Removal.} Press \key{U}. PowerShell prints \emph{removed}, followed by the line
+  that was accepted last.
+\item Press \key{P}. The PDF opens with the three lines.
+\end{enumerate}
+\checkpoint{The PDF shows the three lines. Enter the duration of the demonstration in the
+record; the aim is three minutes or less.}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{C{2.2cm}L{8.8cm}}
+\toprule
+\hd{Key} & \multicolumn{1}{c}{\hd{Effect in the application window}} \\
+\midrule
+\key{Space} & Read the line that is in view; the picture freezes and shows boxes and reading \\
+\key{A} or \key{Enter} & Accept the reading into the document, if it compiles \\
+\key{E} & Edit the reading in the PowerShell window, then accept it \\
+\key{R} & Reject the reading and return to the live picture \\
+\key{M} & Change the mode: automatic, text, mathematics \\
+\key{U} & Remove the line that was accepted last \\
+\key{P} & Build the PDF and open it \\
+\key{S} & Save the current picture in the folder \file{data\bs raw} \\
+\key{Q} or \key{Esc} & Leave the application; the PDF is built if lines were accepted \\
+\bottomrule
+\end{tabular}
+\caption{Keys of the application. They are lower-case letters and act only while the
+application window is the active one.}
+\label{tab:appkeys}
+\end{table}
+
+\step{Practise the failures}\label{st:drills}
+A demonstration fails gracefully only if its failures have been practised. Carry out each of
+the following once in the first rehearsal.
+\begin{enumerate}
+\item \textbf{A wrong reading.} Press \key{R}, move the card slightly, and press \key{Space}
+  again. If the second reading is wrong too, correct it with \key{E} and say what was done;
+  this shows a feature and is no failure.
+\item \textbf{The board does not answer.} Leave the application with \key{Q}, unplug the cable
+  and plug it in again, repeat the ping command and the application command of
+  Step~\ref{st:setup6}.
+\item \textbf{The board cannot be revived: first fallback.} Read the stored photographs of the
+  three cards with the three commands of Section~\ref{sec:noboard}, and say that stored
+  photographs are being read.
+\item \textbf{The laptop fails: second fallback.} Play the video, from the copy on a second
+  device.
+\end{enumerate}
+\checkpoint{Each of the four has been carried out once, and each member knows who does what in
+each case.}
+
+\step{Rehearse a second time, and take down the stand in order}
+Repeat Steps~\ref{st:setup6} and~\ref{st:demo} from the packed state. Afterwards write down
+anything that had to be improvised, pack the items of Table~\ref{tab:pack}, and store the board
+in its box.
+\checkpoint{The record contains the times of both rehearsals.}
+
+\subsection{Mark and hand in the final version}
+
+\step{Mark the version that is handed in}\label{st:release}
+After the second rehearsal, when nothing further will change:
+\begin{ps}
+git pull
+\end{ps}
+\begin{ps}
+python -m pytest -q
+\end{ps}
+\begin{ps}
+git status --short
+\end{ps}
+\checkpoint{The tests pass, and the third command prints nothing.}
+\begin{ps}
+git tag -a v1.0 -m "Version handed in on 1 December 2026"
+\end{ps}
+\begin{ps}
+git push origin v1.0
+\end{ps}
+\checkpoint{The GitHub page of the repository lists the tag \texttt{v1.0} under \emph{Tags}.}
+
+\step{Give the staff access to the repository, if required}
+The repository is private. If Table~\ref{tab:reqs} says that the staff must see it, the lead
+either invites them (on the GitHub page: \menu{Settings}\then\menu{Collaborators}\then\menu{Add
+people}, with their GitHub user names) or hands in a copy: on the page of the repository,
+choose the tag \texttt{v1.0} in the branch menu, then \menu{Code}\then\menu{Download ZIP}.
+\checkpoint{The staff have confirmed access, or the ZIP file has been submitted.}
+
+\step{Submit, and go through the final checklist}
+\begin{table}[H]
+\centering
+\begin{tabular}{L{11.2cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Before the deadline of 1 December}} \\
+\midrule
+\cbox\ \ Report submitted in the required format at the required place \\
+\cbox\ \ Slides submitted, if required, and stored on the demonstration laptop \\
+\cbox\ \ Link of the video entered where required, and opened once more in a private window \\
+\cbox\ \ Tag \texttt{v1.0} uploaded; access or ZIP provided, if required \\
+\cbox\ \ Table of results in the README up to date \\
+\cbox\ \ Items of Table~\ref{tab:pack} packed for the presentation \\
+\cbox\ \ Board returned as the course requires, after the presentation \\
+\bottomrule
+\end{tabular}
+\caption{Final checklist.}
+\label{tab:final}
+\end{table}
+
+\step{Fill in the record}
+\begin{table}[H]
+\centering
+\begin{tabular}{L{6.4cm}C{2.3cm}C{2.3cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Quantity}} & \hd{Rehearsal 1} & \hd{Rehearsal 2} \\
+\midrule
+Place; date and time & & \\
+Time to set up & \hfill min & \hfill min \\
+Duration of the demonstration & \hfill min & \hfill min \\
+Cards read correctly at the first attempt (of 3) & & \\
+Failures practised (of 4) & & -- \\
+Duration of the spoken presentation & \hfill min & \hfill min \\
+\bottomrule
+\end{tabular}
+\caption{Record of Task 6.}
+\label{tab:t6record}
+\end{table}

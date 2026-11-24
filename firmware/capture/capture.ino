@@ -12,13 +12,15 @@
   If the camera does not start, the board prints "ERR camera" once a second.
 
   Board package: "Arduino Mbed OS Nano Boards", board "Arduino Nano 33 BLE".
-  Library: Arduino_OV767X (or Harvard_TinyMLx, which bundles a copy) - use
-  the same one your digit-recognition sketch used.
+  Library: Arduino_OV767X, version 0.0.2 or newer (it supports the OV7670 and
+  the OV7675; the camera model is the fourth argument of Camera.begin).
 */
 
 #include <Arduino_OV767X.h>
 
 // ---- settings (bring-up step 3) ---------------------------------------------
+#define CAMERA_MODEL  OV7675  // the EE 105 board carries an OV7675; write OV7670 for that module.
+                          // Without it the library sets the sensor up as an OV7670.
 #define USE_GRAYSCALE 1   // 1: ask the camera for GRAYSCALE; 0: ask for YUV422 and keep the Y bytes
 #define Y_OFFSET      0   // which byte of each 2-byte pixel is brightness (0 or 1);
                           // flip it if the picture looks like noise or a negative
@@ -86,9 +88,9 @@ void setup() {
   while (!Serial) { }            // wait until the laptop opens the port
 
 #if USE_GRAYSCALE
-  cameraOk = Camera.begin(QVGA, GRAYSCALE, CAMERA_FPS);
+  cameraOk = Camera.begin(QVGA, GRAYSCALE, CAMERA_FPS, CAMERA_MODEL);
 #else
-  cameraOk = Camera.begin(QVGA, YUV422, CAMERA_FPS);
+  cameraOk = Camera.begin(QVGA, YUV422, CAMERA_FPS, CAMERA_MODEL);
 #endif
 #if TEST_PATTERN
   if (cameraOk) Camera.testPattern();

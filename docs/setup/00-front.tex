@@ -1,0 +1,33 @@
+\begin{quote}
+\small
+\textbf{Abstract.} This guide takes a team member whose Windows laptop holds none of the
+project's software to the point at which the complete Camera-to-\LaTeX{} pipeline runs on that
+laptop without the camera board. By the end, the reader has a GitHub account with access to the
+team's repository, a local copy of the project, a working Python environment, a passing test
+suite, a trained symbol classifier, and a typeset PDF produced from a simulated camera photograph
+of a printed equation. Every action is written as a numbered step that states the exact command,
+the result to expect, and the remedy when the result differs. No prior knowledge of Git, Python,
+the command line or \LaTeX{} is assumed. Work with the camera board itself is the subject of the
+companion document, \emph{Procedures for the Remaining Tasks}.
+\end{quote}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{C{1.5cm}L{5.2cm}C{1.9cm}C{2.0cm}}
+\toprule
+\hd{Section} & \multicolumn{1}{c}{\hd{What you do}} & \hd{Time} & \hd{Download} \\
+\midrule
+\ref{sec:prelim} & Check that the laptop is suitable & 5 min & none \\
+\ref{sec:github} & Create a GitHub account and obtain access to the repository & 15 min & none \\
+\ref{sec:powershell} & Learn to open and use Windows PowerShell & 10 min & none \\
+\ref{sec:tools} & Install Git, Python, MiKTeX and Poppler & 40 min & 0.5 GB \\
+\ref{sec:clone} & Download the project and introduce yourself to Git & 10 min & 2 MB \\
+\ref{sec:python} & Build the Python environment & 30 min & 0.6 GB \\
+\ref{sec:quick} & Run the quick start: tests, data, training, evaluation, PDF & 90 min & 0.1 GB \\
+\bottomrule
+\end{tabular}
+\caption{The route through this guide. Times are typical for a home internet connection; about
+60 min of the quick start is unattended (the laptop trains the classifier by itself). The
+installed software occupies about 4 GB of disk space.}
+\label{tab:route}
+\end{table}

@@ -1,0 +1,144 @@
+\section{Windows PowerShell}
+\label{sec:powershell}
+
+\subsection{Background}
+
+Most of the project is operated by typing commands rather than by clicking. A program that
+accepts typed commands is called a \term{terminal} or \term{command line}; the one that every
+Windows computer already contains is \term{Windows PowerShell}. A command is one line of text.
+When you press \key{Enter}, PowerShell carries the line out, prints whatever the command
+reports, and then waits for the next line. Nothing in this guide requires PowerShell to be
+started ``as administrator'', and you should not start it that way.
+
+\subsection{Open a PowerShell window}
+
+\step{Open PowerShell}\label{st:openps}
+Click the \ui{Start} button (or press the \key{Windows} key), type \code|powershell|, and wait
+for the search results. Click the result named \ui{Windows PowerShell} whose description is
+\emph{App}. Do \emph{not} choose \emph{Windows PowerShell ISE}, \emph{Windows PowerShell (x86)}
+or \emph{Command Prompt}; they behave differently.
+
+A window with a dark background opens. On Windows~11 it is usually a window of the
+\emph{Terminal} app with a tab labelled \emph{Windows PowerShell}; on Windows~10 it is a blue or
+black window titled \emph{Windows PowerShell}. Both are the same program.
+
+\begin{out}[What the new window shows]
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\ttrojan>
+\end{out}
+
+\checkpoint{The last line begins with \texttt{PS}, shows a folder name, and ends with
+\texttt{>} followed by a blinking cursor. On your computer the folder is
+\texttt{C:\bs Users\bs} followed by your own Windows user name.}
+
+\subsection{Read the prompt}
+
+The last line of the window is the \term{prompt} (Figure~\ref{fig:prompt}). It has three parts.
+\texttt{PS} says that PowerShell is ready for a command. The path after it, here
+\code|C:\Users\ttrojan|, is the \term{current folder}: commands that mention a file look for it
+in this folder unless told otherwise. The sign \code|>| marks the place where your typing
+appears. The prompt is printed by PowerShell; you never type it, and it is not part of any
+command in this guide.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[font=\ttfamily\small, seg/.style={fill=black!88, text=white, inner xsep=0pt, inner ysep=7pt, outer sep=0pt, anchor=west},
+  lab/.style={font=\rmfamily\footnotesize, align=center, text=black}]
+\node[seg, inner xsep=0pt] (pad) at (0,0) {\hspace{7pt}};
+\node[seg, text=green!70!white] (a) at (pad.east) {(.venv)\vphantom{Ag>}};
+\node[seg] (b) at (a.east) {\ PS\ \vphantom{Ag>}};
+\node[seg] (c) at (b.east) {C:\textbackslash ee105\textbackslash camera-to-latex>\vphantom{Ag}};
+\node[seg] (d) at (c.east) {\ python -m pytest -q\hspace{7pt}\vphantom{Ag>}};
+\draw[decorate, decoration={brace, mirror, amplitude=4pt}] ($(a.south west)+(0,-0.08)$) -- ($(a.south east)+(0,-0.08)$);
+\draw[decorate, decoration={brace, mirror, amplitude=4pt}] ($(b.south west)+(0.12,-0.08)$) -- ($(b.south east)+(-0.12,-0.08)$);
+\draw[decorate, decoration={brace, mirror, amplitude=4pt}] ($(c.south west)+(0,-0.08)$) -- ($(c.south east)+(0,-0.08)$);
+\draw[decorate, decoration={brace, mirror, amplitude=4pt}] ($(d.south west)+(0.15,-0.08)$) -- ($(d.south east)+(-0.25,-0.08)$);
+\node[lab, anchor=north] at ($(a.south)+(-0.35,-0.95)$) {active environment\\(Section~\ref{sec:python})};
+\draw[black!50] ($(a.south)+(0,-0.3)$) -- ($(a.south)+(-0.35,-0.95)$);
+\node[lab, anchor=north] at ($(b.south)+(0,-0.3)$) {ready};
+\node[lab, anchor=north] at ($(c.south)+(0,-0.3)$) {current folder};
+\node[lab, anchor=north] at ($(d.south)+(0,-0.3)$) {the command you typed};
+\end{tikzpicture}
+\caption{The parts of a PowerShell line as it will look later in this guide. Everything to the
+left of the command is the prompt, which PowerShell prints by itself.}
+\label{fig:prompt}
+\end{figure}
+
+\subsection{Type, paste and run commands}
+
+\step{Run a first command}
+Click once inside the window, type the following line, and press \key{Enter}.
+\begin{ps}
+Get-Location
+\end{ps}
+\begin{out}
+Path
+----
+C:\Users\ttrojan
+
+PS C:\Users\ttrojan>
+\end{out}
+\checkpoint{PowerShell printed the current folder and then a new prompt. The new prompt is the
+sign that the command has finished; a command is still running for as long as no prompt has
+appeared.}
+
+\step{Paste a command instead of typing it}
+Typing errors are the commonest cause of failed commands, so pasting is preferable. In this PDF,
+select the line in the blue box below by dragging the mouse from its first character to its
+last (the title bar of the box must not be selected). Press \key{Ctrl}+\key{C} to copy. Click in
+the PowerShell window and press \key{Ctrl}+\key{V}, or click the right mouse button, to paste.
+Compare the pasted line with the box, then press \key{Enter}.
+\begin{ps}
+Get-ChildItem
+\end{ps}
+\checkpoint{PowerShell lists the folders in your user folder (\file{Desktop}, \file{Documents},
+\file{Downloads}, and so on) and prints a new prompt.}
+
+\begin{iffail}[If a warning about ``multiple lines'' appears when you paste]
+You copied more than one line. Choose \ui{Cancel}, copy the single line again, and paste it. A
+pasted line break acts like the \key{Enter} key, so a paste of two lines runs the first command
+before you have seen the second.
+\end{iffail}
+
+\step{Clear the window and recall a command}
+Type \code|cls| and press \key{Enter}: the window is emptied (nothing is undone; only the
+display is cleared). Now press the \key{$\uparrow$} key once: PowerShell brings back the
+previous command so that it can be run again or corrected. Press \key{Esc} to discard the
+recalled line.
+\checkpoint{The window shows a single prompt and an empty line after it.}
+
+\subsection{Rules of conduct at the command line}
+
+Table~\ref{tab:psrules} states the habits on which the rest of the guide relies.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{L{4.5cm}L{7.1cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Rule}} & \multicolumn{1}{c}{\hd{Reason}} \\
+\midrule
+Enter one command at a time, and wait for the prompt before the next &
+  A later command usually depends on the result of an earlier one \\
+Read the output before continuing &
+  Text in red is an error message; the command did not do its work \\
+Stop a running command with \key{Ctrl}+\key{C}, not by closing the window &
+  The program is told to stop and can tidy up \\
+Do not click inside a classic PowerShell window while a command runs &
+  A click starts \emph{selection}, which freezes the output until \key{Esc} is pressed; the word
+  \emph{Select} appears in the title bar \\
+Open a new window when the guide says so &
+  Newly installed programs are found only by windows opened after the installation \\
+Close a window with the command \code|exit| or the \ui{X} button &
+  Either is safe once a prompt is showing \\
+\bottomrule
+\end{tabular}
+\caption{Working habits for PowerShell.}
+\label{tab:psrules}
+\end{table}
+
+Whenever a later section asks for ``a new PowerShell window'', it means: carry out
+Step~\ref{st:openps} again. From Section~\ref{sec:python} onward, a new window also needs two
+commands that return it to the project; they are written out in full every time they are
+needed, and they are collected in Section~\ref{sec:opening}.

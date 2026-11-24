@@ -1,0 +1,40 @@
+\section{Check the laptop}
+\label{sec:prelim}
+
+These three checks take five minutes and prevent the most expensive kind of failure, an
+installation that cannot work on the machine at all.
+
+\step{Find the Windows version}
+Hold the \key{Windows} key (the key with the four-pane logo, next to \key{Alt}) and press
+\key{R}. A small window titled \ui{Run} opens. Type \code|winver| in its box and press
+\key{Enter}. A window titled \ui{About Windows} appears; read its first lines and then close it
+with \ui{OK}.
+\checkpoint{The window says \emph{Windows 10} or \emph{Windows 11}. For Windows 10 the version
+shown must be 1809 or later (for example 22H2).}
+
+\step{Find the processor type}
+Click the \ui{Start} button, type \code|about your pc| and press \key{Enter}. The Settings
+window opens on a page headed \ui{About}. Under \ui{Device specifications}, find the line
+\ui{System type}.
+\checkpoint{The line reads \emph{64-bit operating system, x64-based processor}.}
+
+\begin{iffail}[If the line says ``ARM-based processor'' or ``32-bit'']
+Stop here and tell the project lead. The neural-network library used by the project
+(TensorFlow) is published for x64 processors only. The rest of the software can still be
+installed, and the project's simpler fallback classifier works without TensorFlow, but the lead
+should decide how your laptop is used.
+\end{iffail}
+
+\step{Find the free disk space}
+Hold \key{Windows} and press \key{E} to open File Explorer. In its left-hand list click
+\ui{This PC}. Under \ui{Devices and drives}, read the text below the drive named
+\ui{Local Disk (C:)} or \ui{Windows (C:)}.
+\checkpoint{At least 10\,GB is free on drive C:.}
+
+\step{Show file name extensions}
+The guide refers to files by their full names, such as \file{config.py} or \file{T26.png}.
+Windows hides the part after the dot unless told otherwise. In File Explorer on Windows~11,
+click \menu{View}\then\menu{Show}\then\menu{File name extensions}; on Windows~10, click the
+\menu{View} tab and tick the box \ui{File name extensions}.
+\checkpoint{File names in File Explorer now end in a dot and a few letters, for example
+\file{.pdf} or \file{.png}.}

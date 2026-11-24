@@ -9,6 +9,10 @@ from its expected LaTeX, one line per 4.6 cm band, with its id small at the
 right margin, far enough from the line to stay out of the camera's view.
 Math lines are printed in display style: fractions get full-size numbers
 and more space around their bars, and sums get their limits above and below.
+
+If the camera cannot give sharp capitals of 28 px at 40 pt, print larger and
+photograph from farther away:  python -m tools.make_test_lines --pdf --font-pt 48
+(the bands grow with the print, so neighbouring lines keep their distance).
 """
 from __future__ import annotations
 
@@ -31,6 +35,7 @@ import config
 LINES_TSV = Path(config.TEST_SET_DIR) / "lines.tsv"
 FONT_PT = 40
 CAP_CM = 0.683 * FONT_PT * 2.54 / 72.27      # Latin Modern capital height at 40 pt (about 0.96 cm)
+BAND_CM = 4.6                                # height of the band one line is printed in, at 40 pt
 
 PREAMBLE = r"""\documentclass[11pt]{article}
 \usepackage[T1]{fontenc}
@@ -61,17 +66,20 @@ def run_pdflatex(tex: str, workdir: Path, name: str) -> Path:
     return workdir / f"{name}.pdf"
 
 
-def make_pdf(rows, out: Path) -> None:
-    per_page = 5
+def make_pdf(rows, out: Path, font_pt: int = FONT_PT) -> None:
+    """Printable pages. Band height and lines per page follow the print size:
+    4.6 cm and 5 lines at 40 pt, 5.5 cm and 4 lines at 48 pt."""
+    band = BAND_CM * font_pt / FONT_PT
+    per_page = max(1, int(24.9 / band))                 # a letter page has 24.9 cm between its margins
     parts = [PREAMBLE, r"\usepackage[letterpaper,margin=1.5cm]{geometry}", r"\pagestyle{empty}",
              r"\setlength{\parindent}{0pt}", r"\newsavebox{\linebox}", r"\begin{document}"]
     for i, row in enumerate(rows):
         if i and i % per_page == 0:
             parts.append(r"\newpage")
-        parts.append(r"\sbox{\linebox}{\fontsize{%d}{%d}\selectfont %s}" % (FONT_PT, FONT_PT * 1.2, body(row)))
+        parts.append(r"\sbox{\linebox}{\fontsize{%d}{%d}\selectfont %s}" % (font_pt, font_pt * 1.2, body(row)))
         parts.append(r"\ifdim\wd\linebox>12.5cm\typeout{WIDE LINE %s}\fi" % row["id"])
-        parts.append(r"\begin{minipage}[c][4.6cm][c]{\linewidth}\usebox{\linebox}\hfill"
-                     r"{\footnotesize\ttfamily %s}\end{minipage}\par" % row["id"])
+        parts.append(r"\begin{minipage}[c][%.2fcm][c]{\linewidth}\usebox{\linebox}\hfill"
+                     r"{\footnotesize\ttfamily %s}\end{minipage}\par" % (band, row["id"]))
     parts.append(r"\end{document}")
     with tempfile.TemporaryDirectory() as tmp:
         pdf = run_pdflatex("\n".join(parts), Path(tmp), "test_lines")
@@ -79,7 +87,7 @@ def make_pdf(rows, out: Path) -> None:
         wide = [ln.split()[-1] for ln in log.splitlines() if ln.startswith("WIDE LINE")]
         out.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(pdf, out)
-    print(f"{out}: {len(rows)} lines, {per_page} per page")
+    print(f"{out}: {len(rows)} lines at {font_pt} pt, {per_page} per page")
     if wide:
         print(f"warning: wider than 12.5 cm (may not fit the camera's view): {wide}")
 
@@ -127,7 +135,7 @@ def fake_photo(line: np.ndarray, px_per_cm: float, rng, render_px_per_cm: float,
     paste(ink, cx, cy)
     if other is not None:                               # the neighbouring printed line, 4.6 cm away
         oink = (255 - other.astype(np.float32)) / 255.0
-        paste(oink, cx + rng.uniform(-20, 20), cy + rng.choice([-1, 1]) * 4.6 * px_per_cm)
+        paste(oink, cx + rng.uniform(-20, 20), cy + rng.choice([-1, 1]) * BAND_CM * px_per_cm)
     angle = rng.uniform(-2, 2)
     M = cv2.getRotationMatrix2D((big.shape[1] / 2, big.shape[0] / 2), angle, 1.0)
     big = cv2.warpAffine(big, M, (big.shape[1], big.shape[0]))
@@ -150,6 +158,8 @@ def main(argv=None) -> int:
     ap.add_argument("--render", action="store_true")
     ap.add_argument("--split", default="all", choices=("all", "test", "dev"))
     ap.add_argument("--cap-px", type=float, default=24.0, help="capital height in the fake photos")
+    ap.add_argument("--font-pt", type=int, default=FONT_PT,
+                    help="print size for --pdf (default 40; 48 if the camera needs larger letters)")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", type=Path, default=Path(config.TEST_SET_DIR) / "synthetic")
     args = ap.parse_args(argv)
@@ -157,7 +167,9 @@ def main(argv=None) -> int:
     if not (args.pdf or args.names or args.render):
         ap.error("choose --pdf, --names and/or --render")
     if args.pdf:
-        make_pdf(rows, Path(config.TEST_SET_DIR) / "test_lines.pdf")
+        if not 20 <= args.font_pt <= 72:
+            ap.error("--font-pt must be between 20 and 72")
+        make_pdf(rows, Path(config.TEST_SET_DIR) / "test_lines.pdf", args.font_pt)
     if args.names:
         path = Path(config.TEST_SET_DIR) / "photo_names.txt"
         path.write_text("\n".join(r["id"] for r in rows) + "\n")

@@ -1,0 +1,149 @@
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{What the project does}
+
+The project reads one printed line of text or mathematics with a small camera and reproduces it
+as a typeset document. The camera is the OV7675 module on the USC EE\,105 board, which carries an
+Arduino Nano 33 BLE Sense Lite. The board has too little memory to do more than take the
+photograph (256\,KB of RAM against 76{,}800 bytes for a single $320 \times 240$ grayscale frame),
+so it sends each frame to a laptop over the USB cable, and the laptop does the rest. The sequence
+of processing steps on the laptop is called the \term{pipeline}; Figure~\ref{fig:pipeline} shows
+it.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=7mm, every node/.style={font=\small},
+  box/.style={draw, rounded corners=2pt, align=center, minimum height=12mm, inner sep=2.5pt, text width=23mm},
+  >={Stealth[length=2mm]}]
+\node[box, fill=black!6] (b) {Board\\\scriptsize camera, sketch};
+\node[box, right=of b] (c) {Capture\\\scriptsize 320\,$\times$\,240 gray};
+\node[box, right=of c] (s) {Segment\\\scriptsize one box per symbol};
+\node[box, right=of s] (k) {Classify\\\scriptsize CNN, 159 classes};
+\node[box, below=8mm of k] (l) {Layout\\\scriptsize scripts, fractions};
+\node[box, left=of l] (t) {\LaTeX{} line\\\scriptsize compile check};
+\node[box, left=of t] (p) {PDF\\\scriptsize pdflatex};
+\draw[->] (b) -- node[above, font=\tiny, inner sep=1.5pt]{USB} (c);
+\draw[->] (c) -- (s);
+\draw[->] (s) -- (k);
+\draw[->] (k) -- (l);
+\draw[->] (l) -- (t);
+\draw[->] (t) -- (p);
+\end{tikzpicture}
+\caption{The pipeline. Only the shaded box runs on the board. This guide installs and tests every
+unshaded box, using stored photographs in place of the board.}
+\label{fig:pipeline}
+\end{figure}
+
+The stages are as follows. \emph{Capture} receives a frame from the board. \emph{Segment} finds
+the ink in the frame and draws one box around each printed symbol. \emph{Classify} passes each
+boxed symbol to a convolutional neural network (CNN), which names it as one of 159 classes
+covering the visible ASCII characters and the common mathematical symbols. \emph{Layout} decides
+how the symbols relate to one another (which are superscripts, subscripts, numerators or
+denominators) and writes the corresponding \LaTeX{} text. Finally the program \cmd{pdflatex}
+turns that text into a PDF.
+
+\subsection{What you will have at the end}
+
+A reader who completes every checkpoint of this guide has:
+\begin{itemize}
+\item a GitHub account that can read from, and write to, the team's repository;
+\item the tools Git, Python 3.12, MiKTeX and Poppler installed and verified;
+\item the project in the folder \file{C:\bs ee105\bs camera-to-latex}, with its own Python
+  environment;
+\item a passing run of the project's automatic tests;
+\item a trained classifier and a measured accuracy on 80 simulated camera photographs;
+\item a PDF, opened on screen, that the pipeline produced from a photograph of an equation.
+\end{itemize}
+At that point the laptop is ready for the tasks that use the board.
+
+\subsection{Assumptions and scope}
+
+The guide makes four assumptions and no others.
+\begin{enumerate}
+\item The laptop runs 64-bit Windows 10 or Windows 11 on an Intel or AMD processor.
+  Section~\ref{sec:prelim} shows how to check this.
+\item You can install software on it, which means that you know the password Windows asks for
+  when a program requests permission to make changes.
+\item It has an internet connection and at least 10\,GB of free disk space.
+\item None of the project's software is installed, and you have not used any of it before.
+\end{enumerate}
+A team member whose laptop runs macOS or Linux should speak to the project lead before starting:
+the project works on those systems (the short instructions are in the file \file{README.md}), but
+the installation steps in Sections~\ref{sec:powershell} to~\ref{sec:python} are written for
+Windows only.
+
+If part of the software is already installed, do not skip the corresponding step; carry out its
+verification instead (each installation step ends with one). If the verification succeeds, move
+on.
+
+\begin{note}[Status of this revision]
+The commands of the project itself (Sections~\ref{sec:python} and~\ref{sec:quick}) were run by
+the project lead on a Windows laptop on 23 November 2026, and their outputs are quoted from that
+run. The installation steps of Sections~\ref{sec:tools} and~\ref{sec:clone} follow the
+publishers' instructions (listed in the Sources appendix) and the lead's experience, but this
+revision has not yet been followed from its first step to its last on a second, empty laptop.
+The first team member to do so is asked to report every point at which the screen differed from
+the description, so that the guide can be corrected.
+\end{note}
+
+\subsection{How to read this guide}
+\label{sec:conventions}
+
+The guide is meant to be followed in order, one step at a time, with this document open beside
+the windows in which you work. Steps are numbered within their section: Step~5.3 is the third
+step of Section~5. Four kinds of box appear.
+
+\begin{ps}
+Get-Date
+\end{ps}
+
+A blue box holds \emph{exactly one command} for Windows PowerShell, the program introduced in
+Section~\ref{sec:powershell}. Type the line exactly as printed, or copy it from this PDF and
+paste it, and then press \key{Enter}. Upper and lower case, spaces, hyphens, quotation marks and
+backslashes all matter. A command is always printed on a single line; if two blue boxes follow
+each other, they are two commands, and the first must finish before the second is typed.
+
+\begin{out}
+Tuesday, November 24, 2026 9:41:07 AM
+\end{out}
+
+A gray box shows what appears on the screen after the command. Your screen will rarely match it
+character for character (dates, version numbers and folder names differ); the text below each
+gray box says which part matters.
+
+\begin{iffail}
+An amber box describes the most likely way in which a step goes wrong, and the remedy.
+Section~\ref{sec:trouble} collects all of them, with the exact error messages, in one place.
+\end{iffail}
+
+\begin{note}
+A green box gives background that is useful but not needed to carry out the step.
+\end{note}
+
+Three further conventions are used throughout.
+\begin{itemize}
+\item \textbf{Keys} are drawn like this: \key{Enter}, \key{Ctrl}+\key{C} (hold the first key and
+  press the second).
+\item \textbf{Things to click} are printed in bold sans-serif type, for example \ui{Sign up}, and
+  a path through menus is written with arrows: \menu{Settings}\then\menu{System}\then\menu{About}.
+\item \textbf{Placeholders}, which you must replace with your own information, are printed in
+  capitals on a yellow background, for example \ph{YOUR-NAME}. There are only four in the whole
+  guide. Nothing else in a command is ever to be replaced, and no command in this guide contains
+  the characters \code|<| or \code|>| around a word.
+\end{itemize}
+
+Each step ends with a \ok~\textbf{Checkpoint}: an observable fact that tells you the step
+succeeded. Do not go on to the next step until the checkpoint is true.
+
+\subsection{When you are stuck}
+\label{sec:help}
+
+First read the amber box of the step, then the entry for your error message in
+Section~\ref{sec:trouble}. If neither resolves the problem, send the project lead three things:
+the step number, a screenshot of the whole PowerShell window (press
+\key{Windows}+\key{Shift}+\key{S}, drag a rectangle over the window, and paste the picture into
+a message with \key{Ctrl}+\key{V}), and one sentence saying what you expected. Do not retype an
+error message by hand, and do not experiment with commands found elsewhere; an installation that
+has been altered by trial and error is much harder to repair than one that stopped at a known
+step.

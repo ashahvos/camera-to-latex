@@ -4,7 +4,8 @@
   python -m tools.crop_sheet --debug          # also save data/sheets/debug/<photo>.png
 
 For each photo: find the four corner squares (the hollow one is top left, so
-a page photographed upside down still works), map the grid with a
+a page photographed upside down still works; if its hole is too small to
+see, the page is taken to be upright), map the grid with a
 perspective transform, give each piece of ink to the cell its centre falls
 in, and save one crop per cell to data/crops_real/<class>/<member>__<photo>__r<row>c<col>.png.
 Crops are cut exactly like live symbols (same binarization, same
@@ -36,40 +37,64 @@ class SheetError(RuntimeError):
     pass
 
 
-def find_marks(labels: np.ndarray, stats: np.ndarray, cents: np.ndarray, scale: float):
-    """Component ids of the four corner squares in grid order (TL, TR, BR, BL) and their centres.
+def find_marks(labels: np.ndarray, stats: np.ndarray, cents: np.ndarray, scale: float,
+               aspect: float | None = None):
+    """The four corner squares: ids and centres in grid order (TL, TR, BR, BL), and whether
+    the hollow (top-left) square was recognised.
 
-    A mark is a square blob about half a capital tall whose outline fills its
-    box; the top-left one is hollow. Any other count than four means a mark
-    is out of view (or something square-ish is lying on the page): retake.
+    A mark is a square-ish blob about half a capital tall whose outline fills
+    most of its box. Round symbols (o, 0, theta) can look like that in a small
+    photo, so the marks are picked by position: the candidates farthest out
+    towards the four corners of the photo. They must form the grid's rectangle
+    (similar sizes, opposite sides alike, the right proportions); if not, a
+    corner is out of view or something else square-ish is in the picture.
+
+    The hollow square marks the grid's top left, so a page that was turned
+    around still crops correctly. At about 20 px per capital its hole is only a
+    few pixels wide and can fill in; when no square is clearly hollow, the page
+    is taken to be upright (hollow square at the top left of the photo).
     """
     cands = []
     for i in range(1, len(stats)):
         x, y, w, h, area = (int(v) for v in stats[i])
-        if not (0.75 <= w / max(h, 1) <= 1.33) or not (0.3 * scale <= max(w, h) <= 0.8 * scale):
+        if not (0.7 <= w / max(h, 1) <= 1.43) or not (0.3 * scale <= max(w, h) <= 0.8 * scale):
             continue
         mask = (labels[y:y + h, x:x + w] == i).astype(np.uint8)
         contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         filled = np.zeros_like(mask)
         cv2.drawContours(filled, contours, -1, 1, thickness=-1)
         outer = int(filled.sum())
-        if outer < 0.8 * w * h:
+        if outer < 0.7 * w * h:
             continue
         cands.append((i, cents[i], area / max(outer, 1), w * h))
-    if len(cands) != 4:
-        raise SheetError(f"found {len(cands)} corner squares, need exactly 4 (all corners in view?)")
-    sizes = [c[3] for c in cands]
+    if len(cands) < 4:
+        raise SheetError(f"found {len(cands)} corner squares, need 4 (all corners in view?)")
+    xs = np.array([c[1][0] for c in cands])
+    ys = np.array([c[1][1] for c in cands])
+    # farthest towards the photo's top left, top right, bottom right, bottom left
+    pick = [int(np.argmin(xs + ys)), int(np.argmax(xs - ys)), int(np.argmax(xs + ys)), int(np.argmin(xs - ys))]
+    if len(set(pick)) != 4:
+        raise SheetError("corner squares are not at four corners (all corners in view? page straight?)")
+    quad = [cands[k] for k in pick]
+    sizes = [c[3] for c in quad]
     if max(sizes) > 2.25 * min(sizes):
-        raise SheetError("corner squares have very different sizes")
-    hollow = min(range(4), key=lambda k: cands[k][2])
-    if cands[hollow][2] > 0.85 or sorted(c[2] for c in cands)[1] < 0.85:
-        raise SheetError("cannot tell which corner square is the hollow (top-left) one")
-    centre = np.mean([c[1] for c in cands], axis=0)
-    angle = lambda c: np.arctan2(c[1][1] - centre[1], c[1][0] - centre[0])
-    ring = sorted(cands, key=angle)                         # clockwise on screen (y points down)
-    k = [c[0] for c in ring].index(cands[hollow][0])
-    order = ring[k:] + ring[:k]
-    return [c[0] for c in order], np.array([c[1] for c in order], np.float32)
+        raise SheetError("corner squares have very different sizes (something else in view?)")
+    pts = np.array([c[1] for c in quad], np.float32)
+    top, right = np.linalg.norm(pts[1] - pts[0]), np.linalg.norm(pts[2] - pts[1])
+    bottom, left = np.linalg.norm(pts[3] - pts[2]), np.linalg.norm(pts[0] - pts[3])
+    if min(top, bottom) < 0.8 * max(top, bottom) or min(left, right) < 0.8 * max(left, right):
+        raise SheetError("corner squares do not form a rectangle (a corner out of view, or another block in view?)")
+    if aspect:
+        ratio = max(top + bottom, left + right) / max(1e-6, min(top + bottom, left + right))
+        want = max(aspect, 1.0 / aspect)
+        if not (want / 1.2 <= ratio <= want * 1.2):
+            raise SheetError("corner squares do not match the grid's shape (another block or object in view?)")
+    fills = [c[2] for c in quad]
+    order = np.argsort(fills)
+    hollow_clear = bool(fills[order[0]] <= 0.93 and fills[order[1]] - fills[order[0]] >= 0.05)
+    k = int(order[0]) if hollow_clear else 0
+    quad = quad[k:] + quad[:k]
+    return [c[0] for c in quad], np.array([c[1] for c in quad], np.float32), hollow_clear
 
 
 def crop_photo(path: Path, block: dict, layout: dict, table, out_dir: Path, debug_dir: Path | None):
@@ -77,11 +102,15 @@ def crop_photo(path: Path, block: dict, layout: dict, table, out_dir: Path, debu
     if img is None:
         raise SheetError("cannot read photo")
     gray = orient(to_gray(img))
+    cols, rows = layout["cols"], layout["rows"]
+    px, py = layout["pitch_x_cm"], layout["pitch_y_cm"]
+    o = layout["mark_gap_cm"] + layout["mark_cm"] / 2
+    aspect = (cols * px + 2 * o) / (rows * py + 2 * o)
     for _ in range(2):
         binary = binarize(gray)
         n, labels, stats, cents = cv2.connectedComponentsWithStats(binary, connectivity=8)
         rough = estimate_scale(find_blobs(binary)[1])
-        mark_ids, pts = find_marks(labels, stats, cents, rough)
+        mark_ids, pts, hollow_seen = find_marks(labels, stats, cents, rough, aspect)
         # page turned by 90/180/270 degrees: turn the photo back so the symbols are upright
         v = pts[1] - pts[0]
         quarter = int(round(np.degrees(np.arctan2(v[1], v[0])) / 90.0)) % 4
@@ -89,9 +118,6 @@ def crop_photo(path: Path, block: dict, layout: dict, table, out_dir: Path, debu
             break
         gray = cv2.rotate(gray, {1: cv2.ROTATE_90_COUNTERCLOCKWISE, 2: cv2.ROTATE_180,
                                  3: cv2.ROTATE_90_CLOCKWISE}[quarter])
-    cols, rows = layout["cols"], layout["rows"]
-    px, py = layout["pitch_x_cm"], layout["pitch_y_cm"]
-    o = layout["mark_gap_cm"] + layout["mark_cm"] / 2
     Wc, Hc = cols * px, rows * py
     grid_pts = np.array([(-o, -o), (Wc + o, -o), (Wc + o, Hc + o), (-o, Hc + o)], np.float32)
     to_grid = cv2.getPerspectiveTransform(pts, grid_pts)
@@ -129,7 +155,7 @@ def crop_photo(path: Path, block: dict, layout: dict, table, out_dir: Path, debu
         saved += 1
     if debug_dir is not None:
         _debug_image(gray, to_grid, masks, pts, cols, rows, px, py, debug_dir / f"{path.stem}.png")
-    return saved, empty, scale
+    return saved, empty, scale, hollow_seen
 
 
 def _debug_image(gray, to_grid, masks, pts, cols, rows, px, py, path: Path) -> None:
@@ -166,20 +192,26 @@ def main(argv=None) -> int:
     if not photos:
         print(f"no sheet photos (<block>_<k>.png) in {args.photos}")
         return 1
-    total, failed = 0, []
+    total, failed, upright = 0, [], []
     for p in photos:
         block = blocks[p.stem.split("_")[0]]
         try:
-            saved, empty, scale = crop_photo(p, block, layout, table, args.out,
-                                             args.photos / "debug" if args.debug else None)
+            saved, empty, scale, hollow_seen = crop_photo(p, block, layout, table, args.out,
+                                                          args.photos / "debug" if args.debug else None)
         except SheetError as exc:
             failed.append(p.name)
             print(f"{p.name}: skipped ({exc})")
             continue
         total += saved
         note = f"; empty cells: {', '.join(empty)}" if empty else ""
+        if not hollow_seen:
+            upright.append(p.name)
+            note += "; read as an upright page"
         print(f"{p.name}: {saved} crops, capitals {scale:.0f} px{note}")
     print(f"\n{total} crops from {len(photos) - len(failed)} photos -> {args.out}")
+    if upright:
+        print(f"{len(upright)} photos had no clearly hollow corner square and were read as upright pages "
+              "(hollow square at the top left of the photo). Retake any that were turned.")
     if failed:
         print(f"retake: {', '.join(failed)}")
     return 0

@@ -1,0 +1,161 @@
+% guidestyle.sty - shared look of the Camera-to-LaTeX guides (set-up guide, task guide).
+% Text block: LaTeX default margins. Command boxes reach a little into the margins so
+% that every command fits on one line and can be copied without a line break.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{guidestyle}[2026/11/24 Camera-to-LaTeX guides]
+
+\RequirePackage{cmap}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{textcomp}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{microtype}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{booktabs,array,tabularx,longtable,float}
+\RequirePackage{enumitem}
+\RequirePackage{pifont}
+\RequirePackage{upquote}
+\RequirePackage{listings}
+\RequirePackage[most]{tcolorbox}
+\tcbuselibrary{listings}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric,fit,decorations.pathreplacing}
+\RequirePackage{fancyhdr}
+\RequirePackage[font=small,labelfont=bf]{caption}
+\RequirePackage[skip=6pt plus 2pt,indent=0pt]{parskip}
+\RequirePackage{needspace}
+\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{xurl}
+\newcommand{\repourl}{\mbox{\url{https://github.com/ashahvos/camera-to-latex}}}
+
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+% ---- colours ---------------------------------------------------------------
+\definecolor{cmdframe}{HTML}{1F4E79}
+\definecolor{cmdback}{HTML}{F1F5FA}
+\definecolor{outframe}{HTML}{7A7A7A}
+\definecolor{outback}{HTML}{FBFBFB}
+\definecolor{fileframe}{HTML}{5B4B8A}
+\definecolor{fileback}{HTML}{F6F4FB}
+\definecolor{noteframe}{HTML}{2E7D32}
+\definecolor{noteback}{HTML}{F3F9F3}
+\definecolor{warnframe}{HTML}{B45309}
+\definecolor{warnback}{HTML}{FFF8ED}
+\definecolor{stopframe}{HTML}{B3261E}
+\definecolor{stopback}{HTML}{FDF3F2}
+\definecolor{stepcol}{HTML}{1F4E79}
+\definecolor{linkcol}{HTML}{1A4C8B}
+\definecolor{phback}{HTML}{FFE9A8}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=linkcol,citecolor=black}
+
+% ---- tables and captions (caption below, bold centred headers) ---------------
+\captionsetup[table]{position=below,skip=6pt}
+\captionsetup[figure]{position=below,skip=6pt}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\hd}[1]{\textbf{#1}}
+\renewcommand{\arraystretch}{1.15}
+\setlist{itemsep=2pt,topsep=3pt,parsep=0pt}
+\setlength{\emergencystretch}{3em}
+
+% ---- small inline elements ---------------------------------------------------
+\newcommand{\file}[1]{\texttt{#1}}
+\newcommand{\cmd}[1]{\texttt{#1}}
+\newcommand{\ui}[1]{\textsf{\textbf{#1}}}
+\newcommand{\menu}[1]{\textsf{#1}}
+\newcommand{\then}{\ensuremath{\,\rightarrow\,}}
+\newcommand{\key}[1]{\tikz[baseline=(k.base)]\node[draw=black!55,fill=black!4,rounded corners=1.2pt,
+  inner xsep=3pt,inner ysep=1.5pt,font=\sffamily\footnotesize](k){#1\vphantom{Ag}};}
+\newcommand{\ph}[1]{{\setlength{\fboxsep}{1pt}\colorbox{phback}{\texttt{\textbf{#1}}}}}
+\newcommand{\cbox}{\ensuremath{\square}}
+\newcommand{\cm}{\,cm}
+\newcommand{\px}{\,px}
+\newcommand{\degree}{\ensuremath{^{\circ}}}
+\newcommand{\ok}{\textcolor{noteframe}{\ding{51}}}
+\newcommand{\term}[1]{\emph{#1}}
+
+% The prompt of an activated window, as a displayed line.
+\newcommand{\venvprompt}{\par\smallskip{\centering\texttt{(.venv) PS C:\textbackslash ee105\textbackslash camera-to-latex>}\par}\smallskip}
+\newcommand{\plainprompt}{\par\smallskip{\centering\texttt{PS C:\textbackslash ee105\textbackslash camera-to-latex>}\par}\smallskip}
+
+% ---- steps -------------------------------------------------------------------
+\newcounter{stepno}[section]
+\renewcommand{\thestepno}{\thesection.\arabic{stepno}}
+\newcommand{\step}[1]{\par
+  \if@nobreak\else\addvspace{9pt}\needspace{5\baselineskip}\fi  % stay with a heading just above
+  \refstepcounter{stepno}%
+  \noindent{\sffamily\bfseries\color{stepcol}Step \thestepno\quad #1}\par\nopagebreak\@afterheading}
+\newcommand{\checkpoint}[1]{\par\noindent\ok~\textbf{Checkpoint.} #1\par}
+\newcommand{\rationale}[1]{\par\noindent{\small\textit{Rationale.} #1}\par}
+
+% ---- listings ------------------------------------------------------------------
+\lstdefinestyle{cmd}{basicstyle=\ttfamily\footnotesize,columns=fullflexible,keepspaces=true,
+  upquote=true,showstringspaces=false,breaklines=false,aboveskip=0pt,belowskip=0pt,
+  extendedchars=true,literate={-}{{-}}1}
+\lstdefinestyle{cmdsmall}{style=cmd,basicstyle=\ttfamily\scriptsize}
+\lstdefinestyle{inl}{basicstyle=\ttfamily\small,columns=fullflexible,keepspaces=true,
+  upquote=true,showstringspaces=false,breaklines=true,literate={-}{{-}}1}
+\newcommand{\code}{\lstinline[style=inl]}
+\lstdefinestyle{sum}{style=inl,basicstyle=\ttfamily\scriptsize,breaklines=false}
+\newcommand{\bs}{\textbackslash\allowbreak}
+\lstdefinestyle{outp}{basicstyle=\ttfamily\scriptsize,columns=fullflexible,keepspaces=true,
+  upquote=true,showstringspaces=false,breaklines=true,breakatwhitespace=false,aboveskip=0pt,belowskip=0pt,
+  breakindent=1.5em}
+
+\tcbset{textbox/.style={enhanced,boxrule=0.5pt,arc=1.5pt,left=6pt,right=6pt,top=3pt,bottom=3pt,
+  boxsep=0pt,toptitle=1.5pt,bottomtitle=1.5pt,fonttitle=\sffamily\scriptsize\bfseries,
+  before skip=6pt,after skip=7pt},
+  guidebox/.style={textbox,grow to left by=8mm,grow to right by=8mm}}
+
+% One PowerShell command (one line). The optional argument replaces the title.
+\newtcblisting{ps}[1][PowerShell: type or paste this one line, then press Enter]{guidebox,listing only,
+  listing style=cmd,colback=cmdback,colframe=cmdframe,title={#1}}
+% The same for a line too long for the normal size.
+\newtcblisting{pswide}[1][PowerShell: type or paste this one line, then press Enter]{guidebox,listing only,
+  listing style=cmdsmall,colback=cmdback,colframe=cmdframe,title={#1}}
+% Several commands that belong together, one per line.
+\newtcblisting{psmulti}[1][PowerShell: run these lines one at a time (press Enter after each)]{guidebox,
+  listing only,listing style=cmd,colback=cmdback,colframe=cmdframe,title={#1}}
+% What the screen shows afterwards.
+\newtcblisting{out}[1][What you should see]{guidebox,listing only,listing style=outp,breakable,
+  colback=outback,colframe=outframe,title={#1}}
+% Lines of a file.
+\newtcblisting{filebox}[1]{guidebox,listing only,listing style=outp,colback=fileback,colframe=fileframe,
+  title={#1}}
+
+\newtcolorbox{note}[1][Note]{textbox,breakable,colback=noteback,colframe=noteframe,title={#1},
+  fontupper=\small}
+\newtcolorbox{iffail}[1][If this does not happen]{textbox,breakable,colback=warnback,colframe=warnframe,
+  title={#1},fontupper=\small}
+\newtcolorbox{caution}[1][Caution]{textbox,breakable,colback=stopback,colframe=stopframe,title={#1},
+  fontupper=\small}
+\newtcolorbox{plain}[1]{textbox,breakable,colback=white,colframe=black!60,title={#1},
+  fontupper=\small}
+
+% ---- troubleshooting entries: \trouble{what you see} \cause ... \remedy ... --------
+\newcommand{\trouble}[1]{\par\addvspace{8pt}\needspace{4\baselineskip}%
+  {\raggedright\frenchspacing\noindent\hangindent=1.2em\hangafter=1\textbf{\textcolor{warnframe}{\ding{228}}~#1}\par}\nopagebreak}
+\newcommand{\cause}{\par\nopagebreak\noindent\hangindent=1.2em\hangafter=0\textit{Cause.}\ }
+\newcommand{\remedy}{\par\nopagebreak\noindent\hangindent=1.2em\hangafter=0\textit{Remedy.}\ }
+
+% ---- title block -------------------------------------------------------------------
+\newcommand{\guidefront}[4]{% title, subtitle, line 3, date line
+  \begin{center}
+  {\LARGE\bfseries #1\par}\vspace{6pt}
+  {\large #2\par}\vspace{10pt}
+  {\normalsize #3\par}\vspace{4pt}
+  {\normalsize #4\par}
+  \end{center}\vspace{6pt}}
+
+% ---- page style ----------------------------------------------------------------
+\newcommand{\guidetitle}{}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily\guidetitle}
+\fancyhead[R]{\small\sffamily\nouppercase{\leftmark}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\endinput

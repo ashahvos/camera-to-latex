@@ -1,0 +1,251 @@
+\section{Records}
+\label{sec:records}
+
+Each task ends with a record. Table~\ref{tab:recordlist} lists the tables that are to be filled
+in, in the order of the work, with their pages, so that these pages can be printed together or
+copied into a shared file. The final report (Task~6) takes its figures from them.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{L{6.6cm}C{2.4cm}C{1.6cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Record}} & \hd{Table} & \hd{Page} \\
+\midrule
+Trials of the line position & \ref{tab:trials} & \pageref{tab:trials} \\
+Task 1: board, soak test and stand & \ref{tab:t1record} & \pageref{tab:t1record} \\
+Task 2: sheets and retraining & \ref{tab:t2record} & \pageref{tab:t2record} \\
+Task 4, part A: photography of the lines & \ref{tab:t4arecord} & \pageref{tab:t4arecord} \\
+Task 3: triage of the misread lines & \ref{tab:triage} & \pageref{tab:triage} \\
+Task 3: trials of settings & \ref{tab:trialrec} & \pageref{tab:trialrec} \\
+Task 3: gate and freeze & \ref{tab:t3record} & \pageref{tab:t3record} \\
+Task 4, part B: results against the targets & \ref{tab:targets} & \pageref{tab:targets} \\
+Task 4, part B: final measurement & \ref{tab:t4brecord} & \pageref{tab:t4brecord} \\
+Task 5: video & \ref{tab:t5record} & \pageref{tab:t5record} \\
+Task 6: requirements of the course & \ref{tab:reqs} & \pageref{tab:reqs} \\
+Task 6: rehearsals & \ref{tab:t6record} & \pageref{tab:t6record} \\
+\bottomrule
+\end{tabular}
+\caption{The records of this document.}
+\label{tab:recordlist}
+\end{table}
+
+\section{Settings}
+\label{sec:settings}
+
+\subsection*{Settings of the sketch}
+
+The sketch \file{capture.ino} has five settings near its top. They are changed in the Arduino
+IDE, and the sketch must be uploaded again after any change (Step~\ref{st:upload}); the soak
+test is then repeated.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{L{3.0cm}C{1.5cm}L{6.6cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Setting}} & \hd{Value} & \multicolumn{1}{c}{\hd{Meaning, and when to change it}} \\
+\midrule
+\texttt{CAMERA\_MODEL} & OV7675 & The sensor on the EE\,105 board. Not to be changed \\
+\texttt{USE\_GRAYSCALE} & 1 & 1 asks the camera for gray pixels; 0 asks for the YUV422 format and
+  keeps its brightness bytes. Set to 0 if the picture is noise or stripes \\
+\texttt{Y\_OFFSET} & 0 & Which byte of each pixel is the brightness. Set to 1 if, with the
+  previous setting at 0, the picture is still noise or a negative \\
+\texttt{TEST\_PATTERN} & 0 & 1 makes the camera send vertical bars in place of the scene, to
+  test the transfer alone \\
+\texttt{CAMERA\_FPS} & 1 & Pictures per second requested from the camera. The value 1 is the
+  most reliable; 5 may give a quicker viewfinder and is tried only after a clean soak test \\
+\bottomrule
+\end{tabular}
+\caption{Settings of the sketch.}
+\label{tab:sketchsettings}
+\end{table}
+
+\subsection*{Settings of the pipeline}
+
+The file \file{config.py} holds every adjustable number of the laptop programs.
+Tables~\ref{tab:config} and~\ref{tab:config2} list those that this document mentions;
+Section~\ref{sec:setting} describes how a setting is changed. A length given in capital heights is measured relative to
+the height of a capital letter of the line that is being read.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{L{3.3cm}C{2.1cm}L{5.7cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Setting}} & \hd{Value} & \multicolumn{1}{c}{\hd{Meaning}} \\
+\midrule
+\texttt{SERIAL\_PORT} & None & The port of the board; \texttt{None} lets the program find it \\
+\texttt{SERIAL\_RETRIES} & 3 tries & Requests for a picture before an error is reported \\
+\texttt{FLIP\_H} & False & Mirror every photograph left to right (Task~1) \\
+\texttt{FLIP\_V}, \texttt{ROTATE\_DEG} & False, 0 & Further orientation settings; not needed
+  when the page is turned instead \\
+\midrule
+\texttt{BLUR\_KSIZE} & 3 px & Smoothing before ink is separated from paper; it removes the
+  noise of the sensor. Not to be changed \\
+\texttt{THRESH\_BLOCK} & 31 px & Size of the surroundings with which each pixel is compared \\
+\texttt{THRESH\_C} & 10 gray levels & How much darker than its surroundings a pixel must be to
+  count as ink \\
+\texttt{THRESH\_WEAK\_C} & 5 gray levels & The same for faint ink, which is kept only where it
+  touches certain ink \\
+\texttt{CLOSE\_KSIZE} & 0 (off) & Closing of small gaps in the ink. Not to be changed \\
+\texttt{MIN\_BLOB\_AREA} & 4 px & Smallest patch of ink that is kept \\
+\bottomrule
+\end{tabular}
+\caption{Settings of \file{config.py} for the camera link, the orientation and the cutting
+stage, with their values on 24 November 2026.}
+\label{tab:config}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{L{3.3cm}C{2.1cm}L{5.7cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Setting}} & \hd{Value} & \multicolumn{1}{c}{\hd{Meaning}} \\
+\midrule
+\texttt{CONF\_MIN} & 0.6 & A symbol whose confidence is below this value is drawn in red and
+  may be repaired \\
+\texttt{REPAIR} & True & Uncertain symbols are tried joined with a neighbour, or cut in two \\
+\texttt{REPAIR\_CONF} & 0.8 & Confidence that a repair must reach to be kept \\
+\midrule
+\texttt{SPACE\_GAP} & 0.4 capital heights & A wider gap between symbols is a space between
+  words, in text mode \\
+\texttt{LAYOUT\_LEVEL} & 3 & 1: plain lines only; 2: also superscripts and subscripts; 3: also
+  fractions, roots and limits \\
+\texttt{COMPILE\_\allowbreak TIMEOUT\_S} & 20 s & Time allowed for one run of
+  \texttt{pdflatex} \\
+\bottomrule
+\end{tabular}
+\caption{Settings of \file{config.py} for the classifier, the layout and the typesetting.}
+\label{tab:config2}
+\end{table}
+
+\section{The serial protocol}
+\label{sec:protocol}
+
+The laptop and the board exchange data over the USB cable by a simple rule: the laptop sends
+one character, and the board answers. To the character \texttt{p} the board answers with the
+line of text \texttt{OK 320 240 1}, which gives the width and the height of its pictures and
+the number of bytes per pixel. To the character \texttt{c} it answers with one picture: the
+four characters \texttt{FRM1}; the width and the height as numbers of 16 bits; the number of
+bytes per pixel, which is always 1; the number of pixels as a number of 32 bits; the 76{,}800
+pixels, row by row, one byte each; and a checksum of 16 bits, the sum of all pixel values
+modulo 65{,}536. All numbers are sent with their least significant byte first. If the camera
+cannot be started, the board sends the line \texttt{ERR camera} once per second. The program on
+the laptop skips anything that precedes the characters \texttt{FRM1}, reports any line that
+begins with \texttt{ERR}, recomputes the checksum, and requests a picture up to three times
+before it reports a failure.
+
+\section{Summary of commands}
+\label{sec:tsummary}
+
+The commands of this document are listed here for reference, each followed by its effect. All
+are given in the project folder after the opening sequence (Step~\ref{st:ready}).
+\lstdefinestyle{sumlist}{style=sum,basicstyle=\ttfamily\fontsize{7.4}{9}\selectfont}
+
+\medskip\noindent\textit{Board and camera (Task 1)}\par\nopagebreak\smallskip
+\noindent\lstinline[style=sumlist]|python -m pipeline.capture --list|\\
+\hspace*{1.2em}{\small List the serial ports}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m pipeline.capture --ping|\\
+\hspace*{1.2em}{\small Ask the board whether it answers}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m pipeline.capture --soak 100|\\
+\hspace*{1.2em}{\small Reliability test with 100 pictures}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m pipeline.capture --series data\raw\rig --names "first"|\\
+\hspace*{1.2em}{\small Viewfinder; saves the photographs named}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m tools.make_test_lines --pdf --font-pt 48|\\
+\hspace*{1.2em}{\small Larger print of the test lines (contingency)}\par\smallskip
+
+\medskip\noindent\textit{Sheets and classifier (Task 2)}\par\nopagebreak\smallskip
+\noindent\lstinline[style=sumlist]|python -m pipeline.capture --series data\sheets --names-file sheets\photo_names.txt|\\
+\hspace*{1.2em}{\small Photograph the 54 sheet photographs}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m tools.crop_sheet --debug|\\
+\hspace*{1.2em}{\small Cut the sheet photographs into labelled crops}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m model.evaluate --model symbols_v0|\\
+\hspace*{1.2em}{\small Accuracy of the old classifier on held-out real crops}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m model.train|\\
+\hspace*{1.2em}{\small Retrain the network on synthetic and real crops}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m model.evaluate|\\
+\hspace*{1.2em}{\small Accuracy of the new classifier on held-out real crops}\par\smallskip
+\noindent\lstinline[style=sumlist]|git add -f models\symbols_v1.keras models\symbols_v1.json|\\
+\hspace*{1.2em}{\small Include the classifier in the next commit}\par\smallskip
+
+\medskip\noindent\textit{Lines, trials and measurement (Tasks 3 and 4)}\par\nopagebreak\smallskip
+\noindent\lstinline[style=sumlist]|python -m pipeline.capture --series test_set\images --names-file test_set\photo_names.txt|\\
+\hspace*{1.2em}{\small Photograph the 80 lines}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m tools.eval_pipeline --split dev|\\
+\hspace*{1.2em}{\small Evaluate the 20 development lines}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m tools.review_results --only-wrong|\\
+\hspace*{1.2em}{\small Review document of the lines misread in the latest evaluation}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m tools.make_test_lines --render --cap-px 29 --out data\sim0|\\
+\hspace*{1.2em}{\small Simulated photographs at the calibrated size}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m tools.eval_pipeline --images data\sim0 --split all --no-compile --quiet|\\
+\hspace*{1.2em}{\small Evaluate a set of simulated photographs}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m tools.eval_pipeline|\\
+\hspace*{1.2em}{\small Evaluate the 60 test lines (at the gate and for the final measurement only)}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m tools.review_results|\\
+\hspace*{1.2em}{\small Review document of all lines of the latest evaluation}\par\smallskip
+
+\medskip\noindent\textit{Application (Tasks 1, 5 and 6)}\par\nopagebreak\smallskip
+\noindent\lstinline[style=sumlist]|python -m pipeline.main --new|\\
+\hspace*{1.2em}{\small The application with the board, in a new session}\par\smallskip
+\noindent\lstinline[style=sumlist]|python -m pipeline.main --mode math --image test_set\images\T26.png --show --accept|\\
+\hspace*{1.2em}{\small Read a stored photograph and accept its line}\par\smallskip
+
+\medskip\noindent\textit{Versions}\par\nopagebreak\smallskip
+\noindent\lstinline[style=sumlist]|git restore config.py|\\
+\hspace*{1.2em}{\small Discard changes of settings since the last commit}\par\smallskip
+\noindent\lstinline[style=sumlist]|git describe --tags|\\
+\hspace*{1.2em}{\small Name the version in use}\par\smallskip
+\noindent\lstinline[style=sumlist]|git rev-parse --short HEAD|\\
+\hspace*{1.2em}{\small Short name of the current commit}\par\smallskip
+
+\section{Changes to the repository of 24 November 2026}
+\label{sec:changes}
+
+The procedures of this document rely on five changes to the repository that were made while it
+was written. Table~\ref{tab:changes} lists them. They are present in a copy of the project if
+the automatic tests report 48 tests (Step~\ref{st:uptodate}) and the sketch contains the line
+of Step~\ref{st:model}.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{L{3.7cm}L{7.4cm}}
+\toprule
+\multicolumn{1}{c}{\hd{File}} & \multicolumn{1}{c}{\hd{Change and reason}} \\
+\midrule
+\file{firmware/capture/}\allowbreak\file{capture.ino} & The camera is started as an OV7675. The
+  library assumes an OV7670 unless the model is named, and the sketch did not name it \\
+\file{tools/}\allowbreak\file{crop\_sheet.py} & The corner squares are chosen by their position, their sizes and
+  the shape of the grid are verified, and a hollow square whose hole is not visible no longer
+  stops the cropping. On 54 simulated sheet photographs the earlier version skipped 23; this
+  one skipped none \\
+\file{tests/}\allowbreak\file{test\_tools.py} & Three tests of the new behaviour of the cropper (48 tests in
+  place of 45) \\
+\file{tools/}\allowbreak\file{make\_test\_lines.py} & New option \texttt{-{}-font-pt} for a larger print; the
+  spacing of the lines grows with the print. The output at 40\,pt is unchanged \\
+\file{README.md} & A table of results, and references to this document and to the Set-up
+  Guide \\
+\bottomrule
+\end{tabular}
+\caption{Changes to the repository on which this document relies. None of them has been run on
+the board; Task~1 is their first test on the hardware.}
+\label{tab:changes}
+\end{table}
+
+\section{Sources}
+
+\begin{itemize}
+\item The programs of the repository \url{https://github.com/ashahvos/camera-to-latex} as of 24 November 2026: every command, key and
+  message quoted in this document was read from their source text or taken from a run.
+\item The project plan \emph{Camera-to-\LaTeX{} bring-up plan} of 16 November 2026: the targets,
+  the gates, the rule about test lines, and the outline of the report and of the demonstration.
+\item The team's \emph{Final Project Update Report} of 23 November 2026: the six tasks, their
+  owners and dates, and the results on simulated photographs.
+\item Arduino, library reference \emph{Arduino\_OV767X} (version 0.0.2):
+  \url{https://www.arduino.cc/reference/en/libraries/arduino_ov767x/}
+\item Arduino Forum, answers of the Arduino team on the board selection for the Nano 33 BLE
+  Sense and on the double press of the reset button:
+  \url{https://forum.arduino.cc/t/board-type-and-core-for-nano-33-ble-sense/1025445}
+\item Google Drive Help, \emph{Share files from Google Drive}:
+  \url{https://support.google.com/drive/answer/2494822}
+\end{itemize}
+The simulated results quoted in Tasks~1 and~3 were obtained on 24 November 2026 in a Linux test
+environment, with the fallback classifier and with photographs produced by the project's own
+simulation of the camera. They indicate tendencies; the real photographs decide.

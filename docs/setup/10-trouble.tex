@@ -1,0 +1,230 @@
+\section{Troubleshooting}
+\label{sec:trouble}
+
+The entries below are ordered by the stage at which the message appears. Each quotes the
+characteristic part of the message, in the form in which PowerShell prints it. Red text is
+PowerShell's way of marking an error; read its first line, which names the cause, and ignore
+the lines beginning with a plus sign that follow it.
+
+Several remedies ask for the \emph{opening sequence}. It consists of the following two
+commands, given in this order in a PowerShell window; afterwards the prompt begins with
+\texttt{(.venv)}.
+\begin{ps}[Opening sequence, command 1 of 2]
+cd C:\ee105\camera-to-latex
+\end{ps}
+\begin{ps}[Opening sequence, command 2 of 2]
+.\.venv\Scripts\Activate.ps1
+\end{ps}
+
+\subsection{PowerShell and the tools}
+
+\trouble{\texttt{brew : The term 'brew' is not recognized as the name of a cmdlet}}
+\cause \cmd{brew} is the package manager of macOS. Instructions found on the internet often assume a
+Mac.
+\remedy Use only the commands of this guide; on Windows the corresponding program is \cmd{winget}.
+
+\trouble{\texttt{winget : The term 'winget' is not recognized}}
+\cause The Windows component \emph{App Installer} is missing or out of date.
+\remedy Open Microsoft Store, search for \emph{App Installer}, click \ui{Get} or \ui{Update}, and
+open a new PowerShell window.
+
+\trouble{\texttt{git} (or \texttt{py}, \texttt{pdflatex}, \texttt{pdftoppm}) \texttt{: The
+term \ldots{} is not recognized}}
+\cause Either the window was opened before the program was installed, or the installation failed.
+\remedy Open a new PowerShell window and try again. If the message persists, repeat the installation
+step of that program in Section~\ref{sec:tools} and read its output for an error.
+
+\trouble{\texttt{pdftoppm} is still not recognized after Poppler has been installed again}
+\cause The folder that contains \file{pdftoppm.exe} is not on the list of folders that Windows
+searches (the \term{path}).
+\remedy Run the five commands below in order. The third must print the name of a folder that ends in
+\file{Library\bs bin}; if it prints nothing, Poppler is not installed, and the remedy is to
+repeat its installation step. After the fifth command, open a new PowerShell window and run
+\texttt{pdftoppm -v}.
+\begin{ps}[Repair of the search path, command 1 of 5]
+cd "$env:LOCALAPPDATA\Microsoft\WinGet\Packages"
+\end{ps}
+\begin{ps}[Repair of the search path, command 2 of 5]
+$p = Get-ChildItem -Recurse -Filter pdftoppm.exe
+\end{ps}
+\begin{ps}[Repair of the search path, command 3 of 5]
+$p[0].DirectoryName
+\end{ps}
+\begin{ps}[Repair of the search path, command 4 of 5]
+$old = [Environment]::GetEnvironmentVariable("Path", "User")
+\end{ps}
+\begin{pswide}[Repair of the search path, command 5 of 5]
+[Environment]::SetEnvironmentVariable("Path", "$old;$($p[0].DirectoryName)", "User")
+\end{pswide}
+
+\trouble{\texttt{Python was not found; run without arguments to install from the Microsoft
+Store}, or the Microsoft Store opens when a command beginning with \texttt{python} is run}
+\cause The environment is not activated in this window, so Windows offers its own placeholder for
+Python.
+\remedy Check the prompt. If it does not begin with \texttt{(.venv)}, give the opening sequence
+(the two commands at the head of this section).
+
+\trouble{\texttt{py : The term 'py' is not recognized}, or \texttt{Python 3.12 not found}}
+\cause Python 3.12 is not installed, or the window is older than the installation.
+\remedy Open a new window. If the message persists, repeat the Python installation step of
+Section~\ref{sec:tools}.
+
+\trouble{\texttt{Activate.ps1 cannot be loaded because running scripts is disabled on this
+system}}
+\cause PowerShell's execution policy forbids scripts.
+\remedy Run Step~\ref{st:policy} and answer \texttt{Y}. If the policy cannot be changed because the
+laptop is managed by an organization, the environment can be used without activation: in every
+command of this guide and its companion, write \code|.\.venv\Scripts\python.exe| in place of the
+word \texttt{python} at the beginning, and \code|.\.venv\Scripts\python.exe -m pip| in place of
+\texttt{pip}.
+
+\trouble{\texttt{The module '.venv' could not be loaded}, with the activation line shown
+twice in a row}
+\cause The activation command was pasted twice before \key{Enter} was pressed.
+\remedy Press \key{Esc} to clear the line, then paste the command once.
+
+\trouble{\texttt{.\bs .venv\bs Scripts\bs Activate.ps1 : The term \ldots{} is not recognized}}
+\cause The current folder is not the project folder, so there is no \file{.venv} in it.
+\remedy Run \code|cd C:\ee105\camera-to-latex| first: the opening sequence has two commands, and the
+order matters.
+
+\trouble{\texttt{The '<' operator is reserved for future use}}
+\cause A command copied from another source contained a placeholder in angle brackets, such as
+\texttt{<your-username>}, and it was pasted without being replaced.
+\remedy Use the commands of this guide, which contain no such placeholders.
+
+\trouble{The window shows no new output and does not react}
+\cause If the title bar contains the word \emph{Select}, a mouse click has paused the program.
+Otherwise the command is probably still working.
+\remedy Press \key{Esc} in the first case. In the second, wait; Steps~\ref{st:pipinstall}
+and~\ref{st:train} state how long the slow commands may take.
+
+\subsection{Python packages}
+
+\trouble{\texttt{ERROR: Could not find a version that satisfies the requirement tensorflow}}
+\cause The environment was created with a Python version for which TensorFlow is not published.
+\remedy Run \code|python --version| with the environment activated. If it does not print
+\texttt{Python 3.12}, close the window, delete the folder \file{.venv} in File Explorer, and
+repeat Section~\ref{sec:python} from its second step, typing \texttt{py -3.12} exactly.
+
+\trouble{\texttt{OSError: [Errno 2] No such file or directory} with the hint \texttt{Windows
+Long Path support}}
+\cause The project folder lies so deep in the folder tree that some file names of TensorFlow exceed
+260 characters.
+\remedy Install the project in \file{C:\bs ee105} as described in Section~\ref{sec:clone}, not in a
+folder inside \file{Desktop} or \file{Documents}.
+
+\trouble{\texttt{ReadTimeoutError}, or \texttt{Connection \ldots{} timed out}, during
+\texttt{pip install}}
+\cause The internet connection was interrupted.
+\remedy Run the same command again. Packages already downloaded are not fetched a second time.
+
+\trouble{\texttt{AttributeError: module 'cv2' has no attribute 'HOGDescriptor'}}
+\cause Version~5 of OpenCV is installed.
+\remedy Run Step~\ref{st:opencv}.
+
+\trouble{\texttt{ModuleNotFoundError: No module named 'cv2'} (or \texttt{numpy},
+\texttt{tensorflow})}
+\cause The environment is not activated, or Step~\ref{st:pipinstall} did not finish.
+\remedy Check for \texttt{(.venv)} in the prompt; if it is present, run Step~\ref{st:pipinstall}
+again.
+
+\trouble{\texttt{No module named pipeline} (or \texttt{tools}, \texttt{model})}
+\cause The command was run outside the project folder.
+\remedy Run \code|cd C:\ee105\camera-to-latex| and repeat the command.
+
+\trouble{\texttt{ImportError: DLL load failed while importing \_pywrap\_tensorflow\_internal}}
+\cause A Microsoft runtime library that TensorFlow requires is missing from Windows.
+\remedy Run \code|winget install --id Microsoft.VCRedist.2015+.x64 -e --source winget|, open a new
+window, give the opening sequence (the two commands at the head of this section), and repeat
+Step~\ref{st:verifypy}.
+
+\trouble{Lines that mention \texttt{oneDNN custom operations}, \texttt{absl::InitializeLog}
+or \texttt{GPU support is not available on native Windows}}
+\cause TensorFlow announces how it will compute. On Windows it uses the processor, not a graphics
+card, which is sufficient for this project.
+\remedy None is needed; these are not errors.
+
+\subsection{\LaTeX{} and Poppler}
+
+\trouble{\texttt{'pdflatex' is not on PATH}, or \texttt{'pdflatex' not found}}
+\cause MiKTeX is not installed, or the window is older than its installation.
+\remedy Open a new window. If the message persists, repeat the MiKTeX steps of
+Section~\ref{sec:tools}.
+
+\trouble{\texttt{pdflatex took longer than 20 s}}
+\cause MiKTeX was downloading a component, or was waiting behind a dialog for permission to do so.
+\remedy Look for a MiKTeX dialog behind the other windows and click \ui{Install}. Run
+Step~\ref{st:autoinstall}, then repeat the command; the second attempt is fast because the
+component is now present.
+
+\trouble{\texttt{pdflatex failed:} followed by \texttt{LaTeX Error: File \ldots{} not found}}
+\cause MiKTeX could not fetch a component, usually because it has never synchronized with its
+servers or because there is no internet connection.
+\remedy Open MiKTeX Console, click \ui{Check for updates}, install what is offered, and repeat the
+command.
+
+\trouble{\texttt{RuntimeError: pdftoppm (poppler) is needed for -{}-render}}
+\cause Poppler is not installed or not found.
+\remedy Run \texttt{pdftoppm -v} in a new window and follow the first entries of this section.
+
+\subsection{Commands of the project}
+
+\trouble{\texttt{symbols\_v1.json not found: train a model first}}
+\cause No classifier has been trained on this laptop yet.
+\remedy Run Steps~\ref{st:synth} and~\ref{st:train}.
+
+\trouble{\texttt{missing \ldots{}train.npz: run python -m model.make\_synthetic first}}
+\cause Training was started before the training images were generated.
+\remedy Run Step~\ref{st:synth}, then Step~\ref{st:train}.
+
+\trouble{\texttt{no photos found in test\_set\bs images for split test}}
+\cause The evaluation was run without its two options, so it looked for photographs taken with the
+board, which do not exist yet.
+\remedy Use the full command of Step~\ref{st:eval}, which ends in
+\code|--images test_set\synthetic --split all|.
+
+\trouble{\texttt{no results file: run python -m tools.eval\_pipeline first}}
+\cause The review document is built from an evaluation, and none has been run.
+\remedy Run Step~\ref{st:eval}, then Step~\ref{st:review}.
+
+\trouble{\texttt{camera problem:} followed by a remark about ports}
+\cause The application was started without the option \texttt{-{}-image} and looked for the board.
+\remedy Use the full command of Step~\ref{st:onephoto}. Work with the board is described in the
+companion document.
+
+\subsection{Git}
+
+\trouble{\texttt{remote: Repository not found.}}
+\cause Your GitHub account has no access to the repository, or the wrong account is signed in.
+\remedy See the amber box of Step~\ref{st:gitclone}.
+
+\trouble{\texttt{fatal: destination path 'camera-to-latex' already exists and is not an
+empty directory}}
+\cause The repository was cloned earlier.
+\remedy Nothing; continue with the step after the clone.
+
+\trouble{\texttt{Author identity unknown} \ldots{} \texttt{Please tell me who you are}}
+\cause Git does not know your name and email address.
+\remedy Carry out the subsection \emph{Introduce yourself to Git} of Section~\ref{sec:clone}.
+
+\trouble{\texttt{fatal: not a git repository}}
+\cause The current folder is not the project folder.
+\remedy Run \code|cd C:\ee105\camera-to-latex|.
+
+\trouble{\texttt{[rejected] main -> main}, \texttt{CONFLICT}, or \texttt{Your local changes
+\ldots{} would be overwritten}}
+\cause The team's copy and yours have diverged.
+\remedy Section~\ref{sec:routine} treats each of the three cases.
+
+\subsection{The laptop}
+
+\trouble{An installation inside \file{Desktop} or \file{Documents} is extremely slow}
+\cause OneDrive synchronizes those folders and uploads every file of the environment.
+\remedy Keep the project in \file{C:\bs ee105}. If it was cloned elsewhere, delete that copy and
+repeat Sections~\ref{sec:clone} and~\ref{sec:python}.
+
+\trouble{Training stopped because the laptop went to sleep}
+\cause The power settings suspended the computation.
+\remedy Switch sleep off while the charger is connected, as described before Step~\ref{st:train}, and
+start the training again.

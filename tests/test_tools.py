@@ -6,7 +6,9 @@ import numpy as np
 
 from pipeline.preprocess import load_crop_png
 from pipeline.symbols import load_symbols
-from tools.crop_sheet import crop_photo
+import pytest
+
+from tools.crop_sheet import SheetError, crop_photo
 from tools.import_datasets import Collector, import_chars74k, import_tmnist
 
 LAYOUT = {"cols": 2, "rows": 2, "pitch_x_cm": 2.0, "pitch_y_cm": 2.0, "mark_cm": 0.5, "mark_gap_cm": 0.25,
@@ -19,14 +21,18 @@ BLOCK = {"id": "Z1", "cells": [
 WIDTHS = {(0, 0): 4, (0, 1): 8, (1, 0): 12, (1, 1): 16}     # px, so each cell's crop is recognisable
 
 
-def draw_block(rotate180=False):
+def draw_block(rotate180=False, hollow=True, extra=()):
+    """A 2 x 2 block as the camera would see it. hollow=False: the top-left square's hole has
+    filled in (blur). extra: more 10 px dark squares at these (x, y) pixel positions."""
     ppc = 20.0                                   # pixels per cm
     img = np.full((240, 320), 220, np.uint8)
     ox, oy = 110, 70                             # grid top-left in pixels
     m, g = 0.5 * ppc, 0.25 * ppc
     W, H = 2 * 2.0 * ppc, 2 * 2.0 * ppc
     tl = (int(ox - g - m), int(oy - g - m))
-    cv2.rectangle(img, tl, (int(tl[0] + m), int(tl[1] + m)), 20, 2)               # hollow
+    cv2.rectangle(img, tl, (int(tl[0] + m), int(tl[1] + m)), 20, 2 if hollow else -1)
+    for x, y in extra:
+        cv2.rectangle(img, (int(x), int(y)), (int(x + m), int(y + m)), 20, -1)
     for x, y in ((ox + W + g, oy - g - m), (ox + W + g, oy + H + g), (ox - g - m, oy + H + g)):
         cv2.rectangle(img, (int(x), int(y)), (int(x + m), int(y + m)), 20, -1)
     for (r, c), w in WIDTHS.items():
@@ -42,14 +48,47 @@ def test_crop_sheet_assigns_cells(tmp_path):
     for rot in (False, True):
         photo = tmp_path / f"Z1_{int(rot) + 1}.png"
         cv2.imwrite(str(photo), draw_block(rot))
-        saved, empty, scale = crop_photo(photo, BLOCK, LAYOUT, table, tmp_path / "crops", None)
-        assert saved == 4 and not empty
+        saved, empty, scale, hollow_seen = crop_photo(photo, BLOCK, LAYOUT, table, tmp_path / "crops", None)
+        assert saved == 4 and not empty and hollow_seen
         assert 18 <= scale <= 23
     ink = {}
     for f in (tmp_path / "crops").rglob("*.png"):
         ink.setdefault(f.parent.name, []).append(load_crop_png(f).sum())
     order = [np.mean(ink[c]) for c in ("digit_1", "digit_2", "upper_A", "upper_B")]
     assert order == sorted(order)                # widths 4 < 8 < 12 < 16 px kept their labels
+
+
+def _labels_by_ink(crops_dir):
+    ink = {}
+    for f in crops_dir.rglob("*.png"):
+        ink.setdefault(f.parent.name, []).append(load_crop_png(f).sum())
+    return [np.mean(ink[c]) for c in ("digit_1", "digit_2", "upper_A", "upper_B")]
+
+
+def test_crop_sheet_hollow_square_filled_in(tmp_path):
+    """In a small or blurred photo the hollow square's hole closes: the page is read as upright."""
+    photo = tmp_path / "Z1_1.png"
+    cv2.imwrite(str(photo), draw_block(hollow=False))
+    saved, empty, _, hollow_seen = crop_photo(photo, BLOCK, LAYOUT, load_symbols(), tmp_path / "crops", None)
+    assert saved == 4 and not empty and not hollow_seen
+    order = _labels_by_ink(tmp_path / "crops")
+    assert order == sorted(order)
+
+
+def test_crop_sheet_ignores_square_symbols_inside_the_grid(tmp_path):
+    """A square-ish symbol in a cell (an o or a 0 at low resolution) is not taken for a corner square."""
+    photo = tmp_path / "Z1_1.png"
+    cv2.imwrite(str(photo), draw_block(extra=[(145, 105)]))
+    saved, empty, _, hollow_seen = crop_photo(photo, BLOCK, LAYOUT, load_symbols(), tmp_path / "crops", None)
+    assert saved == 4 and hollow_seen
+
+
+def test_crop_sheet_rejects_a_second_block_in_view(tmp_path):
+    """Corner squares of the next block on the page spoil the rectangle: the photo must be retaken."""
+    photo = tmp_path / "Z1_1.png"
+    cv2.imwrite(str(photo), draw_block(extra=[(95, 215), (195, 215)]))
+    with pytest.raises(SheetError):
+        crop_photo(photo, BLOCK, LAYOUT, load_symbols(), tmp_path / "crops", None)
 
 
 def test_import_tmnist_and_chars74k(tmp_path):

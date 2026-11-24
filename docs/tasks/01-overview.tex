@@ -1,0 +1,229 @@
+\section{Before any task}
+\label{sec:before}
+
+\subsection{How the tasks depend on one another}
+
+The tasks are not independent. Photographs can be taken only after the board works and the
+camera stands at a known height (Task~1). The classifier is retrained on real photographs of
+the symbol sheets (Task~2) before the pipeline is tuned (Task~3), because tuning a pipeline
+whose classifier is about to change wastes effort. Tuning requires photographs of the 20
+development lines, which belong to the printed material of Task~4; and the final accuracy
+figures of Task~4 may be measured only after tuning has stopped, since a measurement that has
+been used for tuning no longer measures anything. Task~4 is therefore carried out in two parts:
+its photography early, its measurement late. Figure~\ref{fig:order} shows the resulting order,
+and Table~\ref{tab:order} the days on which it fits the dates of the update report.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=5mm and 6mm, font=\small,
+  box/.style={draw, rounded corners=2pt, align=center, minimum height=11mm, inner sep=3pt, text width=24mm},
+  >={Stealth[length=2mm]}]
+\node[box] (t1) {Task 1\\\scriptsize board, stand};
+\node[box, right=of t1] (t2) {Task 2\\\scriptsize sheets, retraining};
+\node[box, right=of t2] (t4a) {Task 4, part A\\\scriptsize photograph 80 lines};
+\node[box, right=of t4a] (t3) {Task 3\\\scriptsize triage, freeze};
+\node[box, below=9mm of t3] (t4b) {Task 4, part B\\\scriptsize final accuracy};
+\node[box, left=of t4b] (t5) {Task 5\\\scriptsize demo video};
+\node[box, left=of t5] (t6) {Task 6\\\scriptsize report, rehearsal};
+\draw[->] (t1) -- (t2);
+\draw[->] (t2) -- (t4a);
+\draw[->] (t4a) -- (t3);
+\draw[->] (t3) -- (t4b);
+\draw[->] (t4b) -- (t5);
+\draw[->] (t5) -- (t6);
+\end{tikzpicture}
+\caption{Recommended order of work. The photography of Task~4, part~A, fits into the hour
+during which the classifier of Task~2 trains.}
+\label{fig:order}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{C{2.5cm}L{6.2cm}C{2.4cm}}
+\toprule
+\hd{Day} & \multicolumn{1}{c}{\hd{Work}} & \hd{Time needed} \\
+\midrule
+Tue Nov 24 & Task 1: board, soak test, stand, calibration & 3 h \\
+Wed Nov 25 & Task 2: photograph the sheets, crop, start the training & 1.5 h \\
+Wed Nov 25 & Task 4, part A: photograph the 80 lines while the classifier trains & 1 h \\
+Wed Nov 25 & Task 2, continued: evaluate and upload the classifier & 0.5 h \\
+Wed Nov 25 & Task 3: triage, trials, decision on fractions, freeze & 2 h \\
+by Mon Nov 30 & Task 4, part B: the final measurement & 0.5 h \\
+by Mon Nov 30 & Task 5: demo video & 1.5 h \\
+Mon Nov 30 & Task 6: two rehearsals & 1 h \\
+Tue Dec 1 & Task 6: report, presentation, release, hand-in & as required \\
+\bottomrule
+\end{tabular}
+\caption{A schedule that satisfies the dates of the update report. Nothing is planned for the
+Thanksgiving holiday, November 26 to 29.}
+\label{tab:order}
+\end{table}
+
+\subsection{Conventions}
+
+This document follows the conventions of the Set-up Guide. A blue box contains one command,
+which is typed or pasted as a single line and completed with \key{Enter}. A gray box shows
+what the screen should then display. A step ends with a \ok~\textbf{Checkpoint}, an observable
+fact that shows the step has succeeded; do not continue until it is true. An amber box says
+what to do when it is not. Words to be replaced by your own are printed in capitals on a
+yellow background; this document contains a single such placeholder, \ph{NAMES}, which stands
+for a list of photograph names and is explained where it occurs. Where the output of a program
+depends on a measurement that has not been made yet, the gray box prints three dots in place
+of the figures.
+
+\subsection{Conditions that hold for every task}
+
+\step{Confirm that the laptop is ready}\label{st:ready}
+Open a new PowerShell window (click \ui{Start}, type \code|powershell|, click \ui{Windows
+PowerShell}) and give the opening sequence of the Set-up Guide.
+\begin{ps}[Opening sequence, command 1 of 2]
+cd C:\ee105\camera-to-latex
+\end{ps}
+\begin{ps}[Opening sequence, command 2 of 2]
+.\.venv\Scripts\Activate.ps1
+\end{ps}
+\checkpoint{The prompt reads:}
+\venvprompt
+If your copy of the project is in another folder (the project lead's is), use the path of that
+folder in the first command, here and throughout this document.
+
+\step{Bring the project up to date}\label{st:uptodate}
+\begin{ps}
+git pull
+\end{ps}
+\begin{ps}
+python -m pytest -q
+\end{ps}
+\begin{out}
+................................................                         [100%]
+48 passed in 9.87s
+\end{out}
+\checkpoint{The last line says \emph{48 passed} (the time will differ, and a remark about
+warnings is harmless). If it says \emph{45 passed}, your copy does not yet contain the
+corrections of 24 November (the camera-model setting of the sketch and the more tolerant sheet
+cropper), on which Tasks~1 and~2 rely: ask the lead whether they have been uploaded, and repeat
+this step.}
+
+\step{Confirm that a classifier is present}
+\begin{ps}
+Get-ChildItem models
+\end{ps}
+\checkpoint{The listing contains two files whose names begin with \file{symbols\_v1}; one of
+them ends in \file{.keras} and the other in \file{.json}. If the folder does not exist,
+complete the quick start of the Set-up Guide first, or fetch the team's classifier with
+\cmd{git pull} once Task~2 has published it.}
+
+\subsection{How to change a setting}
+\label{sec:setting}
+
+Every adjustable number of the pipeline is a line of the file \file{config.py} of the form
+\emph{NAME = value}, followed by a remark that begins with the sign \code|#|. Several tasks
+change one of these lines. The method is always the same.
+
+\step{Open the file}
+\begin{ps}
+notepad config.py
+\end{ps}
+Notepad opens with the file. Press \key{Ctrl}+\key{F}, type the name of the setting exactly as
+this document prints it, and press \key{Enter}; Notepad jumps to the line.
+
+\step{Change the value, and nothing else}
+Replace only the value between the equals sign and the \code|#| sign. Leave the name, the
+equals sign, the spacing at the start of the line and the remark as they are; a line of Python
+that begins with an extra space is an error. Capital letters matter: the two logical values are
+written \code|True| and \code|False|.
+\begin{filebox}{Example: the line FLIP\_H of config.py, before and after}
+FLIP_H = False
+FLIP_H = True
+\end{filebox}
+Press \key{Ctrl}+\key{S} to save, and close Notepad.
+
+\step{Check that the file is still valid}\label{st:valid}
+\begin{ps}
+python -c "import config; print('config.py is valid')"
+\end{ps}
+\checkpoint{The answer is \emph{config.py is valid}. Any other answer names the line that is
+damaged; open the file again and compare that line with the examples in this document. To
+discard all changes made since the last commit and start again, run
+\texttt{git restore config.py}.}
+
+\subsection{How results are shared}
+
+Each task ends by recording its results in the repository, with the three commands \cmd{git
+add}, \cmd{git commit} and \cmd{git push} written out for that task. Section~9 of the Set-up
+Guide explains them and says what to do when Git objects. Photographs of the symbol sheets and
+other large working files are not put into the repository; where they must be kept, the task
+says where.
+
+\subsection{Handling the board}
+
+\begin{caution}[Read before touching the board]
+\begin{itemize}
+\item The board is an unprotected circuit. Keep metal objects (metal rulers, clips, jewellery,
+  the spiral of a notebook) and liquids away from it, and never lay it on a conductive surface
+  while the USB cable is connected.
+\item Hold it by its edges. Do not press on the camera module, on its lens, or on the Arduino
+  Nano.
+\item Insert and remove the USB plug straight, holding the Nano's edge with the other hand, and
+  fasten the cable to the stand so that a pull on the cable cannot move the board.
+\item The board belongs to the course. Note its number (printed on the white disc beside the
+  camera) in the record of Task~1, and store it in its box after each session.
+\end{itemize}
+\end{caution}
+
+\subsection{How precise a measured percentage is}
+\label{sec:stat}
+
+Every accuracy in this project is a share $p$ of correct results among $n$ trials: 20
+development lines, 60 test lines, 280 held-out crops. Such a share is itself uncertain, because
+another set of $n$ lines of the same kind would give a somewhat different value. For
+independent trials the size of this uncertainty, the \term{standard error}, is
+\[
+  \sigma_p = \sqrt{\frac{p\,(1-p)}{n}} ,
+\]
+and the true accuracy lies within about two standard errors of the measured share in nineteen
+cases out of twenty. Table~\ref{tab:stat} evaluates the formula for the sample sizes of this
+project.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{L{5.3cm}C{1.5cm}C{1.9cm}C{2.2cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Measurement}} & \hd{Trials $n$} & \hd{Share $p$} & \hd{Standard error} \\
+\midrule
+Fraction lines of the test set & 10 & 60 \% & 15 points \\
+Development lines & 20 & 70 \% & 10 points \\
+Script lines of the test set & 20 & 70 \% & 10 points \\
+Plain lines of the test set & 25 & 80 \% & 8 points \\
+All test lines & 60 & 75 \% & 6 points \\
+Simulated lines, two sets & 160 & 80 \% & 3 points \\
+Held-out real crops & 280 & 95 \% & 1.3 points \\
+\bottomrule
+\end{tabular}
+\caption{Standard error of a share for the sample sizes of this project.}
+\label{tab:stat}
+\end{table}
+
+Two practical rules follow. First, a result is always recorded as a count, such as 17 of 25,
+and not only as a percentage, so that the reader can judge its precision. Second, a difference
+of one or two lines between two settings, measured on 20 lines, proves nothing by itself;
+Task~3 therefore accepts a change only when it helps on the real photographs and does no harm
+on a larger set of simulated ones.
+
+\subsection{Records}
+
+Each task section ends with a short table to be filled in. These records are the raw material of
+the final report (Task~6): the report must state the camera height, the number of pixels per
+centimetre, the accuracies and the dates, and it is far easier to copy them from a record than
+to reconstruct them. Fill the tables in on a printed copy of this document or copy them into a
+shared file; Appendix~\ref{sec:records} lists them with their pages.
+
+\begin{note}[Status of this document]
+The procedures that involve only the laptop (cropping, retraining, evaluation, review and the
+release commands) were executed in a test environment on 24 November 2026 with simulated
+photographs, and the quoted outputs come from those runs or from the project lead's runs of 23
+November. The procedures that involve the board, the camera and the stand have not been
+executed: they are the tasks themselves. Wherever a quantity depends on the hardware (field of
+view, sharpness, exposure), the procedure therefore measures it and decides from the
+measurement, and the numbers given in advance are predictions.
+\end{note}

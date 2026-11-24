@@ -1,0 +1,132 @@
+\section{Download the project}
+\label{sec:clone}
+
+\subsection{Background}
+
+Copying a repository from GitHub to your own computer is called \term{cloning}. The clone is an
+ordinary folder that contains every file of the project together with its history. This guide
+places it in the folder \file{C:\bs ee105\bs camera-to-latex}, and every later command assumes
+that location.
+
+\rationale{The folder is deliberately short, free of spaces, and outside the \file{Desktop} and
+\file{Documents} folders. On many laptops those two folders are synchronized by OneDrive, which
+tries to upload each of the tens of thousands of small files that the Python environment
+contains; an installation inside them can take ten times as long. Short paths also keep some
+very long file names of TensorFlow within the length that Windows permits.}
+
+\subsection{Clone the repository}
+
+\step{Create the folder for course work}
+In a PowerShell window run:
+\begin{ps}
+mkdir C:\ee105
+\end{ps}
+\begin{out}
+    Directory: C:\
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        11/24/2026   9:52 AM                ee105
+\end{out}
+\checkpoint{The listing shows the new folder \file{ee105}. If PowerShell says that the item
+already exists, the folder was created earlier, which is equally good.}
+
+\step{Go into the folder}
+\begin{ps}
+cd C:\ee105
+\end{ps}
+\checkpoint{The prompt now reads \texttt{PS C:\bs ee105>}.}
+
+\step{Clone}\label{st:gitclone}
+\begin{ps}
+git clone https://github.com/ashahvos/camera-to-latex.git
+\end{ps}
+If the repository is private, a window titled \ui{Connect to GitHub} opens within a few
+seconds. Click \ui{Sign in with your browser}. The browser opens a GitHub page; sign in with
+the account of Section~\ref{sec:github} if asked, click \ui{Authorize} (the page names the
+\emph{Git Credential Manager}), and return to PowerShell when the page says that
+authentication succeeded. Windows remembers this sign-in, so it happens only once.
+\begin{out}
+Cloning into 'camera-to-latex'...
+remote: Enumerating objects: 82, done.
+remote: Counting objects: 100% (82/82), done.
+remote: Compressing objects: 100% (74/74), done.
+Receiving objects: 100% (82/82), 702.11 KiB | 6.21 MiB/s, done.
+Resolving deltas: 100% (5/5), done.
+\end{out}
+\checkpoint{The output ends with lines that say \emph{done}, and no line begins with
+\emph{fatal}. The numbers will differ.}
+
+\begin{iffail}[If the output says ``Repository not found'']
+GitHub hides a private repository from accounts that have no access, so this message means one
+of three things: the invitation of Section~\ref{sec:github} has not been accepted; you signed in
+to a different GitHub account than the invited one; or the address was mistyped. Open
+\repourl{} in the browser. If the page loads while you
+are signed in, the first two causes are excluded, and you should copy the command again from
+this PDF.
+\end{iffail}
+
+\step{Enter the project folder and look at it}
+\begin{ps}
+cd C:\ee105\camera-to-latex
+\end{ps}
+\begin{ps}
+Get-ChildItem
+\end{ps}
+\checkpoint{The prompt shows the folder \file{C:\bs ee105\bs camera-to-latex}, and the listing
+contains the names of Table~\ref{tab:repo}, among them \file{config.py}, \file{requirements.txt},
+\file{pipeline} and \file{tools}.}
+
+The same folder can be opened in File Explorer at any time with the command
+\code|explorer .| (the word \emph{explorer}, a space, and a full stop, which stands for ``the
+current folder'').
+
+\subsection{Introduce yourself to Git}
+
+Git labels every commit with the name and email address of its author, and refuses to create a
+commit until it knows them. The four commands of this subsection are given once per computer.
+
+\step{Set your name}
+In the next command, replace the yellow placeholder by your first and last name. Keep the
+quotation marks.
+\begin{center}
+\texttt{git config -{}-global user.name "}\ph{YOUR-NAME}\texttt{"}
+\end{center}
+For a team member named Tommy Trojan the finished command would be
+\begin{out}[Example only; type your own name]
+git config --global user.name "Tommy Trojan"
+\end{out}
+
+\step{Set your email address}
+Replace the placeholder by the email address of your GitHub account, again inside the quotation
+marks.
+\begin{center}
+\texttt{git config -{}-global user.email "}\ph{YOUR-EMAIL}\texttt{"}
+\end{center}
+\begin{out}[Example only; type your own address]
+git config --global user.email "ttrojan@usc.edu"
+\end{out}
+
+\step{Choose how Git combines and describes changes}
+The next two commands are typed exactly as printed. The first tells Git to combine your work
+with the team's by a \term{merge}, the simplest method. The second makes Git open Notepad,
+rather than a terminal text editor that is difficult to leave, on the rare occasions when it
+needs a sentence from you.
+\begin{ps}
+git config --global pull.rebase false
+\end{ps}
+\begin{ps}
+git config --global core.editor notepad
+\end{ps}
+
+\step{Check the four settings}
+\begin{ps}
+git config --global --list
+\end{ps}
+\begin{out}[What you should see (other lines may also appear)]
+user.name=Tommy Trojan
+user.email=ttrojan@usc.edu
+pull.rebase=false
+core.editor=notepad
+\end{out}
+\checkpoint{The four lines are present, with your own name and address in the first two.}

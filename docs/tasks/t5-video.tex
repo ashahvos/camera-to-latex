@@ -1,0 +1,229 @@
+\section{Task 5: The demonstration video}
+\sectionmark{Task 5: Demonstration video}
+\label{sec:t5}
+
+\subsection{Purpose, conditions and criterion}
+
+\begin{plain}{Task 5 at a glance}
+\textbf{Purpose.} A video of one minute or less shows the complete system at work: a printed
+line is laid below the camera, a key is pressed, the line appears as \LaTeX{}, and after three
+lines the typeset PDF opens. The video is handed in through Google Drive, and it is also the
+last line of defence of the live demonstration, should the hardware fail on the day.
+
+\textbf{Before you begin.} Task~3 is complete (the pipeline is frozen), and the list of test
+lines that were read correctly is available from part~B of Task~4. The recording takes place at
+the stand of Task~1. The simplest arrangement is to use the laptop on which Tasks~1 to~4 were
+carried out. Any other laptop must have completed the Set-up Guide, except that the two long
+steps that generate training images and train the classifier are replaced by \cmd{git pull},
+which fetches the team's classifier; and Step~\ref{st:ping} of this document must succeed on
+it. A telephone with a camera is needed, and something to hold it still.
+
+\textbf{Complete when.} (1)~The video lasts 60 seconds or less and shows three lines being read
+and the resulting PDF. (2)~It is in Google Drive, and its link opens in a browser window that is
+not signed in. (3)~The link is entered in the report and has been sent to the team. (4)~A copy
+of the file is on the laptop that will be used for the live demonstration.
+
+\textbf{Time.} About an hour and a half, most of it rehearsal.
+\end{plain}
+
+\subsection{Choose the three lines}
+
+\step{Select candidates from the results}
+The video shows one line of each kind: ordinary text, a formula with superscripts, and a
+fraction. If the gate of Task~3 decided that fractions are not demonstrated, the third line is
+a second formula. Choose only lines that the frozen pipeline read correctly, that is, lines
+marked \texttt{ok} in the final measurement (Step~\ref{st:final}). Table~\ref{tab:cards} lists
+suitable lines.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{C{2.3cm}C{1.3cm}C{3.3cm}C{1.3cm}C{2.0cm}}
+\toprule
+\hd{Kind} & \hd{Line} & \hd{Content} & \hd{Page} & \hd{Mode} \\
+\midrule
+Text & T01 & Hello World & 1 & text \\
+Text & T03 & ECE 105 Lab & 1 & text \\
+Superscripts & T26 & $x^{2}+y^{2}=r^{2}$ & 6 & math \\
+Superscripts & T27 & $E=mc^{2}$ & 6 & math \\
+Fraction & T54 & $\dfrac{a+b}{2}$ & 11 & math \\[7pt]
+Fraction & T47 & $\dfrac{a}{b}+\dfrac{c}{d}$ & 10 & math \\[7pt]
+Fraction & T46 & $\dfrac{1}{2}$ & 10 & math \\[5pt]
+\bottomrule
+\end{tabular}
+\caption{Lines suitable for the video and for the live demonstration. The pages are those of
+the test lines printed at 40\,pt.}
+\label{tab:cards}
+\end{table}
+\checkpoint{Three lines are chosen, one of each kind, all of them marked \texttt{ok} in the
+final measurement. Their pages, printed a second time, are the \emph{cards} of the
+demonstration.}
+
+\step{Open the project in PowerShell}
+\input{tasks/opening}
+
+\step{Confirm each line at the stand}\label{st:confirm}
+A line that was read correctly once in a stored photograph may still fail under slightly
+different light. Set up the line position, start the application,
+\begin{ps}
+python -m pipeline.main --new
+\end{ps}
+and read each of the three lines five times, moving the page a little between readings: press
+\key{Space}, compare the reading below the picture with the printed line, and press \key{R}.
+Before the text line, press \key{M} until the status line below the picture says \emph{mode
+text}; before the formulas, until it says \emph{mode math}. Finish with \key{Q}.
+\checkpoint{Each of the three lines was read exactly right at least four times out of five. A
+line that fails more often is replaced by another line of Table~\ref{tab:cards} and confirmed
+in the same way.}
+
+\subsection{Prepare the scene}
+
+\step{Arrange the screen}
+The viewer must be able to read the screen in the video. Three windows matter: the application
+window with the picture of the camera, the PowerShell window in which the readings are printed,
+and the PDF that opens at the end.
+\begin{enumerate}
+\item Enlarge everything on the screen: open \menu{Settings}\then\menu{System}\then\menu{Display}
+  and, under \ui{Scale}, choose the next larger value, for example 150\,\% in place of
+  125\,\%. Note the previous value, so that it can be restored afterwards.
+\item Start the application (the command of Step~\ref{st:confirm}). Drag the application window
+  to the left half of the screen and the PowerShell window to the right half.
+\item Close every window that shows an earlier \file{document.pdf}. Some PDF readers lock the
+  file while it is open, and the application could then not write the new one.
+\end{enumerate}
+\checkpoint{Both windows are visible side by side, and no PDF is open.}
+
+\step{Arrange the camera of the telephone}
+Hold the telephone horizontally and fix it, on a tripod or leaning against a stack of books,
+about 70\,cm from the desk, so that its picture contains both the stand, with the page below
+the board, and the laptop screen. Switch off the flash. Record a test of ten seconds and look
+at it.
+\checkpoint{In the test recording the page below the board can be seen, the text below the
+picture in the application window can be read, and no lamp is reflected in the laptop screen.}
+
+\subsection{Rehearse and record}
+
+\step{Learn the sequence}
+Table~\ref{tab:storyboard} gives the sequence of the video with the time that each part may
+take. The keys act on the application window, which must be the active window: click on its
+picture once before starting.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{C{1.6cm}L{5.0cm}L{4.3cm}}
+\toprule
+\hd{Seconds} & \multicolumn{1}{c}{\hd{Action}} & \multicolumn{1}{c}{\hd{Words (optional)}} \\
+\midrule
+0--6 & Show the stand; point to the board & ``An EE\,105 board photographs one printed line.'' \\
+6--20 & Press \key{M} until \emph{mode text}. Lay the first card; wait for the picture; press
+  \key{Space}, then \key{A} & ``The laptop cuts the photograph into symbols and names each one.'' \\
+20--33 & Press \key{M} for \emph{mode math}. Lay the second card; \key{Space}, then \key{A} &
+  ``Positions and sizes give the superscripts.'' \\
+33--46 & Lay the third card; \key{Space}, then \key{A} & ``A bar with symbols above and below
+  becomes a fraction.'' \\
+46--58 & Press \key{P}; the PDF opens & ``The accepted lines are typeset by \LaTeX{} into a PDF.'' \\
+\bottomrule
+\end{tabular}
+\caption{Sequence of the video. After the space bar, wait until the boxes and the reading have
+appeared before pressing the key A; after the key A, wait until the live picture has returned.}
+\label{tab:storyboard}
+\end{table}
+
+What each key does is shown in the PowerShell window: after \key{Space} the reading is printed;
+after \key{A} the line \emph{accepted line 1}, followed by the reading; after \key{P} the path
+of the PDF, which then opens in the PDF reader of the laptop.
+
+\step{Rehearse with a stopwatch}
+Run through the whole sequence three times without recording, with the stopwatch of the
+telephone. Begin each run with a fresh session: press \key{Q} in the application window, close
+the PDF, and start the application again with the command of Step~\ref{st:confirm}.
+\checkpoint{One complete run took 58 seconds or less, and all three readings were correct. If
+the runs are too long, omit the spoken words and the first six seconds; if they are still too
+long, show two lines.}
+
+\step{Record}
+Start a fresh session as before, start the recording on the telephone, and carry out the
+sequence. If a reading is wrong, stop and begin again; a video of the demonstration should not
+need an excuse. Record until two takes are free of errors, and keep the better one.
+\checkpoint{The chosen take lasts 60 seconds or less from its first to its last picture, all
+three readings in it are correct, and the PDF at the end shows the three lines. If the take
+has a few idle seconds at its beginning or end, trim them with the editing function of the
+telephone's photo application; do not cut anything out of the middle.}
+
+\step{Restore the screen}
+Set \ui{Scale} back to its previous value (\menu{Settings}\then\menu{System}\then\menu{Display}).
+
+\subsection{Upload and share}
+
+\step{Upload the video to Google Drive}
+On the telephone, open the Google Drive application, signed in with the USC account. Tap the
+\ui{+} button, then \ui{Upload}, and select the video. Give the upload time to finish on a
+wireless network.
+\checkpoint{The video appears in \emph{My Drive} and plays when it is tapped.}
+
+\step{Allow others to view it}\label{st:share}
+On the laptop, open \url{https://drive.google.com} in the browser, signed in with the same
+account. Right-click the video and choose \menu{Share}\then\menu{Share}. Under \ui{General
+access}, change \ui{Restricted} to \ui{Anyone with the link}, and leave the role at
+\ui{Viewer}. Click \ui{Copy link}, then \ui{Done}.
+\checkpoint{The link is in the clipboard.}
+
+\begin{iffail}[If ``Anyone with the link'' is not offered]
+The university may restrict sharing. Choose the entry with the name of the university in its
+place; every member of the university who is signed in can then view the video. Ask a teammate
+to open the link as a check.
+\end{iffail}
+
+\step{Verify the link as a stranger would see it}
+Open a private window of the browser (\key{Ctrl}+\key{Shift}+\key{N} in Chrome and Edge), paste
+the link into the address bar with \key{Ctrl}+\key{V}, and press \key{Enter}.
+\checkpoint{The video plays in the private window without any request to sign in. Its length,
+shown at the right of the player's time bar, is 1:00 or less.}
+
+\step{Deliver the link and keep a copy}
+Paste the link into the place where the course's report template asks for videos, and send it
+to the team. Download the video to the laptop that will be used for the live demonstration
+(right-click the video in Google Drive, then \menu{Download}), and check that the downloaded
+file plays without a network connection.
+\checkpoint{The report contains the link, and the file plays on the demonstration laptop with
+the wireless network switched off.}
+
+\subsection{If the board is not available}
+\label{sec:noboard}
+
+Should the board be unavailable when the video must be recorded, the pipeline can be shown on
+the stored photographs of the same three lines. This is a substitute, and the video must say
+so: the spoken words, or a caption, state that stored photographs taken earlier with the board
+are being read. The three commands below read the photographs of the default lines T01, T26 and
+T54; each shows its result in a window until a key is pressed, and the last one builds and
+opens the PDF. Each command needs some seconds to start.
+\begin{pswide}[Stored photograph of the text line]
+python -m pipeline.main --new --mode text --image test_set\images\T01.png --show --accept
+\end{pswide}
+\begin{ps}[Stored photograph of the line with superscripts]
+python -m pipeline.main --mode math --image test_set\images\T26.png --show --accept
+\end{ps}
+\begin{pswide}[Stored photograph of the fraction, then the PDF]
+python -m pipeline.main --mode math --image test_set\images\T54.png --show --accept --pdf
+\end{pswide}
+\checkpoint{After the third command, the PDF opens with three lines. The same three commands
+are the first fallback of the live demonstration (Section~\ref{sec:rehearsal}).}
+
+\subsection{Record}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{L{6.4cm}C{4.8cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Quantity}} & \hd{Value} \\
+\midrule
+Date; persons recording and operating & \\
+The three lines shown & \\
+Readings correct in the confirmation (of 5, each line) & \\
+Length of the video & \hfill s \\
+Link checked in a private window & \cbox\ yes\quad\cbox\ no \\
+Link entered in the report; copy on the demonstration laptop & \cbox\ yes\quad\cbox\ no \\
+\bottomrule
+\end{tabular}
+\caption{Record of Task 5.}
+\label{tab:t5record}
+\end{table}

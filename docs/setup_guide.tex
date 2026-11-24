@@ -1,0 +1,30 @@
+% Camera to LaTeX: Set-up Guide (Revision 2 of docs/instructions.pdf)
+% Build:  pdflatex setup_guide.tex   (run it twice for the table of contents)
+\documentclass[11pt,letterpaper]{article}
+\usepackage{guidestyle}
+\renewcommand{\guidetitle}{Camera to \LaTeX{}: Set-up Guide}
+\hypersetup{pdftitle={Camera to LaTeX: Set-up Guide},pdfauthor={EE 105 Team 8}}
+
+\begin{document}
+\thispagestyle{plain}
+\guidefront{Camera to \LaTeX{}: Set-up Guide}%
+  {Installation and Quick Start on Windows, from an Empty Computer to a Working Pipeline}%
+  {EE\,105, Fall 2026 \textperiodcentered{} Team 8 \textperiodcentered{} Revision 2 of the project instructions}%
+  {November 24, 2026}
+
+\input{setup/00-front}
+\tableofcontents
+\clearpage
+\input{setup/01-intro}
+\input{setup/02-prelim}
+\input{setup/03-github}
+\input{setup/04-powershell}
+\input{setup/05-tools}
+\input{setup/06-clone}
+\input{setup/07-python}
+\input{setup/08-quickstart}
+\input{setup/09-routine}
+\input{setup/10-trouble}
+\appendix
+\input{setup/A-appendix}
+\end{document}

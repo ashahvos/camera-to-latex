@@ -1,0 +1,29 @@
+% Camera to LaTeX: Procedures for the Remaining Tasks
+% Build:  pdflatex tasks_guide.tex   (run it twice for the table of contents)
+\documentclass[11pt,letterpaper]{article}
+\usepackage{guidestyle}
+\renewcommand{\guidetitle}{Camera to \LaTeX{}: Remaining Tasks}
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}  % running head: section title without number
+\hypersetup{pdftitle={Camera to LaTeX: Procedures for the Remaining Tasks},pdfauthor={EE 105 Team 8}}
+
+\begin{document}
+\thispagestyle{plain}
+\guidefront{Camera to \LaTeX{}: Procedures for the Remaining Tasks}%
+  {One Set of Instructions for Each Open Task of the Final Project Update Report}%
+  {EE\,105, Fall 2026 \textperiodcentered{} Team 8 \textperiodcentered{} Companion to the Set-up Guide}%
+  {November 24, 2026}
+
+\input{tasks/00-front}
+\tableofcontents
+\clearpage
+\setcounter{section}{-1}
+\input{tasks/01-overview}
+\input{tasks/t1-board}
+\input{tasks/t2-sheets}
+\input{tasks/t3-cutting}
+\input{tasks/t4-testphotos}
+\input{tasks/t5-video}
+\input{tasks/t6-report}
+\appendix
+\input{tasks/A-appendix}
+\end{document}

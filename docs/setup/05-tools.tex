@@ -1,0 +1,194 @@
+\section{Install the tools}
+\label{sec:tools}
+
+\subsection{What is installed, and why}
+
+Four programs are installed in this section (Table~\ref{tab:tools}). Three of them are installed
+with \term{winget}, the package manager built into Windows, which downloads a program from its
+publisher and installs it in response to a single command. The fourth, MiKTeX, is installed with
+its own installer because two of its options must be chosen by hand.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{C{2.0cm}L{6.4cm}C{2.9cm}}
+\toprule
+\hd{Program} & \multicolumn{1}{c}{\hd{Purpose in this project}} & \hd{Commands it provides} \\
+\midrule
+Git & Downloads the repository and exchanges changes with GitHub & \cmd{git} \\
+Python 3.12 & Runs every program of the pipeline & \cmd{py}, \cmd{python}, \cmd{pip} \\
+MiKTeX & Turns \LaTeX{} text into a PDF; supplies the fonts of the printed material &
+  \cmd{pdflatex} \\
+Poppler & Turns a PDF page into a picture, for the simulated photographs & \cmd{pdftoppm} \\
+\bottomrule
+\end{tabular}
+\caption{The tools installed in this section.}
+\label{tab:tools}
+\end{table}
+
+\begin{note}[Why Python 3.12 and not the newest version]
+The neural-network library TensorFlow is published for particular Python versions only. The
+project was developed and tested with Python 3.12 and TensorFlow 2.21. Installing 3.12 does not
+disturb any other Python version that may already be on the laptop.
+\end{note}
+
+\subsection{Check the package manager}
+
+\step{Confirm that winget is present}
+Open a PowerShell window (Step~\ref{st:openps}) and run:
+\begin{ps}
+winget --version
+\end{ps}
+\begin{out}
+v1.11.430
+\end{out}
+\checkpoint{A version number beginning with \texttt{v1} is printed. The digits after it do not
+matter.}
+
+\begin{iffail}[If PowerShell answers that ``winget'' is not recognized]
+Click \ui{Start}, type \code|store| and open \ui{Microsoft Store}. Search for
+\ui{App Installer}, open its page, and click \ui{Get} or \ui{Update}. When the Store has
+finished, close the PowerShell window, open a new one, and repeat this step.
+\end{iffail}
+
+\subsection{Git}
+
+\step{Install Git}
+\begin{ps}
+winget install --id Git.Git -e --source winget
+\end{ps}
+The first time winget is used it may ask whether you agree to the source agreement terms; type
+\code|Y| and press \key{Enter}. A few seconds later Windows shows a dialog titled \ui{User
+Account Control} that asks whether the app may make changes to the device; click \ui{Yes}. The
+installer then runs by itself for one or two minutes.
+\begin{out}[What you should see at the end]
+Successfully installed
+\end{out}
+\checkpoint{The last line is \emph{Successfully installed} and a new prompt has appeared.}
+
+\subsection{Python}
+
+\step{Install Python 3.12}
+\begin{ps}
+winget install --id Python.Python.3.12 -e --source winget
+\end{ps}
+If the \ui{User Account Control} dialog appears, click \ui{Yes}.
+\checkpoint{The last line is \emph{Successfully installed}.}
+
+\subsection{MiKTeX}
+
+\step{Download the MiKTeX installer}
+In the browser, open
+\begin{center}\url{https://miktex.org/download}\end{center}
+Make sure the tab \ui{Windows} is selected, and under the heading \ui{Installer} click
+\ui{Download}. The file is named \file{basic-miktex-} followed by a version number and
+\file{-x64.exe}, and is about 140\,MB.
+\checkpoint{The file is in your \file{Downloads} folder.}
+
+\step{Run the installer}
+Open the \file{Downloads} folder (in File Explorer, \key{Windows}+\key{E}, then
+\ui{Downloads}) and double-click the downloaded file. The installer is a sequence of pages;
+answer them as in Table~\ref{tab:miktex} and click \ui{Next} after each.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{C{3.2cm}L{8.4cm}}
+\toprule
+\hd{Page} & \multicolumn{1}{c}{\hd{What to choose}} \\
+\midrule
+Copying conditions & Tick \emph{I accept the MiKTeX copying conditions} \\
+Installation scope & Choose the \emph{private (per-user)} installation, which MiKTeX itself
+  recommends and which needs no administrator rights \\
+Installation directory & Leave the proposed folder unchanged \\
+Settings & Preferred paper: \emph{Letter}. Install missing packages on-the-fly:
+  \emph{Always} \\
+Review & Click \ui{Start}; the installation takes a few minutes \\
+Finish & Click \ui{Close} \\
+\bottomrule
+\end{tabular}
+\caption{Answers for the pages of the Basic MiKTeX Installer.}
+\label{tab:miktex}
+\end{table}
+
+\rationale{The pipeline runs \cmd{pdflatex} in the background. With the setting \emph{Always},
+MiKTeX fetches any missing component silently. With the default setting it would instead open a
+dialog and wait for an answer that the pipeline cannot give, and the operation would time out.}
+
+\checkpoint{The installer has closed, and the Start menu contains an entry \emph{MiKTeX
+Console}.}
+
+\step{Let MiKTeX update itself once}
+Click \ui{Start}, type \code|miktex console| and open \ui{MiKTeX Console}. On its first page
+click \ui{Check for updates}. If updates are found, click \ui{Update now} and wait until the
+progress display has finished; then close MiKTeX Console.
+\checkpoint{MiKTeX Console reports that the installation is up to date (or you have installed
+the updates it offered).}
+
+\subsection{Poppler}
+
+\step{Install Poppler}
+Return to the PowerShell window and run:
+\begin{ps}
+winget install --id oschwartz10612.Poppler -e --source winget
+\end{ps}
+\checkpoint{The last line is \emph{Successfully installed}.}
+
+\subsection{Verify all four tools}
+
+\step{Open a new PowerShell window}\label{st:newafterinstall}
+Close the PowerShell window (type \code|exit| and press \key{Enter}), then open a new one as in
+Step~\ref{st:openps}.
+
+\rationale{A PowerShell window learns the list of installed programs at the moment it opens.
+The window used for the installations therefore does not yet know the new commands; a new
+window does.}
+
+\step{Make MiKTeX install missing components without asking}\label{st:autoinstall}
+\begin{ps}
+initexmf "--set-config-value=[MPM]AutoInstall=1"
+\end{ps}
+\checkpoint{The command prints nothing and a new prompt appears. (It repeats the choice
+\emph{Always} of Table~\ref{tab:miktex}, so that the setting is right even if the installer page
+was answered differently.)}
+
+\step{Check the four commands}\label{st:verifytools}
+Run the following four commands one after the other. Each prints a line that names the program
+and its version; only the first line of each answer matters, and your version numbers may be
+higher than the ones shown.
+
+\begin{ps}
+git --version
+\end{ps}
+\begin{out}
+git version 2.52.0.windows.1
+\end{out}
+
+\begin{ps}
+py -3.12 --version
+\end{ps}
+\begin{out}
+Python 3.12.10
+\end{out}
+
+\begin{ps}
+pdflatex --version
+\end{ps}
+\begin{out}[What you should see (first line)]
+MiKTeX-pdfTeX 4.21 (MiKTeX 25.12)
+\end{out}
+
+\begin{ps}
+pdftoppm -v
+\end{ps}
+\begin{out}[What you should see (first line)]
+pdftoppm version 25.07.0
+\end{out}
+
+\checkpoint{All four commands answered with a version. The Python version begins with
+\texttt{3.12}.}
+
+\begin{iffail}[If one of the four commands is ``not recognized'']
+Close the window, open a new one and try that command once more. If it still fails, the program
+was not installed or Windows cannot find it: repeat the installation step of that program and
+watch for an error message. For \cmd{pdftoppm} in particular, Section~\ref{sec:trouble} gives
+three commands that repair the search path.
+\end{iffail}

@@ -1,0 +1,130 @@
+\section{A GitHub account and access to the repository}
+\label{sec:github}
+
+\subsection{Background}
+
+\term{Git} is a program that records the history of a folder of files: every saved state (a
+\term{commit}) can be recalled, compared and shared. A folder managed by Git is called a
+\term{repository}. \term{GitHub} is a website that stores repositories on the internet so that
+several people can work on the same one. The team's repository is
+
+\begin{center}
+\repourl
+\end{center}
+
+and it belongs to the project lead, Andrew Shahvosian, whose GitHub user name is
+\texttt{ashahvos}. To read the repository you may need an account that the lead has invited; to
+contribute to it you certainly do. The whole section is done in a web browser (Edge, Chrome or
+Firefox); nothing is installed yet.
+
+\subsection{Create the account}
+
+Skip to Step~\ref{st:sendname} if you already have a GitHub account and can sign in to it.
+
+\step{Open the sign-up page}
+Open the browser, click in the address bar at the top, type the following address and press
+\key{Enter}.
+\begin{center}\url{https://github.com/signup}\end{center}
+\checkpoint{A page headed \emph{Sign up for GitHub} (or similar) asks for an email address.}
+
+\step{Fill in the form}
+The layout of the page changes from time to time, but it always asks for the same four items.
+\begin{enumerate}
+\item \textbf{Email.} Enter an address whose inbox you can open right now; your USC address is a
+  good choice.
+\item \textbf{Password.} GitHub accepts a password of at least 15 characters, or of at least 8
+  characters that include a number and a lowercase letter. Do not reuse a password from another
+  site, and store it in a password manager or write it down now.
+\item \textbf{Username.} This name is public and appears on every contribution you make. Use
+  letters, digits and single hyphens only. A recognizable form of your own name is best, for
+  example the part of your USC address before the \code|@| sign.
+\item \textbf{Country or region.} Select it from the list.
+\end{enumerate}
+Leave any box about product updates unticked unless you want the emails, then click the button
+at the bottom of the form (\ui{Create account} or \ui{Continue}).
+
+\step{Prove that you are a person and confirm the email address}
+GitHub shows a short visual puzzle; solve it. It then sends a numeric code to the email address
+you gave. Open your inbox in another browser tab, find the message from GitHub (check the spam
+folder if it has not arrived after two minutes), and type the code into the sign-up page.
+\checkpoint{The browser shows your GitHub home page, or a sign-in page that accepts your new
+user name and password. Any questions about your interests can be skipped with the link
+\ui{Skip personalization} (or \ui{Skip this for now}); the free plan is sufficient.}
+
+\begin{note}[Two-factor authentication]
+GitHub strongly recommends, and for people who contribute code may require, a second sign-in
+factor such as an authenticator app on your phone. If GitHub asks you to set it up, follow its
+instructions; the request is genuine, and it does not interfere with anything in this guide.
+\end{note}
+
+\subsection{Obtain access}
+
+\step{Send your user name to the project lead}\label{st:sendname}
+Send Andrew a message through the team's usual channel that contains your GitHub user name
+exactly as you typed it, including any hyphens. Then wait for his reply; he carries out
+Step~\ref{st:invite}.
+\checkpoint{The lead has confirmed that the invitation was sent.}
+
+\step{For the project lead only: invite the team member}\label{st:invite}
+\begin{enumerate}
+\item Sign in to GitHub and open the page of the repository,\\ \repourl.
+\item Click the \ui{Settings} tab of the repository (the rightmost tab under the repository
+  name; if it is hidden, open the \ui{\ldots} menu at the end of the row of tabs).
+\item In the left-hand list, under \ui{Access}, click \ui{Collaborators}. GitHub may ask for
+  your password again.
+\item Click \ui{Add people}, type the team member's user name, select the matching account in
+  the list, and click the green button that names the account and the repository.
+\end{enumerate}
+The same page shows whether the repository is \emph{Private} or \emph{Public}. A private
+repository cannot be seen at all by an account that has not accepted an invitation.
+\checkpoint{The team member's name is listed on the Collaborators page with the remark
+\emph{Pending invite}.}
+
+\step{Accept the invitation}
+GitHub sends you an email which says that \texttt{ashahvos} has invited you to collaborate on
+the repository \texttt{ashahvos/camera-to-latex}. Open it and click \ui{View invitation}, then
+\ui{Accept invitation}.
+If the email cannot be found, sign in to GitHub and open this address instead:
+\begin{center}\url{https://github.com/ashahvos/camera-to-latex/invitations}\end{center}
+An invitation expires after seven days; if yours has expired, ask the lead to send it again.
+\checkpoint{The browser shows the repository page: a list of folders and files
+(\file{firmware}, \file{model}, \file{pipeline}, \file{tools}, \ldots) and, below it, the text of
+the file \file{README.md} under the heading \emph{Camera to LaTeX}.}
+
+\subsection{A first look at the repository}
+
+\step{Read a file in the browser}
+Nothing needs to be installed to read the project. On the repository page, click the folder
+\file{docs}, then a PDF file in it; GitHub displays the document, and the download button
+(an arrow pointing into a tray, at the top right of the file view) saves a copy. Click the
+repository name \ui{camera-to-latex} at the top of the page to return to the start. The same
+method works for \file{sheets/sheets.pdf} and \file{test\_set/test\_lines.pdf}, the two documents
+that will later be printed.
+\checkpoint{You have opened one file of the repository and returned to its first page.}
+
+Table~\ref{tab:repo} lists what the repository contains. The names will become familiar in the
+quick start of Section~\ref{sec:quick}.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{L{3.5cm}L{8.1cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Name}} & \multicolumn{1}{c}{\hd{Contents}} \\
+\midrule
+\file{README.md} & A one-page summary of the project and its commands \\
+\file{config.py} & Every adjustable number of the pipeline, in one file \\
+\file{symbols.csv} & The 159 classes (182 symbols) the classifier knows \\
+\file{requirements.txt} & The Python packages the project needs \\
+\file{firmware/capture/} & The program (``sketch'') that runs on the board \\
+\file{pipeline/} & Capture, segmentation, classification, layout, PDF output and the application \\
+\file{model/} & Generation of training images, training and evaluation of the classifier \\
+\file{tools/} & Printable sheets, test lines, evaluation and review of results \\
+\file{sheets/} & The printable sheets of symbols (\file{sheets.pdf}, 9 pages) \\
+\file{test\_set/} & The 80 test lines (\file{lines.tsv}, \file{test\_lines.pdf}) and their photographs \\
+\file{tests/} & Automatic tests of the code \\
+\file{docs/} & This guide and its companion \\
+\bottomrule
+\end{tabular}
+\caption{The contents of the repository.}
+\label{tab:repo}
+\end{table}

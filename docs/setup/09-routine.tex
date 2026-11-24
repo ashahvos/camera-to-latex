@@ -1,0 +1,138 @@
+\section{Working routine}
+\label{sec:routine}
+
+The installation is done once. This section describes what is done every time: how a working
+session begins, how results are shared with the team, and how a session ends.
+
+\subsection{Begin a session}
+
+\step{Open the project}
+Open a new PowerShell window (Step~\ref{st:openps}) and give the opening sequence.
+\begin{ps}[Opening sequence, command 1 of 2]
+cd C:\ee105\camera-to-latex
+\end{ps}
+\begin{ps}[Opening sequence, command 2 of 2]
+.\.venv\Scripts\Activate.ps1
+\end{ps}
+\checkpoint{The prompt reads:}
+\venvprompt
+
+\step{Fetch the team's latest changes}\label{st:pull}
+\begin{ps}
+git pull
+\end{ps}
+\begin{out}[What you should see when nothing has changed]
+Already up to date.
+\end{out}
+When team members have uploaded changes since your last session, Git instead lists the files it
+updated. Begin every session with this command; work done on an outdated copy is the usual
+cause of the conflicts described below.
+\checkpoint{The output is \emph{Already up to date} or a list of updated files, and it contains
+neither \emph{error} nor \emph{CONFLICT}.}
+
+\subsection{Share your work}
+
+Sharing a change takes three commands: \cmd{git add} selects the files, \cmd{git commit} records
+them on your laptop with a describing sentence, and \cmd{git push} uploads the record to GitHub.
+The companion document gives these commands in full, with the real file names, at every point
+where something is to be shared. Their general form is shown here.
+
+\step{See what has changed}
+\begin{ps}
+git status
+\end{ps}
+\begin{out}[What you should see when you have changed the file config.py]
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+        modified:   config.py
+\end{out}
+\checkpoint{Every file listed is one that you meant to change. If a file is listed that you did
+not mean to change, do not continue; ask the lead.}
+
+\step{Select, record and upload}
+In the first command, replace the placeholder by the name of the changed file as \cmd{git
+status} printed it. In the second, replace the placeholder by a short sentence that says what
+you did; keep the quotation marks.
+\begin{center}
+\texttt{git add }\ph{FILE}\\[4pt]
+\texttt{git commit -m "}\ph{MESSAGE}\texttt{"}\\[4pt]
+\texttt{git push}
+\end{center}
+\begin{out}[Example: sharing a change of config.py]
+(.venv) PS C:\ee105\camera-to-latex> git add config.py
+(.venv) PS C:\ee105\camera-to-latex> git commit -m "Set camera orientation"
+[main 3f2c1ab] Set camera orientation
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+(.venv) PS C:\ee105\camera-to-latex> git push
+To https://github.com/ashahvos/camera-to-latex.git
+   a1b2c3d..3f2c1ab  main -> main
+\end{out}
+\checkpoint{The output of \cmd{git push} ends with a line of the form \texttt{main -> main}.
+The change is now visible on the repository's page on GitHub.}
+
+Three rules keep the shared repository in order.
+\begin{enumerate}
+\item Name the files you add. Do not use commands that add ``everything''; they sweep up files
+  that were never meant to be shared.
+\item Write messages that a team member will understand in a week: \emph{Add photos of test
+  lines T01 to T60}, not \emph{update}.
+\item Never share passwords, and never try to add the folders \file{.venv}, \file{data} or
+  \file{out}; Git ignores them for good reason.
+\end{enumerate}
+
+\subsection{When Git objects}
+
+\step{If the upload is rejected}
+\begin{out}[The message]
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/ashahvos/camera-to-latex.git'
+\end{out}
+Someone uploaded a change after your last \cmd{git pull}. Nothing is lost. Fetch their change
+and upload again:
+\begin{ps}
+git pull
+\end{ps}
+\begin{ps}
+git push
+\end{ps}
+If Notepad opens during \cmd{git pull} with a sentence that begins \emph{Merge branch}, Git is
+proposing a description for the combination of the two changes. The proposal is adequate: close
+Notepad (\menu{File}\then\menu{Exit}), and the command completes.
+
+\step{If Git reports a conflict}
+\begin{out}[The message]
+CONFLICT (content): Merge conflict in config.py
+Automatic merge failed; fix conflicts and then commit the result.
+\end{out}
+You and a team member changed the same lines of the same file, and Git cannot decide between
+the two versions. Return the project to its state before the pull with
+\begin{ps}
+git merge --abort
+\end{ps}
+and send the lead a screenshot. Your own change is still recorded on your laptop; the lead will
+say which version should prevail.
+\checkpoint{\cmd{git status} no longer mentions a merge.}
+
+\step{If Git refuses to pull because of local changes}
+\begin{out}[The message]
+error: Your local changes to the following files would be overwritten by merge:
+\end{out}
+You changed a file without recording the change, and the same file has changed on GitHub.
+Record your change first (the \cmd{git add} and \cmd{git commit} commands above), then run
+\cmd{git pull} again.
+
+\subsection{End a session}
+
+\step{Close the window}
+When the prompt is showing, type \code|exit| and press \key{Enter}, or close the window with
+the \ui{X} button. Nothing needs to be saved or switched off; the environment is simply
+activated again by the opening sequence next time.
+
+\begin{caution}[Do not update the software before the hand-in]
+The versions installed by this guide are known to work together. Until the project has been
+handed in on December~1, decline offers to upgrade Python packages (including the notice that a
+new version of pip is available), and do not run commands that upgrade them. A working
+installation is worth more than a current one.
+\end{caution}

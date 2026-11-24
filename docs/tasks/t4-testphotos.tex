@@ -1,0 +1,279 @@
+\section{Task 4: The test lines and the accuracy on real photographs}
+\sectionmark{Task 4: Test lines and accuracy}
+\label{sec:t4}
+
+\subsection{Purpose, conditions and criterion}
+
+\begin{plain}{Task 4 at a glance}
+\textbf{Purpose.} The accuracy figures known so far come from simulated photographs. This task
+replaces them by measurements on real ones. In part~A the 80 printed lines are photographed
+with the board. In part~B, after the pipeline has been frozen, the 60 test lines among them are
+evaluated once, and the result is compared with the targets of the project.
+
+\textbf{Before you begin.} For part~A: Task~1 is complete, the line platform exists, and the 16
+printed pages of test lines are at hand. For part~B: Task~3 is complete, and the frozen version
+carries the tag \texttt{v1.0-rc1}.
+
+\textbf{Complete when.} Part~A: 80 photographs exist, each shows the whole of the line after
+which it is named, and they are stored in the repository. Part~B: the table of results against
+targets (Table~\ref{tab:targets}) is filled in with counts, and the per-line results and the
+review document are stored in the team's shared folder.
+
+\textbf{Time.} Part~A about one hour; part~B about half an hour.
+\end{plain}
+
+\subsection{Part A: photograph the 80 lines}
+\label{sec:t4a}
+
+Part~A may be carried out while the classifier of Task~2 trains. In that case it needs a second
+PowerShell window, and the window in which the training runs must be left alone.
+
+\step{Open a PowerShell window for the photography}
+Click \ui{Start}, type \code|powershell|, and click \ui{Windows PowerShell}. A new window opens.
+In it, give the two commands of the opening sequence:
+\begin{ps}[Opening sequence, command 1 of 2]
+cd C:\ee105\camera-to-latex
+\end{ps}
+\begin{ps}[Opening sequence, command 2 of 2]
+.\.venv\Scripts\Activate.ps1
+\end{ps}
+\checkpoint{The prompt of the new window reads:}
+\venvprompt
+
+\step{Set up the line position}
+Put the line platform back on its outline, with a blank white sheet on top, and check the lamps
+as in Task~1. Sort the 16 printed pages by the names at their right margins: the pages with T01
+to T60 first, then those with D01 to D20.
+\checkpoint{The platform has the thickness entered in the record of Task~1, and the pages are
+in order.}
+
+\step{Start the series}\label{st:lineseries}
+\begin{pswide}
+python -m pipeline.capture --series test_set\images --names-file test_set\photo_names.txt
+\end{pswide}
+The viewfinder opens, and its yellow line reads \emph{1/80\ \ next: T01}. The names follow the
+order of the printed pages.
+\checkpoint{The viewfinder shows the live picture and the name \emph{T01}.}
+
+\step{Photograph each line}\label{st:oneline}
+For each of the 80 lines:
+\begin{enumerate}
+\item Lay the page on the platform, its top towards the arrow, and move it until the line named
+  in the viewfinder lies in the middle of the picture. The name is printed at the right margin
+  of the page, level with the line, and is itself outside the picture.
+\item Check four things in the viewfinder. The whole line is inside the picture, with white
+  paper beyond its first and its last symbol. The line lies in the middle third of the height
+  of the picture and runs parallel to the border, its two ends at the same height to within
+  half a letter. No shadow and no bright spot touches it. For a fraction or a sum, the whole
+  structure is inside, top to bottom.
+\item Wait until the picture has stood still for two seconds, and press \key{Space}.
+\end{enumerate}
+Parts of the neighbouring lines appear at the upper and lower borders of the picture. They are
+left as they are: the program reads the row nearest the middle, and covering the neighbours
+would only add the edges and shadows of the covering sheets. Line T39 is the only one that
+nearly fills the width of the picture; centre it with particular care.
+\checkpoint{After the 80th photograph the viewfinder closes by itself.}
+
+\begin{note}[Mistakes and interruptions]
+As in Task~2: \key{B} goes back one name so that a photograph can be replaced; \key{Q}
+interrupts the series; when the command is given again, \key{N} passes over the names marked
+\emph{(exists)}. Single photographs are taken again with the placeholder form of the command,
+in which the names are separated by commas and enclosed in quotation marks:
+\begin{center}
+\mbox{\footnotesize\texttt{python -m pipeline.capture -{}-series test\_set\textbackslash{}images -{}-names "}\ph{NAMES}\texttt{"}}
+\end{center}
+For example, \code|--names "T17,T23"| at the end of the command retakes the lines T17 and T23.
+\end{note}
+
+\step{Count and inspect the photographs}
+\begin{ps}
+(Get-ChildItem test_set\images -Filter *.png).Count
+\end{ps}
+\checkpoint{The answer is \texttt{80}.}
+\begin{ps}
+explorer test_set\images
+\end{ps}
+In the Explorer window choose \menu{View}\then\menu{Extra large icons} and look at all 80
+photographs. Each must show one whole line in the middle of the picture, upright and sharp.
+Then compare five photographs with the printed lines of the same names: T05, T25, T45, T60 and
+D20.
+\checkpoint{Every photograph shows a whole line, and the five photographs show the lines after
+which they are named. A photograph that shows the neighbour of its line means that a line was
+skipped or taken twice; from that point on the names are shifted, and the affected photographs
+are taken again.}
+
+\step{Let the pipeline read the development lines}
+The 20 development lines, and only they, may be evaluated at once; the test lines wait for
+part~B.
+\begin{ps}
+python -m tools.eval_pipeline --split dev --no-compile --quiet
+\end{ps}
+\checkpoint{The table reports 20 lines in its row \emph{all}, and a share of exact readings
+that is clearly above zero. (The column \emph{compiles} shows \emph{nan}, because that check
+was omitted.) A share of zero means that the photographs are unusable as a set:
+the names are shifted, or the orientation setting of Task~1 is missing on this laptop.}
+
+\step{Store the photographs in the repository}
+\begin{ps}
+git add test_set\images
+\end{ps}
+\begin{ps}
+git commit -m "Photographs of the 80 test and development lines"
+\end{ps}
+\begin{ps}
+git push
+\end{ps}
+\checkpoint{The output of the last command ends with a line that contains \texttt{main ->
+main}.}
+
+\step{Fill in the record of part A}
+\begin{table}[H]
+\centering
+\begin{tabular}{L{7.4cm}C{3.8cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Quantity}} & \hd{Value} \\
+\midrule
+Date; photographer & \\
+Thickness of the platform; width $W$ of T39 in \file{T39.png} & \\
+Lamps (number, position) & \\
+Photographs taken; photographs retaken & \\
+Print size of the lines & \\
+\bottomrule
+\end{tabular}
+\caption{Record of Task 4, part A. The width of T39 is measured in Paint as in Task~1, with
+the command \texttt{mspaint test\_set\bs images\bs T39.png}.}
+\label{tab:t4arecord}
+\end{table}
+
+\subsection{Part B: the final measurement}
+\label{sec:t4b}
+
+The final measurement is made once, on the frozen version. Its result is reported whatever it
+is; a target that is missed is reported as missed.
+
+\step{Open the project in PowerShell}
+\input{tasks/opening}
+
+\step{Confirm that the frozen version is in use}
+\begin{ps}
+git pull
+\end{ps}
+\begin{ps}
+git status --short
+\end{ps}
+\begin{ps}
+git describe --tags
+\end{ps}
+\checkpoint{The second command prints nothing: no file differs from the repository. The third
+prints \texttt{v1.0-rc1}. If it prints a longer name, such as \texttt{v1.0-rc1-2-g3f2c1ab},
+commits have been added since the freeze; ask the lead whether they were intended.}
+
+\step{Evaluate the 60 test lines}\label{st:final}
+\begin{ps}
+python -m tools.eval_pipeline
+\end{ps}
+The command reads the 60 photographs T01 to T60, compares each reading with the expected
+\LaTeX{}, checks that each reading compiles, prints one line for each photograph and the table
+of Step~\ref{st:gaterun}, and names the file in which the per-line results are stored.
+\checkpoint{The row \emph{all} reports 60 lines. The table is identical to that of the gate of
+Task~3, because neither the photographs nor the pipeline have changed and the pipeline contains
+no element of chance. A difference means that something has changed since the gate; find out
+what before any figure is reported.}
+
+\step{Produce the review document}
+\begin{ps}
+python -m tools.review_results
+\end{ps}
+\begin{out}
+review: C:\ee105\camera-to-latex\results\review_test_20261130_1012.pdf
+\end{out}
+\checkpoint{The file exists. It shows all 60 lines, each with its photograph, the boxes, the
+expected line and the reading; misread lines are marked in orange.}
+
+\step{Compare the result with the targets}
+Convert each percentage of the table into a count, and fill in Table~\ref{tab:targets}. The
+accuracy on single symbols comes from the record of Task~2, and the time per picture from the
+soak test of Task~1.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{L{4.5cm}C{2.5cm}C{2.0cm}C{1.5cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Quantity}} & \hd{Target} & \hd{Result} & \hd{Met?} \\
+\midrule
+Symbols named correctly (held-out real crops) & 95 \% & \hfill of 280 & \\
+Plain lines read exactly & 80 \% (20 of 25) & \hfill of 25 & \\
+Script lines read exactly & 70 \% (14 of 20) & \hfill of 20 & \\
+Fraction lines read exactly & 60 \% (6 of 10) & \hfill of 10 & \\
+Mixed lines read exactly & no target & \hfill of 5 & -- \\
+All test lines read exactly & no target & \hfill of 60 & -- \\
+Readings that compile & 100 \% & \hfill of 60 & \\
+Time from key press to reading & 5 s or less & \hfill s & \\
+\bottomrule
+\end{tabular}
+\caption{Results against the targets of the project plan. The time from key press to reading is
+the time per picture of the soak test plus the value in the column \emph{s/line} of the
+evaluation. In the application a line can be accepted only if it compiles, so that every
+accepted line compiles by construction; the row on compiling reports how many readings
+compiled exactly as they were produced.}
+\label{tab:targets}
+\end{table}
+\checkpoint{Every row has a result. Each result is a count, so that its precision can be
+judged (Section~\ref{sec:stat}).}
+
+\step{Classify the misread lines}
+Open the review document (\code|explorer results|, then double-click the file whose name begins
+with \file{review\_test}) and assign every misread line to a kind of error by
+Table~\ref{tab:kinds}, as in Step~\ref{st:triage}. Mark three or four lines that show different
+kinds of error clearly; the final report presents them as examples.
+\checkpoint{The record states how many misread lines fall under each code. This analysis
+serves the report alone: nothing in the pipeline is changed because of it.}
+
+\step{Store the evidence}
+In the Explorer window of the folder \file{results}, sort by date. Upload the two newest files
+whose names begin with \file{eval\_test} and \file{review\_test} to the team's shared Google
+Drive folder (\menu{New}\then\menu{File upload}).
+\checkpoint{Both files are visible in the shared folder. The final report takes its figures and
+its examples from them.}
+
+\step{Enter the result in the table of the README (project lead)}
+The file \file{README.md} of the repository contains a table headed \emph{Results}, with one
+row for each measurement.
+\begin{ps}
+notepad README.md
+\end{ps}
+Press \key{Ctrl}+\key{F}, type \code|## Results| and press \key{Enter}; Notepad jumps to the
+heading of the table. Select the last row of the table, which is one long line that begins and
+ends with a vertical bar, copy it, and paste the copy on a new line below it. In the copy,
+replace the entries between the bars by today's date, the version \code|v1.0-rc1|, the words
+\emph{60 real test lines}, the capital height of Task~1, the classifier, and the counts of
+Table~\ref{tab:targets}. Keep every vertical bar. Save with \key{Ctrl}+\key{S}, close Notepad,
+and record the change:
+\begin{ps}
+git add README.md
+\end{ps}
+\begin{ps}
+git commit -m "Results of the final measurement on real photographs"
+\end{ps}
+\begin{ps}
+git push
+\end{ps}
+\checkpoint{On the GitHub page of the repository, the table shows the new row.}
+
+\step{Fill in the record of part B}
+\begin{table}[H]
+\centering
+\begin{tabular}{L{7.4cm}C{3.8cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Quantity}} & \hd{Value} \\
+\midrule
+Date; version (output of \texttt{git describe -{}-tags}) & \\
+Name of the per-line results file & \\
+Table identical to that of the gate? & \cbox\ yes\quad\cbox\ no \\
+Misread test lines by kind: P; C1; C2; C3; R; L & \\
+Lines chosen as examples for the report & \\
+\bottomrule
+\end{tabular}
+\caption{Record of Task 4, part B. The results themselves are in Table~\ref{tab:targets}.}
+\label{tab:t4brecord}
+\end{table}

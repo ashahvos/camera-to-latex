@@ -1,0 +1,118 @@
+\section{Glossary}
+\label{sec:glossary}
+
+\begin{description}[style=nextline,leftmargin=1.6em,itemsep=3pt]
+\item[Activation] The act of telling one PowerShell window to use the project's virtual
+  environment. Shown by \texttt{(.venv)} at the start of the prompt.
+\item[Board] The USC EE\,105 circuit board with its Arduino Nano 33 BLE Sense Lite and OV7675
+  camera. In this project it only takes photographs.
+\item[Classifier] The part of the pipeline that names a symbol from its picture. The project's
+  classifier is a convolutional neural network.
+\item[Clone] A complete copy of a repository on your own computer, or the act of making one.
+\item[CNN (convolutional neural network)] A neural network designed for images. It applies
+  small filters across the picture to detect strokes and corners and combines their responses
+  into a decision.
+\item[Commit] A recorded state of the repository, with an author, a date and a message; also the
+  act of recording one.
+\item[Current folder] The folder in which PowerShell carries out a command, shown in the prompt.
+\item[Epoch] One pass of the training procedure through all training images.
+\item[Frame] One photograph from the camera: $320 \times 240$ pixels, each a gray level from 0
+  (black) to 255 (white).
+\item[Git] The program that records and exchanges the history of a repository.
+\item[GitHub] The website on which the team's repository is stored.
+\item[\LaTeX{}] A typesetting system in which a document is written as text with commands, for
+  example \code|\frac{a}{b}| for a fraction, and converted to a PDF by a program such as
+  \cmd{pdflatex}.
+\item[MiKTeX] The distribution of \LaTeX{} for Windows used here.
+\item[Package] A unit of software written by others and installed by a package manager:
+  \cmd{pip} for Python packages, \cmd{winget} for Windows programs, MiKTeX for \LaTeX{}
+  components.
+\item[Path] In the narrow sense, the location of a file, such as
+  \code|C:\ee105\camera-to-latex\config.py|. In the phrase ``on the path'', the list of folders
+  in which Windows looks for a program whose name is typed.
+\item[Pipeline] The chain of processing stages from photograph to PDF
+  (Figure~\ref{fig:pipeline}).
+\item[Prompt] The text that PowerShell prints when it is ready for a command.
+\item[Pull, push] To fetch the team's commits from GitHub, and to upload one's own.
+\item[Repository] A folder whose history is managed by Git.
+\item[Segmentation] The stage that finds the individual symbols in a photograph.
+\item[Token] One unit of \LaTeX{} text: a command, a brace or a single character.
+\item[Virtual environment] A private installation of Python and its packages inside the
+  project folder \file{.venv}.
+\end{description}
+
+\section{Summary of commands}
+\label{sec:summary}
+
+Table~\ref{tab:cmds} lists the commands of the guide for later reference. All but the first
+group are run in the project folder with the environment activated.
+
+\begin{table}[H]
+\footnotesize
+\noindent\hspace*{-12mm}%
+\begin{tabular}{L{11.0cm}L{3.3cm}}
+\toprule
+\multicolumn{1}{c}{\hd{Command}} & \multicolumn{1}{c}{\hd{Effect}} \\
+\midrule
+\multicolumn{2}{l}{\emph{Opening sequence, in every new PowerShell window}} \\
+\lstinline[style=sum]|cd C:\ee105\camera-to-latex| & Go to the project \\
+\lstinline[style=sum]|.\.venv\Scripts\Activate.ps1| & Activate environment \\
+\midrule
+\multicolumn{2}{l}{\emph{Project}} \\
+\lstinline[style=sum]|python -m pytest -q| & Run the automatic tests \\
+\lstinline[style=sum]|python -m tools.make_test_lines --render| & Simulated photographs \\
+\lstinline[style=sum]|python -m model.make_synthetic| & Training images \\
+\lstinline[style=sum]|python -m model.train| & Train the classifier \\
+\lstinline[style=sum]|python -m tools.eval_pipeline --images test_set\synthetic --split all| & Score the pipeline \\
+\lstinline[style=sum]|python -m tools.review_results| & Review document \\
+\lstinline[style=sum]|python -m pipeline.main --image test_set\synthetic\T47.png --accept --pdf| & One photograph to PDF \\
+\midrule
+\multicolumn{2}{l}{\emph{Git}} \\
+\lstinline[style=sum]|git pull| & Fetch team's changes \\
+\lstinline[style=sum]|git status| & List changed files \\
+\lstinline[style=sum]|git add|, \lstinline[style=sum]|git commit -m|, \lstinline[style=sum]|git push| & Select, record, upload \\
+\midrule
+\multicolumn{2}{l}{\emph{PowerShell}} \\
+\lstinline[style=sum]|cls| & Clear the window \\
+\lstinline[style=sum]|explorer .| & Open the current folder \\
+\lstinline[style=sum]|exit| & Close the window \\
+\bottomrule
+\end{tabular}
+\normalsize
+\caption{The commands used in this guide. Each command is one line.}
+\label{tab:cmds}
+\end{table}
+
+\section{Removing the installation}
+
+Nothing in this guide alters Windows irreversibly. To remove the project from a laptop, delete
+the folder \file{C:\bs ee105} in File Explorer; this removes the code, the environment and all
+generated data. To remove the tools, open \menu{Settings}\then\menu{Apps}\then\menu{Installed
+apps} and uninstall \emph{Git}, \emph{Python 3.12}, \emph{Python Launcher}, and \emph{MiKTeX}.
+Poppler is removed with the command
+\code|winget uninstall --id oschwartz10612.Poppler|. The GitHub account is independent of the
+laptop and remains.
+
+\section{Sources}
+
+The installation procedure follows the publishers' own instructions, consulted on 24 November
+2026.
+\begin{itemize}
+\item GitHub Docs, \emph{Creating an account on GitHub}:
+  \url{https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github}
+\item GitHub Docs, \emph{Inviting collaborators to a personal repository}:
+  \url{https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/inviting-collaborators-to-a-personal-repository}
+\item GitHub Docs, \emph{Caching your GitHub credentials in Git} (Git Credential Manager):
+  \url{https://docs.github.com/en/get-started/git-basics/caching-your-github-credentials-in-git}
+\item Microsoft Learn, \emph{Use the WinGet tool to install and manage applications}:
+  \url{https://learn.microsoft.com/en-us/windows/package-manager/winget}
+\item Python documentation, \emph{Using Python on Windows} (version 3.12):
+  \url{https://docs.python.org/3.12/using/windows.html}
+\item MiKTeX, \emph{Install MiKTeX on Windows}: \url{https://miktex.org/howto/install-miktex}
+\item MiKTeX, \emph{Just enough TeX} (automatic installation of packages):
+  \url{https://miktex.org/kb/just-enough-tex}
+\item Poppler packaged for Windows: \url{https://github.com/oschwartz10612/poppler-windows}
+\end{itemize}
+The expected outputs of the project's own commands were taken from runs of the repository on the
+project lead's Windows laptop on 23 November 2026, and from runs of the same commands in a Linux
+test environment on 24 November 2026.

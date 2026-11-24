@@ -1,0 +1,143 @@
+\section{Build the Python environment}
+\label{sec:python}
+
+\subsection{Background}
+
+The project depends on nine Python \term{packages} (libraries written by others), among them
+NumPy for arithmetic on arrays, OpenCV for image processing and TensorFlow for the neural
+network; the file \file{requirements.txt} lists them. They are installed into a \term{virtual
+environment}: a private copy of Python that lives in a folder named \file{.venv} inside the
+project and is used by this project alone. Deleting that folder removes the environment
+completely, and no other program on the laptop is affected by what is installed in it.
+
+A PowerShell window uses the environment only after the environment has been \term{activated}
+in that window. Activation lasts until the window is closed, and it is shown by the word
+\texttt{(.venv)} at the start of the prompt.
+
+\subsection{Create and activate the environment}
+
+\step{Start in the project folder}
+Use a PowerShell window whose prompt reads
+\plainprompt
+If the prompt shows another folder, run:
+\begin{ps}
+cd C:\ee105\camera-to-latex
+\end{ps}
+
+\step{Create the environment}
+\begin{ps}
+py -3.12 -m venv .venv
+\end{ps}
+The command works for about half a minute and prints nothing.
+\checkpoint{A new prompt has appeared without any red text, and the command
+\texttt{Get-ChildItem} now lists a folder named \file{.venv}.}
+
+\step{Allow PowerShell to run the activation script}\label{st:policy}
+A new Windows installation refuses to run script files, and activation is a script. The next
+command permits scripts that are stored on your own computer, for your user account only.
+\begin{ps}
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+\end{ps}
+PowerShell explains the change and asks for confirmation. Type \code|Y| and press \key{Enter}.
+\checkpoint{A new prompt has appeared. The command is needed once per computer; it does no harm
+to run it again.}
+
+\step{Activate the environment}\label{st:activate}
+\begin{ps}
+.\.venv\Scripts\Activate.ps1
+\end{ps}
+The line begins with a full stop and a backslash, which mean ``in the current folder''.
+\begin{out}
+(.venv) PS C:\ee105\camera-to-latex>
+\end{out}
+\checkpoint{The prompt now begins with \texttt{(.venv)}.}
+
+\begin{iffail}[If red text says that running scripts is disabled]
+Step~\ref{st:policy} did not take effect. Run it again, answer \code|Y|, and repeat this step.
+If the laptop is managed by an organization that forbids the change,
+Section~\ref{sec:trouble} gives an alternative.
+\end{iffail}
+
+\subsection{Install the packages}
+
+\step{Update the installer program}
+The program that installs Python packages is called \cmd{pip}. Bring it up to date first:
+\begin{ps}
+python -m pip install --upgrade pip
+\end{ps}
+\checkpoint{The output ends with \emph{Successfully installed pip} and a version number, or
+says that the requirement is already satisfied.}
+
+\step{Install the project's packages}\label{st:pipinstall}
+\begin{ps}
+pip install -r requirements.txt
+\end{ps}
+This is the longest installation of the guide: between 10 and 30 minutes, depending on the
+internet connection and on the antivirus program, which inspects every file. The output scrolls
+through lines that begin with \emph{Collecting} and \emph{Downloading}; the largest download,
+TensorFlow, is about 350\,MB. Near the end, the window shows a line that begins with
+\emph{Installing collected packages} and then appears to stand still, often for 5 to 15 minutes.
+\textbf{This is normal}: pip is unpacking many thousands of small files and reports nothing
+while it does so. Leave the window alone.
+\begin{out}[What you should see at the end (the list is abridged here)]
+Installing collected packages: pyserial, namex, libclang, flatbuffers, ..., keras, tensorflow
+Successfully installed ... keras-3.15.1 ... tensorflow-2.21.0 ...
+(.venv) PS C:\ee105\camera-to-latex>
+\end{out}
+\checkpoint{A line beginning with \emph{Successfully installed} names \emph{tensorflow}, and a
+new prompt has appeared. A notice that a newer version of pip exists can be ignored.}
+
+\begin{iffail}[If the window seems frozen]
+Look at the title bar. If it contains the word \emph{Select}, a mouse click has paused the
+output: press \key{Esc}. Otherwise wait. To convince yourself that work continues, open Task
+Manager with \key{Ctrl}+\key{Shift}+\key{Esc} and look for \emph{Python} in the list of
+processes with a changing CPU or disk figure. Interrupt the command (\key{Ctrl}+\key{C}) only if
+nothing at all has changed for 30 minutes, and then simply run the same command again; pip
+continues with what is missing.
+\end{iffail}
+
+\step{Fix the version of OpenCV}\label{st:opencv}
+\begin{ps}
+pip install "opencv-python>=4.8,<5"
+\end{ps}
+\rationale{Version~5 of the image-processing library OpenCV removed a function
+(\cmd{HOGDescriptor}) that the project's fallback classifier uses. The command makes sure that a
+version~4 release is installed; the quotation marks are required because PowerShell would
+otherwise interpret the signs \texttt{<} and \texttt{>} itself.}
+\checkpoint{The output ends either with \emph{Successfully installed opencv-python-4} followed
+by more digits, or with \emph{Requirement already satisfied}.}
+
+\step{Verify the two most important packages}\label{st:verifypy}
+\begin{ps}
+python -c "import cv2, tensorflow as tf; print(cv2.__version__, tf.__version__)"
+\end{ps}
+The command takes 10 to 30 seconds the first time. TensorFlow prints a few informational lines
+first; they mention \emph{oneDNN} and are not errors.
+\begin{out}[What you should see (last line)]
+4.12.0 2.21.0
+\end{out}
+\checkpoint{The last line shows two version numbers; the first begins with \texttt{4.} and the
+second with \texttt{2.}}
+
+\subsection{The opening sequence for every later session}
+\label{sec:opening}
+
+The environment has to be activated again in every new PowerShell window. From now on, whenever
+this guide or its companion asks for a new window, open one as in Step~\ref{st:openps} and run
+the following two commands. Together they are called the \term{opening sequence}.
+
+\begin{ps}[Opening sequence, command 1 of 2]
+cd C:\ee105\camera-to-latex
+\end{ps}
+\begin{ps}[Opening sequence, command 2 of 2]
+.\.venv\Scripts\Activate.ps1
+\end{ps}
+\checkpoint{The prompt reads as follows. Every command of the project is run from this folder
+with this prefix showing.}
+\venvprompt
+
+\begin{note}[Optional: silence TensorFlow's informational lines]
+The command \code|$env:TF_CPP_MIN_LOG_LEVEL = "2"| hides most of the lines that TensorFlow
+prints when it starts. It affects only the window in which it is typed, and nothing depends on
+it.
+\end{note}
